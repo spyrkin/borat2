@@ -16,7 +16,7 @@ namespace Chat.Core
     public class TaskExecuter
     {
         public DispatcherTimer timerExecute;
-        public int updateMilliseconds = 1000 * 60 * 2;
+        public int updateMilliseconds = 1000 * 60 * 1;
         public DispatcherTimer timerExecute2;
         public ChatWindow ch;
         public void wire(ChatWindow ch)
@@ -71,6 +71,11 @@ namespace Chat.Core
                 return;
             }
 
+            updateAllChats();
+        }
+
+        public void updateAllChats()
+        {
             lock (ch.tasks)
             {
                 foreach (PersonChat pc in ch.personWindows.Values)
@@ -98,7 +103,7 @@ namespace Chat.Core
             {
                 if (task.type == TaskEnum.MESSAGE)
                 {
-				    //ChatCoreHelper.WriteMessage(task.vkId, task.message);
+				    ChatCoreHelper.WriteMessage(task.vkId, task.message);
                     //шлем непроверенное сообщение
                     PersonChat pchat = ch.getPersonChat(task.personChatId);
                     pchat.sendVirtualMessage(task);
@@ -106,14 +111,14 @@ namespace Chat.Core
                 }
 	            if (task.type == TaskEnum.UPDATE)
 	            {
-		            //List<string[]> messages = ChatCoreHelper.GetMessagesFromUser(task.vkId);
-		            //PersonChat pchat = ch.getPersonChat(task.personChatId);
-					//pchat.updateMessage(messages);
-				}
+                    List<string[]> messages = ChatCoreHelper.GetMessagesFromUser(task.vkId);
+                    PersonChat pchat = ch.getPersonChat(task.personChatId);
+                    pchat.updateMessage(messages);
+                }
 			}
         }
 
-	    private void addUpdateTask(string personChatId, int dsek)
+	    public void addUpdateTask(string personChatId, int dsek)
 	    {
 	        PersonChat pchat = ch.getPersonChat(personChatId);
 	        long vkId = pchat.personId;

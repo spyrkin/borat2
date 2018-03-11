@@ -35,7 +35,7 @@ namespace Chat.Gui
         public List<PersonModel> Persons = new List<PersonModel>();
         public KeyValuePair<long, string> CurrentUser;
         public TaskExecuter te = new TaskExecuter();
-        public String startMessage = "Привет, понравились твои фотки, давай знакомиться =)";
+        public String startMessage = "Привет, давай знакомиться =)";
         public DateTime playedTime;
 
         public ChatWindow()
@@ -278,7 +278,7 @@ namespace Chat.Gui
                 string domain = p.Domain;
                 bans.Add(domain);
             }
-            //BanList.setBanList(bans);
+            BanList.setBanList(bans);
             SendAll(startMessage);
             playedTime = DateTime.Now;
 
@@ -294,6 +294,12 @@ namespace Chat.Gui
                 FillPersons();
 
             }
+        }
+
+        private void onUpdateAll(object sender, RoutedEventArgs e)
+        {
+            te.updateAllChats();
+
         }
     }
 }

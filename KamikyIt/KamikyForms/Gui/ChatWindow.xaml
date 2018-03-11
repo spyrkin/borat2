@@ -240,6 +240,28 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
+
+            <Button
+                Margin =" 5 5 0 0"
+                Canvas.Top ="580"
+                Canvas.Left="20"
+                Background="White"
+                x:Name="button_update_all"
+                Width="48"
+                Height="48"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="onUpdateAll"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                ToolTip="Загрузить маркера">
+                <iconPacks1:PackIconModern
+                    x:Name="iconKindUpdateAll"
+                    Width="28"
+                    Height="28"
+                    Kind="Alert" />
+
+            </Button>
         </Canvas>
 
 

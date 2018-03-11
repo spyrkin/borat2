@@ -72,7 +72,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Background="DarkGray" Width="45" Canvas.Top="260" Canvas.Left="0" x:Name="bmessage">bt mess</Button>
+        <Button Background="DarkGray" Width="45" Canvas.Top="260" Canvas.Left="0" x:Name="bmessage" Click="update">update</Button>
         <Button Background="DarkGray" Width="45" Canvas.Top="260" Canvas.Left="45" x:Name="bwrite" Click="writeMsg">write</Button>
         <Button Background="DarkGray" Canvas.Top="260" Canvas.Left="92" Width="45" x:Name="bclose">close</Button>
     </Canvas>

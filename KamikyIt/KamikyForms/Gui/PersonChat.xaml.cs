@@ -255,7 +255,6 @@ namespace Chat.Gui
 
         private void UpdateUi()
         {
-
             datagrid.ItemsSource = chatMessages.OrderBy(o => o.time);
             datagrid.Items.Refresh();
 
@@ -305,5 +304,10 @@ namespace Chat.Gui
 		    UpdateUi();
 
 		}
-	}
+
+        private void update(object sender, RoutedEventArgs e)
+        {
+            ch.te.addUpdateTask(personChatId, 1);
+        }
+    }
 }
