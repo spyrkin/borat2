@@ -1,0 +1,273 @@
+﻿<controls:MetroWindow x:Class="Chat.Gui.ChatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+        xmlns:local="clr-namespace:Chat.Gui"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconPacks1="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        PreviewKeyDown="nPreviewKeyDown"
+        Icon="/Resources/vk_logo.png"
+        WindowTitleBrush="#4c75a3"    
+                      ResizeMode="NoResize"
+         Height="900" Width="1250">
+
+    <mah:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!--  Accent and AppTheme setting  -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+    <Grid HorizontalAlignment="Left">
+        <Canvas x:Name="mainCanvas"  Background="#FFE8E8E8">
+            <local:PersonChat x:Name="person1"></local:PersonChat>
+            <local:PersonChat x:Name="person2"></local:PersonChat>
+            <local:PersonChat x:Name="person3"></local:PersonChat>
+            <local:PersonChat x:Name="person4"></local:PersonChat>
+            <local:PersonChat x:Name="person5"></local:PersonChat>
+            <local:PersonChat x:Name="person6"></local:PersonChat>
+            <local:PersonChat x:Name="person7"></local:PersonChat>
+            <local:PersonChat x:Name="person8"></local:PersonChat>
+            <local:PersonChat x:Name="person9"></local:PersonChat>
+            <local:PersonChat x:Name="person10"></local:PersonChat>
+            <local:PersonChat x:Name="person11"></local:PersonChat>
+            <local:PersonChat x:Name="person12"></local:PersonChat>
+            <local:PersonChat x:Name="person13"></local:PersonChat>
+            <local:PersonChat x:Name="person14"></local:PersonChat>
+
+            <local:PersonChat x:Name="person15"></local:PersonChat>
+            <local:PersonChat x:Name="person16"></local:PersonChat>
+            <local:PersonChat x:Name="person17"></local:PersonChat>
+            <local:PersonChat x:Name="person18"></local:PersonChat>
+            <local:PersonChat x:Name="person19"></local:PersonChat>
+            <local:PersonChat x:Name="person20"></local:PersonChat>
+            <ListView Canvas.Top="10000"   Margin="5 5 0 0" Width="138"  Height="280" VerticalAlignment="Top" HorizontalAlignment="Stretch" x:Name="console" FontSize="12">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FlagSaved}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="LightGray" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagUpdate}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagGenerated}" Value="true">
+                                <Setter Property="Foreground" Value="DarkOliveGreen" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding isBallParse}" Value="true">
+                                <Setter Property="Foreground" Value="DarkGreen" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="Blue" />
+                            </Trigger>
+                            <DataTrigger Binding="{Binding IsCritical}" Value="true">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsWarning}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="Yellow" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagDel}" Value="true">
+                                <Setter Property="Foreground" Value="Gray" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+                        </Style.Triggers>
+
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Width="40"
+                            DisplayMemberBinding="{Binding TimeString}"
+                            Header="TIME" />
+                        <GridViewColumn
+                            Width="400"
+                            DisplayMemberBinding="{Binding message}"
+                            Header="MESSAGE" />
+
+
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+
+
+
+        </Canvas>
+        <Canvas x:Name="gridCanvas" Background="#FFE8E8E8" Margin="997,0,0,0" Top="0" Width="270">
+            <Button
+                Margin =" 5 5 0 0"
+                Background="White"
+                x:Name="button_load_markers"
+                Width="48"
+                Height="48"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="onExpandTaskGrid"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                ToolTip="Загрузить маркера">
+                <iconPacks1:PackIconModern
+                    x:Name="iconKind"
+                    Width="28"
+                    Height="28"
+                    Kind="ArrowLeft" />
+            </Button>
+            <Label  Canvas.Top="7" Canvas.Left="100"   x:Name="timer"                 FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                                       FontSize="30" Foreground="Black"
+                                       FontWeight="Bold"></Label>
+
+            <ListView Canvas.Top="50" Margin="5 5 0 0" Width="260"  Height="500" VerticalAlignment="Top" HorizontalAlignment="Stretch" x:Name="rTaskList" FontSize="12">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FlagSaved}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="LightGray" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagUpdate}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagGenerated}" Value="true">
+                                <Setter Property="Foreground" Value="DarkOliveGreen" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding isBallParse}" Value="true">
+                                <Setter Property="Foreground" Value="DarkGreen" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="Blue" />
+                            </Trigger>
+                            <DataTrigger Binding="{Binding IsCritical}" Value="true">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsWarning}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="Yellow" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagDel}" Value="true">
+                                <Setter Property="Foreground" Value="Gray" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Width="60"
+                            DisplayMemberBinding="{Binding timeExparedToString}"
+                            Header="TIME" />
+                        <GridViewColumn
+                            Width="60"
+                            DisplayMemberBinding="{Binding personChatId}"
+                            Header="PERSON" />
+                        <GridViewColumn
+                            Width="600"
+                            DisplayMemberBinding="{Binding message}"
+                            Header="MESSAGE" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Label  Canvas.Top="543" Canvas.Left="50" FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                    FontSize="30" Foreground="Black"
+                    FontWeight="Bold"> Stopped Tasks</Label>
+
+            <ListView Canvas.Top="575" Margin="5 5 0 0" Width="260"  Height="282" VerticalAlignment="Top" HorizontalAlignment="Stretch" x:Name="sTaskList" FontSize="12">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding FlagSaved}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="LightGray" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagUpdate}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="Gray" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagGenerated}" Value="true">
+                                <Setter Property="Foreground" Value="DarkOliveGreen" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding isBallParse}" Value="true">
+                                <Setter Property="Foreground" Value="DarkGreen" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="Blue" />
+                            </Trigger>
+                            <DataTrigger Binding="{Binding IsCritical}" Value="true">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsWarning}" Value="true">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Background" Value="Yellow" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding FlagDel}" Value="true">
+                                <Setter Property="Foreground" Value="Gray" />
+                                <Setter Property="Background" Value="White" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn
+                            Width="60"
+                            DisplayMemberBinding="{Binding timeExparedToString}"
+                            Header="TIME" />
+                        <GridViewColumn
+                            Width="60"
+                            DisplayMemberBinding="{Binding personChatId}"
+                            Header="PERSON" />
+                        <GridViewColumn
+                            Width="600"
+                            DisplayMemberBinding="{Binding message}"
+                            Header="MESSAGE" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Canvas>
+
+
+    </Grid>
+</controls:MetroWindow>
