@@ -19,6 +19,11 @@ namespace Chat.Core
 
         public DateTime timeExpared;
 
+	    public ChatTask()
+	    {
+	        
+	    }
+
 
         //количество секунд до запуска
         public int sekExpared

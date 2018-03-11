@@ -36,12 +36,11 @@ namespace Chat.Gui
         public KeyValuePair<long, string> CurrentUser;
         public TaskExecuter te = new TaskExecuter();
         public String startMessage = "Привет, понравились твои фотки, давай знакомиться =)";
+        public DateTime playedTime;
+
         public ChatWindow()
         {
             InitializeComponent();
-
-
-
         }
 
 
@@ -67,7 +66,7 @@ namespace Chat.Gui
                 try
                 {
                     var persWindow = personWindows["person" + i++];
-                    persWindow.personId = person.id.ToString();
+                    persWindow.personId = person.id;
                     persWindow.profileName.Content = person.name;
                     persWindow.profileAge.Content = person.birthDate == null ? "xxx" : person.birthDate.ToString();
                     persWindow.profileImage.Source = new BitmapImage(new Uri(person.photoUrlMax.ToString()));
@@ -125,7 +124,6 @@ namespace Chat.Gui
                     i = 0;
                 }
                 pc.wire(this);
-                pc.personId = "person" + i;
             }
             Canvas.SetLeft(console, xSumm + 142);
             Canvas.SetTop(console, ySumm);
@@ -180,30 +178,13 @@ namespace Chat.Gui
             updateTaskList();
         }
 
-        internal void sendMessage(string v, string personId, DateTime localDate)
-        {
-            ChatTask t = new ChatTask();
-            t.type = Chat.Core.TaskEnum.MESSAGE;
-            t.message = v;
-            t.vkId = CurrentUser.Key;
-            t.timeExpared = localDate;
-            t.personChatId = personId;
-            t.isStopped = false;
-            tasks.Add(t);
-            updateTaskList();
-        }
-
         public void updateTaskList()
         {
-
             rTaskList.ItemsSource = null;
-
             rTaskList.ItemsSource = tasks.Where(o => !o.isStopped).OrderBy(o => o.sekExpared);
             rTaskList.Items.Refresh();
-
             sTaskList.ItemsSource = null;
             sTaskList.ItemsSource = tasks.Where(o => o.isStopped).OrderBy(o => o.sekExpared);
-
             sTaskList.Items.Refresh();
         }
 
@@ -227,6 +208,20 @@ namespace Chat.Gui
 
                 PersonChat pc = kvp.Value;
                 if (pc.personChatId == personChatId)
+                {
+                    return pc;
+                }
+            }
+            return null;
+        }
+
+        public PersonChat getPersonChat(long personId)
+        {
+            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            {
+
+                PersonChat pc = kvp.Value;
+                if (pc.personId == personId)
                 {
                     return pc;
                 }
@@ -285,6 +280,7 @@ namespace Chat.Gui
             }
             //BanList.setBanList(bans);
             SendAll(startMessage);
+            playedTime = DateTime.Now;
 
         }
 

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using ApiWrapper.Core;
 using Chat.Gui;
 using VkNet.Examples.ForChat;
 
@@ -14,6 +16,8 @@ namespace Chat.Core
     public class TaskExecuter
     {
         public DispatcherTimer timerExecute;
+        public int updateMilliseconds = 1000 * 60 * 2;
+        public DispatcherTimer timerExecute2;
         public ChatWindow ch;
         public void wire(ChatWindow ch)
         {
@@ -23,9 +27,15 @@ namespace Chat.Core
         public void init()
         {
             timerExecute = new DispatcherTimer();
-            timerExecute.Interval = System.TimeSpan.FromMilliseconds(300);
+            timerExecute.Interval = System.TimeSpan.FromMilliseconds(400);
             timerExecute.Tick += timerExecute_Tick;
             timerExecute.Start();
+
+
+            timerExecute2 = new DispatcherTimer();
+            timerExecute2.Interval = System.TimeSpan.FromMilliseconds(updateMilliseconds); //раз в две минуты
+            timerExecute2.Tick += timerExecute_Tick2;
+            timerExecute2.Start();
         }
 
         private void timerExecute_Tick(object sender, EventArgs e)
@@ -43,6 +53,33 @@ namespace Chat.Core
                     //обновляем task дшые
                     ch.updateTaskList();
                 }
+            }
+        }
+
+        private void timerExecute_Tick2(object sender, EventArgs e)
+        {
+            if (ch.playedTime == null)
+            {
+                return;
+            }
+
+            DateTime exp = DateTime.Now;
+            TimeSpan rez = exp - ch.playedTime;
+            double result = rez.TotalMilliseconds;
+            if (result < updateMilliseconds / 1.5)
+            {
+                return;
+            }
+
+            lock (ch.tasks)
+            {
+                foreach (PersonModel person in ch.Persons)
+                {
+                    PersonChat pchat = ch.getPersonChat(person.id);
+
+                    addUpdateTask(pchat.personChatId, 1);
+                }
+                ch.updateTaskList();
             }
         }
 
@@ -65,7 +102,7 @@ namespace Chat.Core
                     //шлем непроверенное сообщение
                     PersonChat pchat = ch.getPersonChat(task.personChatId);
                     pchat.sendVirtualMessage(task);
-	                addUpdateList(task);
+                    addUpdateTask(task.personChatId,30);
                 }
 	            if (task.type == TaskEnum.UPDATE)
 	            {
@@ -76,15 +113,16 @@ namespace Chat.Core
 			}
         }
 
-	    private void addUpdateList(ChatTask task)
+	    private void addUpdateTask(string personChatId, int dsek)
 	    {
-		    DateTime localDate = DateTime.Now;
+	        PersonChat pchat = ch.getPersonChat(personChatId);
+	        long vkId = pchat.personId;
 			ChatTask t = new ChatTask();
 		    t.type = Chat.Core.TaskEnum.UPDATE;
 		    t.message = "UPDATE";
-		    t.vkId = task.vkId;
-		    t.timeExpared = localDate.AddSeconds(30);
-		    t.personChatId = task.personChatId;
+		    t.vkId = vkId;
+	        t.timeExpared = setTime(dsek);
+		    t.personChatId = personChatId;
 		    t.isStopped = false;
 		    t.personName = ch.CurrentUser.Value;
 		    ch.tasks.Add(t);
