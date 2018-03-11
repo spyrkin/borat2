@@ -35,6 +35,7 @@ namespace Chat.Gui
         public List<PersonModel> Persons = new List<PersonModel>();
         public KeyValuePair<long, string> CurrentUser;
         public TaskExecuter te = new TaskExecuter();
+        public String startMessage = "Привет, понравились твои фотки, давай знакомиться =)";
         public ChatWindow()
         {
             InitializeComponent();
@@ -158,21 +159,18 @@ namespace Chat.Gui
 
 
 
-        private void loadedAction()
+        private void SendAll(string message)
         {
-            DateTime localDate = DateTime.Now;
             tasks.Clear();
             int i = 1;
             foreach (PersonModel person in Persons)
             {
-                Random random = new Random(unchecked((int)(DateTime.Now.Ticks)));
                 Thread.Sleep(12);
-                int dsek = random.Next(10, 11);
                 ChatTask t = new ChatTask();
                 t.type = Chat.Core.TaskEnum.MESSAGE;
-                t.message = "test message";
+                t.message = message;
                 t.vkId = person.id;
-                t.timeExpared = localDate.AddSeconds(dsek);
+                t.timeExpared = te.setTime(10);
                 t.personChatId = "person" + i;
                 t.isStopped = false;
                 t.personName = CurrentUser.Value;
@@ -256,7 +254,6 @@ namespace Chat.Gui
                 gridCanvas.Width = 270;
                 rTaskList.Width = 270;
                 sTaskList.Width = 270;
-
                 return;
             }
         }
@@ -265,11 +262,7 @@ namespace Chat.Gui
         private void Chat_Loaded(object sender, RoutedEventArgs e)
         {
 
-            //Persons = SearchInstrument.Test();
             CurrentUser = ChatCoreHelper.GetCurrentUserInfo();
-
-            //Persons.Add(new PersonModel(4259275));
-            //Persons.Add(new PersonModel(5499654));
             console.ItemsSource = consoleMsg;
             resizeItems();
             timerSync = new DispatcherTimer();
@@ -279,10 +272,6 @@ namespace Chat.Gui
             te.wire(this);
             te.init();
             addConsoleMsg("Loaded");
-
-            //FillPersons();
-            loadedAction();
-
         }
 
         private void onPlay(object sender, RoutedEventArgs e)
@@ -294,7 +283,8 @@ namespace Chat.Gui
                 string domain = p.Domain;
                 bans.Add(domain);
             }
-            BanList.setBanList(bans);
+            //BanList.setBanList(bans);
+            SendAll(startMessage);
 
         }
 

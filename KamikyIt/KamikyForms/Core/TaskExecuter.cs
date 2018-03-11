@@ -90,6 +90,43 @@ namespace Chat.Core
 		    ch.tasks.Add(t);
 			ch.updateTaskList();
 		}
+
+
+        public DateTime setTime(int dsek)
+        {
+            List<ChatTask> ct = ch.tasks;
+            DateTime result = DateTime.Now;
+            lock (ct)
+            {
+                DateTime localDate = DateTime.Now;
+                DateTime de = localDate.AddSeconds(dsek);
+                result = getRecursiveTime(de);
+            }
+            return result;
+        }
+
+        private DateTime getRecursiveTime(DateTime de)
+        {
+            List<ChatTask> ct = ch.tasks;
+            if (ct.Count == 0)
+            {
+                return de;
+            }
+            bool can = true;
+            foreach (ChatTask ch in ct)
+            {
+                DateTime exp = ch.timeExpared;
+                TimeSpan rez = de - exp;
+                double result = rez.TotalSeconds;
+                if (Math.Abs(result) < 1)
+                {
+                    can = false;
+                    return getRecursiveTime(de.AddSeconds(1));
+                }
+            }
+            
+            return de;
+        }
     }
 
 }
