@@ -183,9 +183,9 @@ namespace Chat.Gui
             rTaskList.ItemsSource = null;
             rTaskList.ItemsSource = tasks.Where(o => !o.isStopped).OrderBy(o => o.sekExpared);
             rTaskList.Items.Refresh();
-            sTaskList.ItemsSource = null;
-            sTaskList.ItemsSource = tasks.Where(o => o.isStopped).OrderBy(o => o.sekExpared);
-            sTaskList.Items.Refresh();
+            //sTaskList.ItemsSource = null;
+            //sTaskList.ItemsSource = tasks.Where(o => o.isStopped).OrderBy(o => o.sekExpared);
+            //sTaskList.Items.Refresh();
         }
 
         private void nPreviewKeyDown(object sender, KeyEventArgs e)
@@ -237,7 +237,7 @@ namespace Chat.Gui
                 gridCanvas.Margin = new Thickness(500, 0, 0, 0);
                 gridCanvas.Width = 270 + 997 - 500;
                 rTaskList.Width = 270 + 997 - 500;
-                sTaskList.Width = 270 + 997 - 500;
+               // sTaskList.Width = 270 + 997 - 500;
                 return;
             }
 
@@ -248,7 +248,7 @@ namespace Chat.Gui
                 gridCanvas.Margin = new Thickness(997, 0, 0, 0);
                 gridCanvas.Width = 270;
                 rTaskList.Width = 270;
-                sTaskList.Width = 270;
+                //sTaskList.Width = 270;
                 return;
             }
         }

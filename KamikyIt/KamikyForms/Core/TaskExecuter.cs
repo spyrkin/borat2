@@ -73,11 +73,11 @@ namespace Chat.Core
 
             lock (ch.tasks)
             {
-                foreach (PersonModel person in ch.Persons)
+                foreach (PersonChat pc in ch.personWindows.Values)
                 {
-                    PersonChat pchat = ch.getPersonChat(person.id);
+                    if (pc.personId == 0) continue;
 
-                    addUpdateTask(pchat.personChatId, 1);
+                    addUpdateTask(pc.personChatId, 1);
                 }
                 ch.updateTaskList();
             }
