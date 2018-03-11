@@ -28,7 +28,6 @@ namespace KamikyForms.Gui
             InitializeComponent();
             string version = getVersion();
             verText.Content = version;
-
         }
 
         public string getVersion()

@@ -61,7 +61,7 @@ namespace Chat.Core
             {
                 if (task.type == TaskEnum.MESSAGE)
                 {
-				    ChatCoreHelper.WriteMessage(task.vkId, task.message);
+				    //ChatCoreHelper.WriteMessage(task.vkId, task.message);
                     //шлем непроверенное сообщение
                     PersonChat pchat = ch.getPersonChat(task.personChatId);
                     pchat.sendVirtualMessage(task);
@@ -69,9 +69,9 @@ namespace Chat.Core
                 }
 	            if (task.type == TaskEnum.UPDATE)
 	            {
-		            List<string[]> messages = ChatCoreHelper.GetMessagesFromUser(task.vkId);
-		            PersonChat pchat = ch.getPersonChat(task.personChatId);
-					pchat.updateMessage(messages);
+		            //List<string[]> messages = ChatCoreHelper.GetMessagesFromUser(task.vkId);
+		            //PersonChat pchat = ch.getPersonChat(task.personChatId);
+					//pchat.updateMessage(messages);
 				}
 			}
         }

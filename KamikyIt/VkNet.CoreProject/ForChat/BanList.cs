@@ -18,8 +18,12 @@ namespace VkNet.Examples.ForChat
             while (s != null)
             {
                 s = fs.ReadLine();
-                bans.Add(s);
+                if (!String.IsNullOrEmpty(s))
+                {
+                    bans.Add(s);
+                }
             }
+            fs.Close();
             return bans;
         }
 
@@ -30,6 +34,15 @@ namespace VkNet.Examples.ForChat
             string root_path = path.Substring(0, index);
             return root_path + "banlist.txt";
 
+        }
+
+        public static void setBanList(List<String> domains)
+        {
+            string path = getBanFilePath();
+            foreach (String s in domains)
+            {
+                File.AppendAllText(path, s +"\r\n");
+            }
         }
     }
 }

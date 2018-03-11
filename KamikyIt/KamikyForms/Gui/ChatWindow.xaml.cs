@@ -287,7 +287,15 @@ namespace Chat.Gui
 
         private void onPlay(object sender, RoutedEventArgs e)
         {
-            //запуск чатов
+
+            List<String> bans = new List<string>();
+            foreach (PersonModel p in Persons)
+            {
+                string domain = p.Domain;
+                bans.Add(domain);
+            }
+            BanList.setBanList(bans);
+
         }
 
         private void onSearch(object sender, RoutedEventArgs e)

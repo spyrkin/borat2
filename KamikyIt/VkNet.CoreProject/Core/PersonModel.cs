@@ -21,7 +21,7 @@ namespace ApiWrapper.Core
 		    this.Status = user.Status;
 		    this.interests = user.Interests;
 		    this.followers = user.FollowersCount == null ? 0 : (int)user.FollowersCount;
-
+		    this.Domain = user.Domain;
 
 		}
 
@@ -42,7 +42,9 @@ namespace ApiWrapper.Core
 
 	    public int followers { get; set; }
 
-	    public long id { get; set; }
+        public string Domain { get; set; }
+
+        public long id { get; set; }
 
 		public string name { get; set; }
 
