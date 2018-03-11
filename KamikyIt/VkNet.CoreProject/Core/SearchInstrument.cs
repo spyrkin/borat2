@@ -55,15 +55,22 @@ namespace ApiWrapper.Core
                 Offset = (uint?)filter.Offcet,
                 Status = (VkNet.Enums.MaritalStatus)filter.FamilyState,
                 // GroupId = 22751485,
-                Count = 100,
+                Count = 500,
                 Fields = ProfileFields.All,
             });
             foreach (User p in peoples)
             {
-                Console.WriteLine(p.FirstName + " " + p.LastName);
+                //Console.WriteLine("==============================");
+                //Console.WriteLine(p.FirstName + " " + p.LastName);
+                //Console.WriteLine(p.Photo100.AbsolutePath);
+                //Console.WriteLine(p.Photo200.AbsolutePath);
+                //Console.WriteLine(p.Photo200Orig.AbsolutePath);
+                //Console.WriteLine(p.Photo400Orig.AbsolutePath);
+                //Console.WriteLine(p.PhotoMaxOrig.AbsolutePath);
+                //Console.WriteLine("==============================");
             }
             //онлайна
-            List<User> onlines = peoples.Where(o => o.Online == true && o.PhotoMaxOrig != null).ToList();
+            List<User> onlines = peoples.Where(o => o.Online == true && o.Photo200 != null).ToList();
             //можем писать
             List<User> canWrites = onlines.Where(o => o.CanWritePrivateMessage && !o.Blacklisted).ToList();
             //доп опции

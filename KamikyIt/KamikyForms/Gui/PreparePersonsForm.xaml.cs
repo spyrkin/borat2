@@ -38,19 +38,16 @@ namespace KamikyForms.Gui
             {
                 pl1.Add(pl);
                 allp.Add(pl);
-
             }
-
             refreshDg();
         }
+
 
         public void refreshDg()
         {
 
             dataGridView1.ItemsSource = pl1;
             dataGridView1.Items.Refresh();
-            dataGridView2.ItemsSource = pl2;
-            dataGridView2.Items.Refresh();
             s1.Content = "Все: " + pl1.Count;
             s2.Content = "Выбрано: " + pl2.Count;
 
@@ -58,26 +55,20 @@ namespace KamikyForms.Gui
 
 
 
-        private void lvi_MouseEnter(object sender, MouseEventArgs e)
-        {
 
-            ListViewItem lv = sender as ListViewItem;
-            ovPlayer = lv.Content as PersonModel;
-        }
+        //private void dataGridView1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
 
-        private void dataGridView1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
+        //    if (pl2.Count == MAX_COUNT)
+        //    {
+        //        MessageBox.Show("Больше не влезет ... совсем не влезет ");
+        //        return;
+        //    }
+        //    pl1 = RemovePlayer(pl1, ovPlayer);
+        //    pl2 = AddPlayer(pl2, ovPlayer);
 
-            if (pl2.Count == MAX_COUNT)
-            {
-                MessageBox.Show("Больше не влезет ... совсем не влезет ");
-                return;
-            }
-            pl1 = RemovePlayer(pl1, ovPlayer);
-            pl2 = AddPlayer(pl2, ovPlayer);
-
-            refreshDg();
-        }
+        //    refreshDg();
+        //}
 
         private void dataGridView2_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -107,17 +98,30 @@ namespace KamikyForms.Gui
 
         private void clear_OnClick(object sender, RoutedEventArgs e)
         {
-            foreach (PersonModel p in pl2)
-            {
-                pl1 = AddPlayer(pl1, p);
-                pl2 = RemovePlayer(pl2, p);
-            }
-            refreshDg();
+            dataGridView1.SelectedItems.Clear();
+            dataGridView1.Items.Refresh();
+            s2.Content = "Выбрано: " + 0;
+
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            if (dataGridView1.SelectedItems.Count > MAX_COUNT)
+            {
+                MessageBox.Show("Нельзя выбрать больше: " + MAX_COUNT);
+                return;
+            }
+            foreach (PersonModel p in dataGridView1.SelectedItems)
+            {
+                pl2.Add(p);
+            }
             DialogResult = true;
+        }
+
+        private void DataGridView1_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int chosen = dataGridView1.SelectedItems.Count;
+            s2.Content = "Выбрано: " + chosen;
         }
     }
 }

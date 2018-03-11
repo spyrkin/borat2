@@ -18,6 +18,7 @@ namespace ApiWrapper.Core
 			this.photoUrl400 = user.Photo400Orig;
 			this.photoUrl200 = user.Photo200Orig;
 			this.photoUrlMax = user.PhotoMaxOrig;
+		    this.Status = user.Status;
 		}
 
 		public PersonModel(int userVkId) : this(SearchInstrument.GetUser(userVkId))
@@ -32,7 +33,9 @@ namespace ApiWrapper.Core
 
 		public Uri photoUrl400 { get; set; }
 
-		public long id { get; set; }
+        public string Status { get; set; }
+
+        public long id { get; set; }
 
 		public string name { get; set; }
 

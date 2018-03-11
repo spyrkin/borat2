@@ -6,8 +6,8 @@
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="0_o"
-    Width="500"
-    Height="700"
+    Width="1200"
+    Height="800"
     Background="White"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
@@ -100,13 +100,13 @@
     </controls:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
             <RowDefinition Height="70" />
         </Grid.RowDefinitions>
         <Label
             x:Name="s1"
-            Margin="20,70,0,0"
+            Margin="20,-10,0,0"
             HorizontalContentAlignment="Left"
             VerticalContentAlignment="Center"
             FontSize="16">
@@ -114,20 +114,16 @@
         </Label>
         <Label
             x:Name="s2"
-            Margin="0,70,20,0"
+            Margin="0,-10,20,0"
             HorizontalContentAlignment="Right"
             VerticalContentAlignment="Center"
             FontSize="16">
             Выбранные
         </Label>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <ListView
+
+        <ListView
                 x:Name="dataGridView1"
-                Grid.Column="0"
+                Grid.Row="1"
                 Margin="3"
                 HorizontalAlignment="Stretch"
                 BorderBrush="#FF25A0DA"
@@ -136,100 +132,40 @@
                 FontSize="11"
                 Foreground="#FF000000"
                 IsTextSearchEnabled="False"
-                PreviewMouseLeftButtonDown="dataGridView1_PreviewMouseLeftButtonDown"
                 KeyboardNavigation.DirectionalNavigation="Cycle"
+                SelectionChanged="DataGridView1_OnSelectionChanged"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                SelectionMode="Multiple"
                 Style="{StaticResource clearListView}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <EventSetter Event="MouseEnter" Handler="lvi_MouseEnter" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
+            <ListView.View>
 
-                    <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
-                        <GridViewColumn Width="190">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Height="60">
-                                        <Image Margin="0 0 0 0" x:Name="profileImage"  Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelWidth="50" UriSource="{Binding Path = photoUrlMax, Mode=TwoWay}" />
-                                            </Image.Source>
-                                        </Image>
-                                        <StackPanel Orientation="Vertical">
-                                            <Label Margin="20 0 0 0" Width="150" Content="{Binding name}"></Label>
-                                            <Label Margin="20 0 0 0" Content="{Binding birthDate}"></Label>
-
-                                        </StackPanel>
+                <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                    <GridViewColumn Width="800">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Height="220">
+                                    <Image Stretch="None" Margin="0 0 0 0" x:Name="profileImage">
+                                        <Image.Source>
+                                            <BitmapImage  UriSource="{Binding Path = photoUrl200, Mode=TwoWay}" />
+                                        </Image.Source>
+                                    </Image>
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Width="500"  FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                                               FontSize="30" Foreground="Black" Margin="100 0 0 0"  Content="{Binding name}"></Label>
+                                        <Label Width="500" FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                                               FontSize="30" Foreground="Black" Margin="100 0 0 0" Content="{Binding birthDate}"></Label>
+                                        <Label Width="500" 
+                                                Foreground="Black" Margin="100 0 0 0" Content="{Binding Status}"></Label>
                                     </StackPanel>
+                                </StackPanel>
 
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
-
-
-
-
-
-
-
-
-
-
-            <ListView
-                x:Name="dataGridView2"
-                Grid.Column="1"
-                Margin="3"
-                HorizontalAlignment="Stretch"
-                BorderBrush="#FF25A0DA"
-                BorderThickness="1"
-                FontFamily="Microsoft Sans Serif"
-                FontSize="11"
-                Foreground="#FF000000"
-                IsTextSearchEnabled="False"
-                PreviewMouseLeftButtonDown="dataGridView2_PreviewMouseLeftButtonDown"
-
-                KeyboardNavigation.DirectionalNavigation="Cycle"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                Style="{StaticResource clearListView}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <EventSetter Event="MouseEnter" Handler="lvi_MouseEnter" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-
-                    <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
-                        <GridViewColumn Width="190">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Height="60">
-                                        <Image Margin="0 0 0 0" x:Name="profileImage"  Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                            <Image.Source>
-                                                <BitmapImage DecodePixelWidth="50" UriSource="{Binding Path = photoUrlMax, Mode=TwoWay}" />
-                                            </Image.Source>
-                                        </Image>
-                                        <StackPanel Orientation="Vertical">
-                                            <Label Margin="20 0 0 0" Width="150" Content="{Binding name}"></Label>
-                                            <Label Margin="20 0 0 0" Content="{Binding birthDate}"></Label>
-
-                                        </StackPanel>
-                                    </StackPanel>
-
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Button Grid.Row="2" Width="100" Height="60" Click="clear_OnClick" Margin="-220 0 0 0">ОЧИСТИТЬ</Button>
         <Button Grid.Row="2" Width="100" Height="60" Click="ButtonBase_OnClick"  Margin="220 0 0 0">ПРИМЕНИТЬ</Button>
     </Grid>
