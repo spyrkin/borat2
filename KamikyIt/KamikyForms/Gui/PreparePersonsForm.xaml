@@ -156,6 +156,10 @@
                                                FontSize="30" Foreground="Black" Margin="100 0 0 0" Content="{Binding birthDate}"></Label>
                                         <Label Width="500" 
                                                 Foreground="Black" Margin="100 0 0 0" Content="{Binding Status}"></Label>
+                                        <Label Width="500" 
+                                               Foreground="Black" Margin="100 0 0 0" Content="{Binding interests}"></Label>
+                                        <Label Width="500" 
+                                               Foreground="Black" Margin="100 0 0 0" Content="{Binding followers}"></Label>
                                     </StackPanel>
                                 </StackPanel>
 

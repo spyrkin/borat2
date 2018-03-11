@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,25 @@ namespace KamikyForms.Gui
         public LoginWindow()
         {
             InitializeComponent();
+            string version = getVersion();
+            verText.Content = version;
+
+        }
+
+        public string getVersion()
+        {
+            string version = "";
+            DirectoryInfo dir = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory());
+            foreach (var item in dir.GetFiles())
+            {
+                if (item.Extension == ".exe")
+                {
+                    version = "build: " + item.LastWriteTime.ToString("yyyy-MM-dd");
+                    return version;
+                }
+            }
+            return version;
+
         }
 
         private void onLogin(object sender, RoutedEventArgs e)

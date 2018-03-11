@@ -9,6 +9,7 @@ using System.Text;
 using VkNet;
 using VkNet.Enums.Filters;
 using VkNet.Examples.DataBaseBehaviour;
+using VkNet.Examples.ForChat;
 using VkNet.Model;
 using VkNet.Model.RequestParams;
 using VkNet.Utils;
@@ -52,14 +53,16 @@ namespace ApiWrapper.Core
                 Online = filter.IsOnline,
                 Sort = (VkNet.Enums.UserSort)filter.profileSort,
                 Sex = (VkNet.Enums.Sex)filter.Sex,
+                
                 Offset = (uint?)filter.Offcet,
                 Status = (VkNet.Enums.MaritalStatus)filter.FamilyState,
                 // GroupId = 22751485,
-                Count = 500,
+                Count = 1000,
                 Fields = ProfileFields.All,
             });
             foreach (User p in peoples)
             {
+                //Console.WriteLine(p.Domain);
                 //Console.WriteLine("==============================");
                 //Console.WriteLine(p.FirstName + " " + p.LastName);
                 //Console.WriteLine(p.Photo100.AbsolutePath);
@@ -69,8 +72,14 @@ namespace ApiWrapper.Core
                 //Console.WriteLine(p.PhotoMaxOrig.AbsolutePath);
                 //Console.WriteLine("==============================");
             }
+            //bans
+            List<String> bans = BanList.get();
+            List<User> bans_users = peoples.Where(o => !bans.Contains(o.Domain)).ToList();
+
+
+
             //онлайна
-            List<User> onlines = peoples.Where(o => o.Online == true && o.Photo200 != null).ToList();
+            List<User> onlines = bans_users.Where(o => o.Online == true && o.IsFriend == false && o.Photo200 != null).ToList();
             //можем писать
             List<User> canWrites = onlines.Where(o => o.CanWritePrivateMessage && !o.Blacklisted).ToList();
             //доп опции

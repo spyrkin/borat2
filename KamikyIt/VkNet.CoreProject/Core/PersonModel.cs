@@ -19,6 +19,10 @@ namespace ApiWrapper.Core
 			this.photoUrl200 = user.Photo200Orig;
 			this.photoUrlMax = user.PhotoMaxOrig;
 		    this.Status = user.Status;
+		    this.interests = user.Interests;
+		    this.followers = user.FollowersCount == null ? 0 : (int)user.FollowersCount;
+
+
 		}
 
 		public PersonModel(int userVkId) : this(SearchInstrument.GetUser(userVkId))
@@ -34,8 +38,11 @@ namespace ApiWrapper.Core
 		public Uri photoUrl400 { get; set; }
 
         public string Status { get; set; }
+        public string interests { get; set; }
 
-        public long id { get; set; }
+	    public int followers { get; set; }
+
+	    public long id { get; set; }
 
 		public string name { get; set; }
 

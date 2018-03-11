@@ -79,7 +79,7 @@ namespace KamikyForms.Gui
             friendmin.Text = "50";
             friendmax.Text = "500";
             subsmin.Text = "0";
-            subsmax.Text = "100";
+            subsmax.Text = "1000";
             postmin.Text = "1";
             postmax.Text = "1000";
             offcet.Text = "0";

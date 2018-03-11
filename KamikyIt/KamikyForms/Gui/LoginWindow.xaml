@@ -52,6 +52,8 @@
                 <TextBlock x:Name="errorText" Foreground="Red" FontStyle="Normal" TextWrapping="Wrap"/>
             </StackPanel>
 
+            <Label x:Name="verText" Canvas.Top="260" Canvas.Left="40" Foreground="AliceBlue"></Label>
+
             <StackPanel Canvas.Top ="250" Canvas.Left="480"/>
         </Canvas>
 
