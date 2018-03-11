@@ -17,263 +17,333 @@ namespace ApiWrapper.Core
 {
     public static class SearchInstrument
     {
-	    static SearchInstrument()
-	    {
-			
-			//api = VkNet.Shared.Api.GetInstance();
+        static SearchInstrument()
+        {
 
-			//api.Authorize(new ApiAuthParams
-			//{
-			//	ApplicationId = 6394527,
-			//	Login = "1",
-			//	Password = "2",
-			//	Settings = Settings.All,
-			//	TwoFactorAuthorization = () =>
-			//	{
-			//		Console.WriteLine("Enter Code:");
-			//		return Console.ReadLine();
-			//	}
-			//});
-		}
+            //api = VkNet.Shared.Api.GetInstance();
 
-	    public static ApiInstrumentEnum ApiInstrumentEnum;
-	    public static string ApiVersion;
-		private static VkApi api;
+            //api.Authorize(new ApiAuthParams
+            //{
+            //	ApplicationId = 6394527,
+            //	Login = "1",
+            //	Password = "2",
+            //	Settings = Settings.All,
+            //	TwoFactorAuthorization = () =>
+            //	{
+            //		Console.WriteLine("Enter Code:");
+            //		return Console.ReadLine();
+            //	}
+            //});
+        }
 
-	    public static List<PersonModel> Test()
-	    {
-		    var filter = new SearchFilter()
-		    {
-				AgeInterval = new IntInterval<int>(10, 30),
+        public static ApiInstrumentEnum ApiInstrumentEnum;
+        public static string ApiVersion;
+        private static VkApi api;
 
-				CityId = 157,
-				CountryId = 1,
-				Sex = SexEnum.Woman,
-				IsOnline = true,
-				HasPhoto = true,
-				FamilyState = FamilyState.ActiveSearch,
-		    };
+        public static List<PersonModel> getPersons(SearchFilter filter)
+        {
+            var peoples = api.Users.Search(new UserSearchParams()
+            {
+                AgeFrom = (ushort)filter.MinAge,
+                AgeTo = (ushort)filter.MaxAge,
+                City = filter.CityId,
+                Country = filter.CountryId,
+                HasPhoto = filter.HasPhoto,
+                Online = filter.IsOnline,
+                Sort = (VkNet.Enums.UserSort)filter.profileSort,
+                Sex = (VkNet.Enums.Sex)filter.Sex,
+                Offset = (uint?)filter.Offcet,
+                Status = (VkNet.Enums.MaritalStatus)filter.FamilyState,
+                // GroupId = 22751485,
+                Count = 100,
+                Fields = ProfileFields.All,
+            });
+            foreach (User p in peoples)
+            {
+                Console.WriteLine(p.FirstName + " " + p.LastName);
+            }
+            //онлайна
+            List<User> onlines = peoples.Where(o => o.Online == true && o.PhotoMaxOrig != null).ToList();
+            //можем писать
+            List<User> canWrites = onlines.Where(o => o.CanWritePrivateMessage && !o.Blacklisted).ToList();
+            //доп опции
+            List<User> normGirls = canWrites.Where(o => isNormalGirl(o, filter)).ToList();
+            return normGirls.Select(x => new PersonModel(x)).ToList();
+        }
 
-		    var peoples = api.Users.Search(new UserSearchParams()
-		    {
-			    AgeFrom = (ushort) filter.AgeInterval.MinYear,
-			    AgeTo = (ushort) filter.AgeInterval.MaxYear,
-			    City = filter.CityId,
-			    Country = filter.CountryId,
-			    HasPhoto = filter.HasPhoto,
-			    Online = filter.IsOnline,
-			    Sex = (VkNet.Enums.Sex) filter.Sex,
-				GroupId = 22751485,
-				Count = 50,
-				Fields = ProfileFields.All,
-			});
 
-		    return peoples.Select(x => new PersonModel(x)).ToList();
-	    }
+        public static bool isNormalGirl(User user, SearchFilter filter)
+        {
 
-		public static void SetApiInstrument(ApiInstrumentEnum api, string apiVersion = "5.73")
-		{
-			ApiInstrumentEnum = api;
-			ApiVersion = apiVersion;
-		}
+            if (user.FollowersCount > filter.SubsMax) return false;
+            //if (user.Counters.Friends < filter.FriendMin) return false;
+            //if (user.Counters.Friends > filter.FriendMax) return false;
 
-	    public static List<HumanInfo> GetHumansByFilter(SearchFilter filter)
-	    {
-		    if (filter == null)
-			    return null;
+            //if (user.Counters.Followers < filter.SubsMin) return false;
+            //if (user.Counters.Followers > filter.SubsMax) return false;
 
-		    if (filter.GroupsInfo != null && filter.GroupsInfo.GroupUrls.Any())
-		    {
-			    return GetHumansByGroupsFilter(filter);
-		    }
 
-		    return null;
-	    }
+            //if (user.Counters.Pages < filter.PostMin) return false;
+            //if (user.Counters.Pages > filter.PostMax) return false;
+            return true;
+        }
 
-	    private static List<HumanInfo> GetHumansByGroupsFilter(SearchFilter filter)
-	    {
-		    var result = new List<HumanInfo>();
+        public static List<PersonModel> Test()
+        {
+            var filter = new SearchFilter()
+            {
+                AgeInterval = new IntInterval<int>(10, 30),
 
-		    foreach (var groupInfo in filter.GroupsInfo.GroupUrls)
-		    {
-			    var groupPeoples = GetHumansInGroupByFilter(filter, groupInfo.GroupId);
+                CityId = 157,
+                CountryId = 1,
+                Sex = SexEnum.Woman,
+                IsOnline = true,
+                HasPhoto = true,
+                FamilyState = FamilyState.ActiveSearch,
+            };
 
-			    result.AddRange(groupPeoples);
-			}
+            var peoples = api.Users.Search(new UserSearchParams()
+            {
+                AgeFrom = (ushort)filter.AgeInterval.MinYear,
+                AgeTo = (ushort)filter.AgeInterval.MaxYear,
+                City = filter.CityId,
+                Country = filter.CountryId,
+                HasPhoto = filter.HasPhoto,
+                Online = filter.IsOnline,
+                Sex = (VkNet.Enums.Sex)filter.Sex,
+                GroupId = 22751485,
+                Sort = (VkNet.Enums.UserSort)filter.profileSort,
+                Count = 50,
+                Fields = ProfileFields.All,
+            });
 
-		    return result;
-	    }
+            return peoples.Where(o => o.CanWritePrivateMessage && !o.Blacklisted).Select(x => new PersonModel(x)).ToList();
+        }
 
-	    private static IEnumerable<HumanInfo> GetHumansInGroupByFilter(SearchFilter filter, int groupId)
-	    {
-			var sb = new StringBuilder();
-			// Россия - 1. Чебок - 157. Двач - 22751485.
-		    sb.Append("https://api.vkontakte.ru/users.search?");
+        public static void SetApiInstrument(ApiInstrumentEnum api, string apiVersion = "5.73")
+        {
+            ApiInstrumentEnum = api;
+            ApiVersion = apiVersion;
+        }
 
-		    sb.Append(string.Format("params[count]={0}&", filter.Count));
+        public static List<HumanInfo> GetHumansByFilter(SearchFilter filter)
+        {
+            if (filter == null)
+                return null;
 
-		    if (string.IsNullOrEmpty(filter.Country) == false)
-			    sb.Append(string.Format("params[country]={0}&", GetCountryId(filter.Country)));
+            if (filter.GroupsInfo != null && filter.GroupsInfo.GroupUrls.Any())
+            {
+                return GetHumansByGroupsFilter(filter);
+            }
 
-		    if (string.IsNullOrEmpty(filter.City) == false)
-			    sb.Append(string.Format("params[city]={0}&", GetCityId(filter.City)));
+            return null;
+        }
 
-		    sb.Append(string.Format("params[sex]={0}&", (int) filter.Sex));
+        private static List<HumanInfo> GetHumansByGroupsFilter(SearchFilter filter)
+        {
+            var result = new List<HumanInfo>();
 
-		    sb.Append(string.Format("params[online]={0}=&", filter.IsOnline ? 1 : 0));
-		    sb.Append(string.Format("params[has_photo]={0}=&", filter.IsOnline ? 1 : 0));
+            foreach (var groupInfo in filter.GroupsInfo.GroupUrls)
+            {
+                var groupPeoples = GetHumansInGroupByFilter(filter, groupInfo.GroupId);
 
-		    sb.Append(string.Format("params[v]={0}", ApiVersion));
+                result.AddRange(groupPeoples);
+            }
 
-			// /users.search?
-			//params[count]=5&
-			//params[fields]=photo%2Cscreen_name&
-			//params[city]=157&
-			//params[country]=1&
-			//params[sex]=1&
-			//params[online]=1&
-			//params[has_photo]=1&
-			//params[group_id]=22751485&
-			//params[v]=5.73
+            return result;
+        }
 
-		    return null;
-	    }
+        private static IEnumerable<HumanInfo> GetHumansInGroupByFilter(SearchFilter filter, int groupId)
+        {
+            var sb = new StringBuilder();
+            // Россия - 1. Чебок - 157. Двач - 22751485.
+            sb.Append("https://api.vkontakte.ru/users.search?");
 
-	    private static int GetCityId(string city)
-	    {
-		    return 157;
-	    }
+            sb.Append(string.Format("params[count]={0}&", filter.Count));
 
-	    private static int GetCountryId(string country)
-	    {
-		    return 1;
-	    }
+            if (string.IsNullOrEmpty(filter.Country) == false)
+                sb.Append(string.Format("params[country]={0}&", GetCountryId(filter.Country)));
 
-	    public static void SendMessage(string id, string message)
-	    {
-		    api.Messages.Send(new MessagesSendParams()
-		    {
-			    Message = message,
-			    UserId = int.Parse(id),
-		    });
-	    }
+            if (string.IsNullOrEmpty(filter.City) == false)
+                sb.Append(string.Format("params[city]={0}&", GetCityId(filter.City)));
 
-	    public static void SetAuthorization(VkApi vkApi)
-	    {
-		    api = vkApi;
-	    }
+            sb.Append(string.Format("params[sex]={0}&", (int)filter.Sex));
 
-	    public static User GetUser(long id)
-	    {
-		    var users = api.Users.Get(new List<long>() {id}, ProfileFields.All);
+            sb.Append(string.Format("params[online]={0}=&", filter.IsOnline ? 1 : 0));
+            sb.Append(string.Format("params[has_photo]={0}=&", filter.IsOnline ? 1 : 0));
 
-		    return users.FirstOrDefault();
-	    }
+            sb.Append(string.Format("params[v]={0}", ApiVersion));
+
+            // /users.search?
+            //params[count]=5&
+            //params[fields]=photo%2Cscreen_name&
+            //params[city]=157&
+            //params[country]=1&
+            //params[sex]=1&
+            //params[online]=1&
+            //params[has_photo]=1&
+            //params[group_id]=22751485&
+            //params[v]=5.73
+
+            return null;
+        }
+
+        private static int GetCityId(string city)
+        {
+            return 157;
+        }
+
+        private static int GetCountryId(string country)
+        {
+            return 1;
+        }
+
+        public static void SendMessage(string id, string message)
+        {
+            api.Messages.Send(new MessagesSendParams()
+            {
+                Message = message,
+                UserId = int.Parse(id),
+            });
+        }
+
+        public static void SetAuthorization(VkApi vkApi)
+        {
+            api = vkApi;
+        }
+
+        public static User GetUser(long id)
+        {
+            var users = api.Users.Get(new List<long>() { id }, ProfileFields.All);
+
+            return users.FirstOrDefault();
+        }
     }
 
-	public enum ApiInstrumentEnum
-	{
-		VkApi,
-		InstagrammApi,
-		// ...
-	}
+    public enum ApiInstrumentEnum
+    {
+        VkApi,
+        InstagrammApi,
+        // ...
+    }
 
-	/// <summary>
-	/// Фильтр поиска челиков.
-	/// </summary>
-	public class SearchFilter
-	{
-		public int Count { get; set; }
+    /// <summary>
+    /// Фильтр поиска челиков.
+    /// </summary>
+    public class SearchFilter
+    {
+        public int Count { get; set; }
 
-		//Пол
-		public SexEnum Sex { get; set; }
+        //Пол
+        public SexEnum Sex { get; set; }
 
-		// Семейное положение
-		public FamilyState FamilyState { get; set; }
+        // Семейное положение
+        public FamilyState FamilyState { get; set; }
 
-		// Возраст
-		public IntInterval<int> AgeInterval { get; set; }
+        // Возраст
+        public IntInterval<int> AgeInterval { get; set; }
 
-		// Страна
-		public string Country { get; set; }
-		public int CountryId { get; set; }
+        public int MinAge { get; set; }
+        public int MaxAge { get; set; }
 
-		// Город
-		public string City { get; set; }
-		public int CityId { get; set; }
+        // Страна
+        public string Country { get; set; }
+        public int CountryId { get; set; }
 
-		// Количество друзей
-		public IntInterval<int> FriendsInterval { get; set; }
+        // Город
+        public string City { get; set; }
+        public int CityId { get; set; }
 
-		// Количество пиздолизов.
-		public IntInterval<int> SubscribersInterval { get; set; }
+        // Количество друзей
+        public IntInterval<int> FriendsInterval { get; set; }
 
-		// Дата регистрации
-		public DateTime RegistrationDate { get; set; }
+        // Количество пиздолизов.
+        public IntInterval<int> SubscribersInterval { get; set; }
 
-		// Сейчас онлайн
-		public bool IsOnline { get; set; }
+        // Дата регистрации
+        public DateTime RegistrationDate { get; set; }
 
-		// С фото
-		public bool HasPhoto { get; set; }
-
-		// Список групп
-		public GroupsSearchInfo GroupsInfo { get; set; }
+        // Сейчас онлайн
+        public bool IsOnline { get; set; }
 
 
-	}
+        //сортировка по популярности
+        public ProfileSort profileSort { get; set; }
 
-	[Flags()]
-	public enum FamilyState
-	{
-		[Display(Name = "не женат (не замужем)")]
-		NotMarry = 1,
-		[Display(Name = "встречается")]
-		Dating = 2,
-		[Display(Name = "помолвлен(-а)")]
-		Betrothed = 3,
-		[Display(Name = "женат (замужем)")]
-		Marry = 4,
-		[Display(Name = "всё сложно")]
-		AllHardShit = 5,
-		[Display(Name = "в активном поиске")]
-		ActiveSearch = 6,
-		[Display(Name = "влюблен(-а)")]
-		Loved = 7,
-		[Display(Name = "в гражданском браке")]
-		CivilMarry = 8,
-	}
+        // С фото
+        public bool HasPhoto { get; set; }
 
-	public class GroupsSearchInfo
-	{
-		public List<GroupInfo> GroupUrls;
-	}
+        // Список групп
+        public GroupsSearchInfo GroupsInfo { get; set; }
 
-	public class GroupInfo
-	{
-		public string Url { get; set; }
+        public int FriendMin { get; set; }
+        public int FriendMax { get; set; }
 
-		public string Name { get; set; }
+        public int SubsMin { get; set; }
+        public int SubsMax { get; set; }
 
-		public int GroupId { get; set; }
-	}
+        public int PostMin { get; set; }
+        public int PostMax { get; set; }
+        public int Offcet { get; set; }
+    }
 
-	public enum SexEnum
-	{
-		Woman = 1,
-		Man = 2,
-		Any = 0
-	}
+    [Flags()]
+    public enum FamilyState
+    {
+        [Display(Name = "не женат (не замужем)")]
+        NotMarry = 1,
+        [Display(Name = "встречается")]
+        Dating = 2,
+        [Display(Name = "помолвлен(-а)")]
+        Betrothed = 3,
+        [Display(Name = "женат (замужем)")]
+        Marry = 4,
+        [Display(Name = "всё сложно")]
+        AllHardShit = 5,
+        [Display(Name = "в активном поиске")]
+        ActiveSearch = 6,
+        [Display(Name = "влюблен(-а)")]
+        Loved = 7,
+        [Display(Name = "в гражданском браке")]
+        CivilMarry = 8,
+    }
 
-	public class IntInterval<TValue>
-	{
-		public IntInterval(TValue min, TValue max)
-		{
-			MinYear = min;
-			MaxYear = max;
-		}
+    public class GroupsSearchInfo
+    {
+        public List<GroupInfo> GroupUrls;
+    }
 
-		public TValue MinYear { get; set; }
-		public TValue MaxYear { get; set; }
-	}
+    public class GroupInfo
+    {
+        public string Url { get; set; }
+
+        public string Name { get; set; }
+
+        public int GroupId { get; set; }
+    }
+
+    public enum SexEnum
+    {
+        Woman = 1,
+        Man = 2,
+        Any = 0
+    }
+
+    public enum ProfileSort
+    {
+        date = 1,
+        popular = 0
+    }
+
+    public class IntInterval<TValue>
+    {
+        public IntInterval(TValue min, TValue max)
+        {
+            MinYear = min;
+            MaxYear = max;
+        }
+
+        public TValue MinYear { get; set; }
+        public TValue MaxYear { get; set; }
+    }
 }

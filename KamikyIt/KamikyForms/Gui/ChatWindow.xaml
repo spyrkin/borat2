@@ -10,11 +10,12 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:iconPacks1="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
+        Loaded="Chat_Loaded"
         PreviewKeyDown="nPreviewKeyDown"
         Icon="/Resources/vk_logo.png"
         WindowTitleBrush="#4c75a3"    
                       ResizeMode="NoResize"
-         Height="900" Width="1250">
+        Height="900" Width="1250">
 
     <mah:MetroWindow.Resources>
         <ResourceDictionary>
@@ -135,10 +136,49 @@
                     Height="28"
                     Kind="ArrowLeft" />
             </Button>
-            <Label  Canvas.Top="7" Canvas.Left="100"   x:Name="timer"                 FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
-                                       FontSize="30" Foreground="Black"
-                                       FontWeight="Bold"></Label>
 
+            <Button
+                Margin =" 5 5 0 0"
+                Canvas.Left="60"
+                Background="White"
+                x:Name="button_play"
+                Width="48"
+                Height="48"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="onPlay"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                ToolTip="Загрузить маркера">
+                <iconPacks1:PackIconModern
+                    x:Name="iconKindPlay"
+                    Width="28"
+                    Height="28"
+                    Kind="ControlPlay" />
+
+            </Button>
+
+            <Button
+                Margin =" 5 5 0 0"
+                Canvas.Left="120"
+                Background="White"
+                x:Name="button_search"
+                Width="48"
+                Height="48"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="onSearch"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                ToolTip="Загрузить маркера">
+                <iconPacks1:PackIconModern
+                    x:Name="iconKindSearch"
+                    Width="28"
+                    Height="28"
+                    Kind="PeopleMagnify" />
+
+            </Button>
+            <Label  Canvas.Top="7" Canvas.Left="170"   x:Name="timer"                 FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                    FontSize="30" Foreground="Black"
+                    FontWeight="Bold"></Label>
             <ListView Canvas.Top="50" Margin="5 5 0 0" Width="260"  Height="500" VerticalAlignment="Top" HorizontalAlignment="Stretch" x:Name="rTaskList" FontSize="12">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
@@ -203,7 +243,7 @@
 
             <Label  Canvas.Top="543" Canvas.Left="50" FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
                     FontSize="30" Foreground="Black"
-                    FontWeight="Bold"> Stopped Tasks</Label>
+                    FontWeight="Bold">Stopped Tasks</Label>
 
             <ListView Canvas.Top="575" Margin="5 5 0 0" Width="260"  Height="282" VerticalAlignment="Top" HorizontalAlignment="Stretch" x:Name="sTaskList" FontSize="12">
                 <ListView.ItemContainerStyle>

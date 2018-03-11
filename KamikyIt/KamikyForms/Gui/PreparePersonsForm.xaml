@@ -1,0 +1,237 @@
+﻿<controls:MetroWindow x:Class="KamikyForms.Gui.PreparePersonsForm"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="0_o"
+    Width="500"
+    Height="700"
+    Background="White"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!--  Accent and AppTheme setting  -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="markerButton" TargetType="{x:Type Button}">
+                <Setter Property="Width" Value="35" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Foreground" Value="Blue" />
+                <Setter Property="Opacity" Value="0.7" />
+            </Style>
+
+            <Style x:Key="DescriptionHeaderStyle" TargetType="{x:Type Label}">
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="clearGroupBox" TargetType="{x:Type GroupBox}" />
+
+            <Style x:Key="cbPropChecker" TargetType="CheckBox">
+                <Setter Property="Margin" Value="5,5,0,0" />
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+
+            </Style>
+            <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+                <Setter Property="Visibility" Value="Collapsed" />
+                <Setter Property="Height" Value="30" />
+            </Style>
+
+            <Style x:Key="PlayerListLabel" TargetType="{x:Type Label}">
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="BorderBrush" Value="#FF939393" />
+                <Setter Property="Height" Value="28" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="OpacityMask" Value="Black" />
+                <Setter Property="Margin" Value="3" />
+                <Setter Property="Width" Value="195" />
+            </Style>
+
+            <Style x:Key="clearListView" TargetType="{x:Type ListView}" />
+            <Style x:Key="regButton" TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="3" />
+                <Setter Property="FontFamily" Value="Microsoft Sans Serif" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Background" Value="#e1e1e1" />
+                <Setter Property="Margin" Value="3,3,3,3" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Width" Value="64" />
+                <Setter Property="Height" Value="64" />
+            </Style>
+
+            <Style x:Key="confButton" TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="10,10,10,0" />
+                <Setter Property="FontFamily" Value="Microsoft Sans Serif" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Width" Value="84" />
+                <Setter Property="Height" Value="40" />
+            </Style>
+            <Style x:Key="clearComboView" TargetType="{x:Type ComboBox}" />
+
+
+            <Style x:Key="clearListViewItem" TargetType="{x:Type ListViewItem}" />
+        </ResourceDictionary>
+
+    </controls:MetroWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+        <Label
+            x:Name="s1"
+            Margin="20,70,0,0"
+            HorizontalContentAlignment="Left"
+            VerticalContentAlignment="Center"
+            FontSize="16">
+            Все
+        </Label>
+        <Label
+            x:Name="s2"
+            Margin="0,70,20,0"
+            HorizontalContentAlignment="Right"
+            VerticalContentAlignment="Center"
+            FontSize="16">
+            Выбранные
+        </Label>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListView
+                x:Name="dataGridView1"
+                Grid.Column="0"
+                Margin="3"
+                HorizontalAlignment="Stretch"
+                BorderBrush="#FF25A0DA"
+                BorderThickness="1"
+                FontFamily="Microsoft Sans Serif"
+                FontSize="11"
+                Foreground="#FF000000"
+                IsTextSearchEnabled="False"
+                PreviewMouseLeftButtonDown="dataGridView1_PreviewMouseLeftButtonDown"
+                KeyboardNavigation.DirectionalNavigation="Cycle"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                Style="{StaticResource clearListView}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <EventSetter Event="MouseEnter" Handler="lvi_MouseEnter" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+
+                    <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Width="190">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Height="60">
+                                        <Image Margin="0 0 0 0" x:Name="profileImage"  Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelWidth="50" UriSource="{Binding Path = photoUrlMax, Mode=TwoWay}" />
+                                            </Image.Source>
+                                        </Image>
+                                        <StackPanel Orientation="Vertical">
+                                            <Label Margin="20 0 0 0" Width="150" Content="{Binding name}"></Label>
+                                            <Label Margin="20 0 0 0" Content="{Binding birthDate}"></Label>
+
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+
+
+
+
+
+
+
+
+
+
+            <ListView
+                x:Name="dataGridView2"
+                Grid.Column="1"
+                Margin="3"
+                HorizontalAlignment="Stretch"
+                BorderBrush="#FF25A0DA"
+                BorderThickness="1"
+                FontFamily="Microsoft Sans Serif"
+                FontSize="11"
+                Foreground="#FF000000"
+                IsTextSearchEnabled="False"
+                PreviewMouseLeftButtonDown="dataGridView2_PreviewMouseLeftButtonDown"
+
+                KeyboardNavigation.DirectionalNavigation="Cycle"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                Style="{StaticResource clearListView}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <EventSetter Event="MouseEnter" Handler="lvi_MouseEnter" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+
+                    <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Width="190">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Height="60">
+                                        <Image Margin="0 0 0 0" x:Name="profileImage"  Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                            <Image.Source>
+                                                <BitmapImage DecodePixelWidth="50" UriSource="{Binding Path = photoUrlMax, Mode=TwoWay}" />
+                                            </Image.Source>
+                                        </Image>
+                                        <StackPanel Orientation="Vertical">
+                                            <Label Margin="20 0 0 0" Width="150" Content="{Binding name}"></Label>
+                                            <Label Margin="20 0 0 0" Content="{Binding birthDate}"></Label>
+
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Button Grid.Row="2" Width="100" Height="60" Click="clear_OnClick" Margin="-220 0 0 0">ОЧИСТИТЬ</Button>
+        <Button Grid.Row="2" Width="100" Height="60" Click="ButtonBase_OnClick"  Margin="220 0 0 0">ПРИМЕНИТЬ</Button>
+    </Grid>
+</controls:MetroWindow>
+

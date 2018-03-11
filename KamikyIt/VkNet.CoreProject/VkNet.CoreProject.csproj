@@ -91,6 +91,7 @@
     <Compile Include="Core\VkApiInstrument.cs" />
     <Compile Include="DataBaseBehaviour\BotContext.cs" />
     <Compile Include="ForChat\ChatCoreHelper.cs" />
+    <Compile Include="ForChat\LoginCoreHelper.cs" />
     <Compile Include="Migrations\201803051744070_InitialCreate.cs" />
     <Compile Include="Migrations\201803051744070_InitialCreate.Designer.cs">
       <DependentUpon>201803051744070_InitialCreate.cs</DependentUpon>

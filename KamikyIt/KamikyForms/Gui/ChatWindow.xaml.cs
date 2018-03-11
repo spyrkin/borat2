@@ -17,6 +17,7 @@ using Chat.Core;
 using MahApps.Metro.Controls;
 using System.Threading;
 using System.Threading.Tasks;
+using KamikyForms.Gui;
 using MahApps.Metro.IconPacks;
 using VkNet.Examples.ForChat;
 
@@ -32,28 +33,13 @@ namespace Chat.Gui
         private DispatcherTimer timerSync;
         public List<Chat.Core.ChatTask> tasks = new List<Chat.Core.ChatTask>();
         public List<PersonModel> Persons = new List<PersonModel>();
-	    public KeyValuePair<long, string> CurrentUser;
+        public KeyValuePair<long, string> CurrentUser;
         public TaskExecuter te = new TaskExecuter();
         public ChatWindow()
         {
-	       //Persons = SearchInstrument.Test();
-	        CurrentUser = ChatCoreHelper.GetCurrentUserInfo();
+            InitializeComponent();
 
-			Persons.Add(new PersonModel(4259275));
 
-			InitializeComponent();
-            console.ItemsSource = consoleMsg;
-            resizeItems();
-            timerSync = new DispatcherTimer();
-            timerSync.Interval = System.TimeSpan.FromMilliseconds(1000);
-            timerSync.Tick += timerSync_Tick;
-            timerSync.Start();
-            te.wire(this);
-            te.init();
-            addConsoleMsg("Loaded");
-
-	        FillPersons();
-	        loadedAction();
 
         }
 
@@ -73,38 +59,33 @@ namespace Chat.Gui
         }
 
         private void FillPersons()
-	    {
-		    var i = 1;
+        {
+            var i = 1;
+            foreach (var person in Persons)
+            {
+                try
+                {
+                    var persWindow = personWindows["person" + i++];
+                    persWindow.personId = person.id.ToString();
+                    persWindow.profileName.Content = person.name;
+                    persWindow.profileAge.Content = person.birthDate == null ? "xxx" : person.birthDate.ToString();
+                    persWindow.profileImage.Source = new BitmapImage(new Uri(person.photoUrlMax.ToString()));
+                }
+                catch (Exception e)
+                {
+                    addConsoleMsg(e.Message);
+                }
+            }
 
-		    foreach (var person in Persons)
-		    {
-			    try
-			    {
-				    var persWindow = personWindows["person" + i++];
+            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            {
+                PersonChat pc = kvp.Value;
+                pc.wire(this);
+            }
 
-				    persWindow.personId = person.id.ToString();
-					persWindow.profileName.Content = person.name;
-				    persWindow.profileAge.Content = person.birthDate == null ? "xxx" : person.birthDate.ToString();
-				    persWindow.profileImage.Source = new BitmapImage(new Uri(person.photoUrlMax.ToString()));
-				}
-			    catch (Exception e)
-			    {
-				    addConsoleMsg(e.Message);
-			    }
-			}
+        }
 
-			foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
-			{
-				PersonChat pc = kvp.Value;
-
-				pc.wire(this);
-
-
-			}
-
-		}
-
-	    private void resizeItems()
+        private void resizeItems()
         {
 
             //собираема
@@ -143,8 +124,8 @@ namespace Chat.Gui
                     i = 0;
                 }
                 pc.wire(this);
-				pc.personId = "person" + i;
-			}
+                pc.personId = "person" + i;
+            }
             Canvas.SetLeft(console, xSumm + 142);
             Canvas.SetTop(console, ySumm);
         }
@@ -175,82 +156,60 @@ namespace Chat.Gui
         }
 
 
-       
+
 
         private void loadedAction()
         {
-			DateTime localDate = DateTime.Now;
-	        tasks.Clear();
-	        int i = 1;
-	        foreach (PersonModel person in Persons)
-	        {
-				Random random = new Random(unchecked((int)(DateTime.Now.Ticks)));
-		        Thread.Sleep(12);
-		        int dsek = random.Next(10, 11);
-		        ChatTask t = new ChatTask();
-		        t.type = Chat.Core.TaskEnum.MESSAGE;
-		        t.message = "test message";
-		        t.vkId = person.id;
-		        t.timeExpared = localDate.AddSeconds(dsek);
-		        t.personChatId = "person" + i;
-		        t.isStopped = false;
-		        t.personName = CurrentUser.Value;
-		        tasks.Add(t);
-		        i++;
-	        }
-            //for (int i = 10; i >= 1; i--)
-            //{
-
-            //}
-
-            //for (int i = 3; i >= 0; i--)
-            //{
-            //    Random random = new Random(unchecked((int)(DateTime.Now.Ticks)));
-            //    Thread.Sleep(12);
-            //    int dsek = random.Next(10, 100);
-            //    ChatTask t = new ChatTask();
-            //    t.type = Chat.Core.TaskEnum.MESSAGE;
-            //    t.message = "Привет медведь я тебя в рот ебал и в нос тебя шатал как твою мамашку шлюшку 11111";
-            //    t.vkId = 10;
-            //    t.timeExpared = localDate.AddSeconds(dsek);
-            //    t.personChatId = "person" + i;
-            //    t.isStopped = true;
-            //    tasks.Add(t);
-            //}
-
+            DateTime localDate = DateTime.Now;
+            tasks.Clear();
+            int i = 1;
+            foreach (PersonModel person in Persons)
+            {
+                Random random = new Random(unchecked((int)(DateTime.Now.Ticks)));
+                Thread.Sleep(12);
+                int dsek = random.Next(10, 11);
+                ChatTask t = new ChatTask();
+                t.type = Chat.Core.TaskEnum.MESSAGE;
+                t.message = "test message";
+                t.vkId = person.id;
+                t.timeExpared = localDate.AddSeconds(dsek);
+                t.personChatId = "person" + i;
+                t.isStopped = false;
+                t.personName = CurrentUser.Value;
+                tasks.Add(t);
+                i++;
+            }
             updateTaskList();
-
-
         }
 
-		internal void sendMessage(string v, string personId, DateTime localDate)
-		{
-			ChatTask t = new ChatTask();
-			t.type = Chat.Core.TaskEnum.MESSAGE;
-			t.message = v;
-			t.vkId = CurrentUser.Key;
-			t.timeExpared = localDate;
-			t.personChatId = personId;
-		    t.isStopped = false;
-			tasks.Add(t);
-			updateTaskList();
-		}
+        internal void sendMessage(string v, string personId, DateTime localDate)
+        {
+            ChatTask t = new ChatTask();
+            t.type = Chat.Core.TaskEnum.MESSAGE;
+            t.message = v;
+            t.vkId = CurrentUser.Key;
+            t.timeExpared = localDate;
+            t.personChatId = personId;
+            t.isStopped = false;
+            tasks.Add(t);
+            updateTaskList();
+        }
 
-	    public void updateTaskList()
-	    {
+        public void updateTaskList()
+        {
 
             rTaskList.ItemsSource = null;
 
-	        rTaskList.ItemsSource = tasks.Where(o => !o.isStopped).OrderBy(o => o.sekExpared);
+            rTaskList.ItemsSource = tasks.Where(o => !o.isStopped).OrderBy(o => o.sekExpared);
             rTaskList.Items.Refresh();
 
-	        sTaskList.ItemsSource = null;
-	        sTaskList.ItemsSource = tasks.Where(o => o.isStopped).OrderBy(o => o.sekExpared);
+            sTaskList.ItemsSource = null;
+            sTaskList.ItemsSource = tasks.Where(o => o.isStopped).OrderBy(o => o.sekExpared);
 
             sTaskList.Items.Refresh();
         }
 
-	    private void nPreviewKeyDown(object sender, KeyEventArgs e)
+        private void nPreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
             {
@@ -278,33 +237,69 @@ namespace Chat.Gui
         }
 
         private void onExpandTaskGrid(object sender, RoutedEventArgs e)
+        {
+            if (iconKind.Kind == PackIconModernKind.ArrowLeft)
             {
-                if (iconKind.Kind == PackIconModernKind.ArrowLeft)
-                {
-                    iconKind.Kind = PackIconModernKind.ArrowRight;
-                    gridCanvas.Margin = new Thickness(500, 0, 0, 0);
-                    gridCanvas.Width = 270 + 997 - 500;
-                    rTaskList.Width = 270 + 997 - 500;
-                    sTaskList.Width = 270 + 997 - 500;
-                    return;
-                }
-
-
-                if (iconKind.Kind == PackIconModernKind.ArrowRight)
-                {
-                    iconKind.Kind = PackIconModernKind.ArrowLeft;
-                    gridCanvas.Margin = new Thickness(997, 0, 0, 0);
-                    gridCanvas.Width = 270;
-                    rTaskList.Width = 270;
-                    sTaskList.Width = 270;
-
-                    return;
-                }
+                iconKind.Kind = PackIconModernKind.ArrowRight;
+                gridCanvas.Margin = new Thickness(500, 0, 0, 0);
+                gridCanvas.Width = 270 + 997 - 500;
+                rTaskList.Width = 270 + 997 - 500;
+                sTaskList.Width = 270 + 997 - 500;
+                return;
             }
 
 
+            if (iconKind.Kind == PackIconModernKind.ArrowRight)
+            {
+                iconKind.Kind = PackIconModernKind.ArrowLeft;
+                gridCanvas.Margin = new Thickness(997, 0, 0, 0);
+                gridCanvas.Width = 270;
+                rTaskList.Width = 270;
+                sTaskList.Width = 270;
+
+                return;
+            }
+        }
 
 
+        private void Chat_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            //Persons = SearchInstrument.Test();
+            CurrentUser = ChatCoreHelper.GetCurrentUserInfo();
+
+            //Persons.Add(new PersonModel(4259275));
+            //Persons.Add(new PersonModel(5499654));
+            console.ItemsSource = consoleMsg;
+            resizeItems();
+            timerSync = new DispatcherTimer();
+            timerSync.Interval = System.TimeSpan.FromMilliseconds(1000);
+            timerSync.Tick += timerSync_Tick;
+            timerSync.Start();
+            te.wire(this);
+            te.init();
+            addConsoleMsg("Loaded");
+
+            //FillPersons();
+            loadedAction();
 
         }
+
+        private void onPlay(object sender, RoutedEventArgs e)
+        {
+            //запуск чатов
+        }
+
+        private void onSearch(object sender, RoutedEventArgs e)
+        {
+            FilterWindow form = new FilterWindow();
+            var res = form.ShowDialog();
+            if (res == true && form.choosenpersons.Count > 0)
+            {
+                Persons = form.choosenpersons;
+                FillPersons();
+
+            }
+        }
     }
+}
