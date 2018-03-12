@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using ApiWrapper.Core;
 using Chat.Gui;
+using KamikyForms.Core;
 using VkNet.Examples.ForChat;
 
 namespace Chat.Core
@@ -16,7 +17,9 @@ namespace Chat.Core
     public class TaskExecuter
     {
         public DispatcherTimer timerExecute;
-        public int updateMilliseconds = 1000 * 60 * 1;
+        public int UPDATEALLCHATS = 1000 * 60 * 2;  //интервал для упдате чатс
+        public int MESSAGESINTERVAL = 2;            //интерва между сообщения
+
         public DispatcherTimer timerExecute2;
         public ChatWindow ch;
         public void wire(ChatWindow ch)
@@ -33,7 +36,7 @@ namespace Chat.Core
 
 
             timerExecute2 = new DispatcherTimer();
-            timerExecute2.Interval = System.TimeSpan.FromMilliseconds(updateMilliseconds); //раз в две минуты
+            timerExecute2.Interval = System.TimeSpan.FromMilliseconds(UPDATEALLCHATS); //раз в две минуты
             timerExecute2.Tick += timerExecute_Tick2;
             timerExecute2.Start();
         }
@@ -66,7 +69,7 @@ namespace Chat.Core
             DateTime exp = DateTime.Now;
             TimeSpan rez = exp - ch.playedTime;
             double result = rez.TotalMilliseconds;
-            if (result < updateMilliseconds / 1.5)
+            if (result < UPDATEALLCHATS / 1.5)
             {
                 return;
             }
@@ -103,7 +106,7 @@ namespace Chat.Core
             {
                 if (task.type == TaskEnum.MESSAGE)
                 {
-				    ChatCoreHelper.WriteMessage(task.vkId, task.message);
+                    startExecuteMessageTask(task.vkId, task.message);
                     //шлем непроверенное сообщение
                     PersonChat pchat = ch.getPersonChat(task.personChatId);
                     pchat.sendVirtualMessage(task);
@@ -111,14 +114,58 @@ namespace Chat.Core
                 }
 	            if (task.type == TaskEnum.UPDATE)
 	            {
-                    List<string[]> messages = ChatCoreHelper.GetMessagesFromUser(task.vkId);
-                    PersonChat pchat = ch.getPersonChat(task.personChatId);
-                    pchat.updateMessage(messages);
-                }
+	                startExecuteUpdateTask(task);
+	            }
 			}
         }
 
-	    public void addUpdateTask(string personChatId, int dsek)
+
+        public void startExecuteMessageTask(long vkId, string message)
+        {
+            if (ch.debug)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(500);
+                });
+                return;
+            }
+            Task.Factory.StartNew(() =>
+            {
+                ChatCoreHelper.WriteMessage(vkId, message);
+            });
+        }
+
+        public void startExecuteUpdateTask(ChatTask task)
+        {
+            if (ch.debug)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    Thread.Sleep(500);
+                    Render.DoAction(() =>
+                    {
+                        ch.Title = "123123";
+                    });
+                });
+                return;
+            }
+            Task.Factory.StartNew(() =>
+            {
+                List<string[]> messages = ChatCoreHelper.GetMessagesFromUser(task.vkId);
+                Task.Factory.StartNew(() =>
+                {
+                    Render.DoAction(() =>
+                    {
+                        PersonChat pchat = ch.getPersonChat(task.personChatId);
+                        pchat.updateMessage(messages);
+                    });
+                });
+
+            });
+        }
+
+        public void addUpdateTask(string personChatId, int dsek)
 	    {
 	        PersonChat pchat = ch.getPersonChat(personChatId);
 	        long vkId = pchat.personId;
@@ -161,7 +208,7 @@ namespace Chat.Core
                 DateTime exp = ch.timeExpared;
                 TimeSpan rez = de - exp;
                 double result = rez.TotalSeconds;
-                if (Math.Abs(result) < 1)
+                if (Math.Abs(result) < MESSAGESINTERVAL)
                 {
                     can = false;
                     return getRecursiveTime(de.AddSeconds(1));

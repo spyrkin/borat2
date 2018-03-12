@@ -69,6 +69,7 @@
     <Compile Include="Core\ChatMessage.cs" />
     <Compile Include="Core\ChatTask.cs" />
     <Compile Include="Core\ConsoleMessage.cs" />
+    <Compile Include="Core\Render.cs" />
     <Compile Include="Core\TaskEnum.cs" />
     <Compile Include="Core\TaskExecuter.cs" />
     <Compile Include="Gui\ChatWindow.xaml.cs">

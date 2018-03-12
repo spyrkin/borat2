@@ -38,6 +38,9 @@ namespace Chat.Gui
         public String startMessage = "Привет, давай знакомиться =)";
         public DateTime playedTime;
 
+
+        public bool debug = true;
+
         public ChatWindow()
         {
             InitializeComponent();
@@ -278,7 +281,10 @@ namespace Chat.Gui
                 string domain = p.Domain;
                 bans.Add(domain);
             }
-            BanList.setBanList(bans);
+            if (debug == false)
+            {
+                BanList.setBanList(bans);
+            }
             SendAll(startMessage);
             playedTime = DateTime.Now;
 
