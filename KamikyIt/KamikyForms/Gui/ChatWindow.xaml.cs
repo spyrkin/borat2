@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -314,6 +315,20 @@ namespace Chat.Gui
         private void onUpdateAll(object sender, RoutedEventArgs e)
         {
             te.updateAllChats();
+
+        }
+
+        private void onClosingEvent(object sender, CancelEventArgs e)
+        {
+            var res = MessageBox.Show("Вы действительно хотите выйти?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Error);
+            if (res == MessageBoxResult.Yes)
+            {
+                e.Cancel = false;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
 
         }
     }

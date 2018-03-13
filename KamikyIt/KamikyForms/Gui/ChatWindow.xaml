@@ -19,6 +19,7 @@
     Top="0"
     WindowStartupLocation="Manual"
     WindowTitleBrush="#4c75a3"
+    Closing="onClosingEvent"
     mc:Ignorable="d">
 
     <mah:MetroWindow.Resources>
