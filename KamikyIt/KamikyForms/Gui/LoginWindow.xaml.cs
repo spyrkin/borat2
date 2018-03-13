@@ -49,7 +49,7 @@ namespace KamikyForms.Gui
         private void onLogin(object sender, RoutedEventArgs e)
         {
             string login = Login.Text;
-            string pass = Pass.Text;
+            string pass = Pass.Password;
             string res = LoginCoreHelper.Login(login, pass);
             if (String.IsNullOrEmpty(res))
             {

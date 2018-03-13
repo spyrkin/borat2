@@ -39,7 +39,7 @@
                 <TextBlock  Text="Логин" Margin="0, 5" Foreground="White"/>
                 <TextBox x:Name="Login"  Text="jinny19861@mail.ru"/>
                 <TextBlock Text="Пароль" Margin="0, 5" Foreground="White"/>
-                <TextBox x:Name="Pass"  Text="crescent912" />
+                <PasswordBox  x:Name="Pass" Password="crescent912" PasswordChar="*"/>
 
                 <Button Name="LoginButton"  Click="onLogin"  Margin="0 20" Background="#4c75a3" Foreground="White">Логин</Button>
 

@@ -1,21 +1,25 @@
-﻿<controls:MetroWindow x:Class="Chat.Gui.ChatWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-
-        xmlns:local="clr-namespace:Chat.Gui"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:iconPacks1="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        mc:Ignorable="d"
-        Loaded="Chat_Loaded"
-        PreviewKeyDown="nPreviewKeyDown"
-        Icon="/Resources/vk_logo.png"
-        WindowTitleBrush="#4c75a3"    
-                      ResizeMode="NoResize"
-        Height="900" Width="1250">
+﻿<mah:MetroWindow
+    x:Class="Chat.Gui.ChatWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:iconPacks1="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:Chat.Gui"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1365"
+    Height="750"
+    Icon="/Resources/vk_logo.png"
+    Left="0"
+    Loaded="Chat_Loaded"
+    PreviewKeyDown="nPreviewKeyDown"
+    ResizeMode="NoResize"
+    Top="0"
+    WindowStartupLocation="Manual"
+    WindowTitleBrush="#4c75a3"
+    mc:Ignorable="d">
 
     <mah:MetroWindow.Resources>
         <ResourceDictionary>
@@ -25,35 +29,44 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <!--  Accent and AppTheme setting  -->
+
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </mah:MetroWindow.Resources>
     <Grid HorizontalAlignment="Left">
-        <Canvas x:Name="mainCanvas"  Background="#FFE8E8E8">
-            <local:PersonChat x:Name="person1"></local:PersonChat>
-            <local:PersonChat x:Name="person2"></local:PersonChat>
-            <local:PersonChat x:Name="person3"></local:PersonChat>
-            <local:PersonChat x:Name="person4"></local:PersonChat>
-            <local:PersonChat x:Name="person5"></local:PersonChat>
-            <local:PersonChat x:Name="person6"></local:PersonChat>
-            <local:PersonChat x:Name="person7"></local:PersonChat>
-            <local:PersonChat x:Name="person8"></local:PersonChat>
-            <local:PersonChat x:Name="person9"></local:PersonChat>
-            <local:PersonChat x:Name="person10"></local:PersonChat>
-            <local:PersonChat x:Name="person11"></local:PersonChat>
-            <local:PersonChat x:Name="person12"></local:PersonChat>
-            <local:PersonChat x:Name="person13"></local:PersonChat>
-            <local:PersonChat x:Name="person14"></local:PersonChat>
+        <Canvas x:Name="mainCanvas" Background="#FFE8E8E8">
+            <local:PersonChat x:Name="person1" />
+            <local:PersonChat x:Name="person2" />
+            <local:PersonChat x:Name="person3" />
+            <local:PersonChat x:Name="person4" />
+            <local:PersonChat x:Name="person5" />
+            <local:PersonChat x:Name="person6" />
+            <local:PersonChat x:Name="person7" />
+            <local:PersonChat x:Name="person8" />
+            <local:PersonChat x:Name="person9" />
+            <local:PersonChat x:Name="person10" />
+            <local:PersonChat x:Name="person11" />
+            <local:PersonChat x:Name="person12" />
+            <local:PersonChat x:Name="person13" />
+            <local:PersonChat x:Name="person14" />
 
-            <local:PersonChat x:Name="person15"></local:PersonChat>
-            <local:PersonChat x:Name="person16"></local:PersonChat>
-            <local:PersonChat x:Name="person17"></local:PersonChat>
-            <local:PersonChat x:Name="person18"></local:PersonChat>
-            <local:PersonChat x:Name="person19"></local:PersonChat>
-            <local:PersonChat x:Name="person20"></local:PersonChat>
-            <ListView Canvas.Top="10000"   Margin="5 5 0 0" Width="138"  Height="280" VerticalAlignment="Top" HorizontalAlignment="Stretch" x:Name="console" FontSize="12">
+            <local:PersonChat x:Name="person15" />
+            <local:PersonChat x:Name="person16" />
+            <local:PersonChat x:Name="person17" />
+            <local:PersonChat x:Name="person18" />
+            <local:PersonChat x:Name="person19" />
+            <local:PersonChat x:Name="person20" />
+            <ListView
+                x:Name="console"
+                Canvas.Top="10000"
+                Width="138"
+                Height="280"
+                Margin="5,5,0,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                FontSize="12">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
@@ -118,15 +131,20 @@
 
 
         </Canvas>
-        <Canvas x:Name="gridCanvas" Background="#FFE8E8E8" Margin="997,0,0,0" Top="0" Width="270">
+        <Canvas
+            x:Name="gridCanvas"
+            Width="270"
+            Margin="1092,0,0,0"
+            Background="#FFE8E8E8"
+            Top="0">
             <Button
-                Margin =" 5 5 0 0"
-                Background="White"
                 x:Name="button_load_markers"
                 Width="48"
                 Height="48"
+                Margin="5,5,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                Background="White"
                 Click="onExpandTaskGrid"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                 ToolTip="Загрузить маркера">
@@ -138,14 +156,14 @@
             </Button>
 
             <Button
-                Margin =" 5 5 0 0"
-                Canvas.Left="60"
-                Background="White"
                 x:Name="button_play"
+                Canvas.Left="60"
                 Width="48"
                 Height="48"
+                Margin="5,5,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                Background="White"
                 Click="onPlay"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                 ToolTip="Загрузить маркера">
@@ -158,14 +176,14 @@
             </Button>
 
             <Button
-                Margin =" 5 5 0 0"
-                Canvas.Left="120"
-                Background="White"
                 x:Name="button_search"
+                Canvas.Left="120"
                 Width="48"
                 Height="48"
+                Margin="5,5,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                Background="White"
                 Click="onSearch"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                 ToolTip="Загрузить маркера">
@@ -176,10 +194,23 @@
                     Kind="PeopleMagnify" />
 
             </Button>
-            <Label  Canvas.Top="7" Canvas.Left="170"   x:Name="timer"                 FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
-                    FontSize="30" Foreground="Black"
-                    FontWeight="Bold"></Label>
-            <ListView Canvas.Top="50" Margin="5 5 0 0" Width="260"  Height="500" VerticalAlignment="Top" HorizontalAlignment="Stretch" x:Name="rTaskList" FontSize="12">
+            <Label
+                x:Name="timer"
+                Canvas.Left="170"
+                Canvas.Top="7"
+                FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                FontSize="30"
+                FontWeight="Bold"
+                Foreground="Black" />
+            <ListView
+                x:Name="rTaskList"
+                Canvas.Top="50"
+                Width="260"
+                Height="500"
+                Margin="5,5,0,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top"
+                FontSize="12">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
@@ -243,15 +274,15 @@
 
 
             <Button
-                Margin =" 5 5 0 0"
-                Canvas.Top ="580"
-                Canvas.Left="20"
-                Background="White"
                 x:Name="button_update_all"
+                Canvas.Left="20"
+                Canvas.Top="580"
                 Width="48"
                 Height="48"
+                Margin="5,5,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
+                Background="White"
                 Click="onUpdateAll"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                 ToolTip="Загрузить маркера">
@@ -266,4 +297,4 @@
 
 
     </Grid>
-</controls:MetroWindow>
+</mah:MetroWindow>

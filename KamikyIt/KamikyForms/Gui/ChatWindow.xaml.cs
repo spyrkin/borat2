@@ -39,7 +39,9 @@ namespace Chat.Gui
         public DateTime playedTime;
 
 
-        public bool debug = true;
+
+
+        public bool debug = false;
 
         public ChatWindow()
         {
@@ -73,6 +75,10 @@ namespace Chat.Gui
                     persWindow.profileName.Content = person.name;
                     persWindow.profileAge.Content = person.birthDate == null ? "xxx" : person.birthDate.ToString();
                     persWindow.profileImage.Source = new BitmapImage(new Uri(person.photoUrlMax.ToString()));
+                    persWindow.profileFollowers.Content = "П: " + person.followers;
+                    persWindow.profileInterests.Content = "И: " + person.interests;
+                    persWindow.profileCicates.Content = "Ц: " + person.Status;
+
                 }
                 catch (Exception e)
                 {
@@ -105,17 +111,19 @@ namespace Chat.Gui
 
             int i = 0;
             int j = 0;
-            int startX = 0;
+            int startX = -5;
             int startY = 0;
 
             int xSumm = 0;
             int ySumm = 0;
+            int hh = 0;
             foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
             {
-
                 PersonChat pc = kvp.Value;
-                xSumm = startX + i * 142;
-                ySumm = startY + j * 287;
+                hh = pc.person_width + pc.person_width_margin;
+
+                xSumm = startX + i * (pc.person_width + pc.person_width_margin);
+                ySumm = startY + j * (pc.person_height + pc.person_height_margin);
                 pc.left = xSumm;
                 pc.top = ySumm;
                 pc.normalize();
@@ -128,8 +136,9 @@ namespace Chat.Gui
                 }
                 pc.wire(this);
             }
-            Canvas.SetLeft(console, xSumm + 142);
+            Canvas.SetLeft(console, xSumm + hh);
             Canvas.SetTop(console, ySumm);
+            console.Width = hh - 5;
         }
 
 
@@ -238,9 +247,9 @@ namespace Chat.Gui
             {
                 iconKind.Kind = PackIconModernKind.ArrowRight;
                 gridCanvas.Margin = new Thickness(500, 0, 0, 0);
-                gridCanvas.Width = 270 + 997 - 500;
-                rTaskList.Width = 270 + 997 - 500;
-               // sTaskList.Width = 270 + 997 - 500;
+                gridCanvas.Width = 270 + 1092 - 500;
+                rTaskList.Width = 270 + 1092 - 500;
+                // sTaskList.Width = 270 + 997 - 500;
                 return;
             }
 
@@ -248,7 +257,7 @@ namespace Chat.Gui
             if (iconKind.Kind == PackIconModernKind.ArrowRight)
             {
                 iconKind.Kind = PackIconModernKind.ArrowLeft;
-                gridCanvas.Margin = new Thickness(997, 0, 0, 0);
+                gridCanvas.Margin = new Thickness(1092, 0, 0, 0);
                 gridCanvas.Width = 270;
                 rTaskList.Width = 270;
                 //sTaskList.Width = 270;

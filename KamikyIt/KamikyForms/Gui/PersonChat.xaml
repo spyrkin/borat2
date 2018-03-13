@@ -1,27 +1,119 @@
-﻿<Canvas x:Class="Chat.Gui.PersonChat"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Chat.Gui"
-        mc:Ignorable="d"
-        Margin="5 5 0 0"
-        Background="#FFE8E8E8"
-        Height="282" Width="137">
+﻿<Canvas
+    x:Class="Chat.Gui.PersonChat"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Chat.Gui"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="137"
+    Height="282"
+    Margin="5,5,0,0"
+    Background="#FFE8E8E8"
+    mc:Ignorable="d">
+
+    <Canvas.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="clearButton" TargetType="Button" />
+        </ResourceDictionary>
+
+    </Canvas.Resources>
     <Canvas>
-        <Image Margin="0 0 0 0" x:Name="profileImage"  Width="40" Height="40"  />
-        <Label Canvas.Top="0" Canvas.Left="40" x:Name="profileName"  FontSize="8" Padding="5 0" Margin="0 0 0 0">Имя</Label>
-        <Label Canvas.Top="14" Canvas.Left="40"  x:Name="profileAge"  FontSize="8" Padding="5 0" Margin="0 0 0 0">Возраст</Label>
-        <Label FontWeight="Bold" Canvas.Top="28" Canvas.Left="40" x:Name="profileChatNumber"  FontSize="8" Padding="5 0" Margin="0 0 0 0">---</Label>
+        <Image
+            x:Name="profileImage"
+            Width="40"
+            Height="40"
+            ToolTip=""
+            ToolTipOpening="vkOpenTooltip"
+            MouseLeftButtonUp="openVk"
+            Margin="0,0,0,0" />
+        <Label
+            x:Name="profileName"
+            Canvas.Left="40"
+            Canvas.Top="0"
+            Margin="0,0,0,0"
+            Padding="5,0"
+            FontSize="8">
+            Имя
+        </Label>
+        <Label
+            x:Name="profileAge"
+            Canvas.Left="40"
+            Canvas.Top="14"
+            Margin="0,0,0,0"
+            Padding="5,0"
+            FontSize="8">
+            Возраст
+        </Label>
+        <Label
+            x:Name="profileChatNumber"
+            Canvas.Left="40"
+            Canvas.Top="28"
+            Margin="0,0,0,0"
+            Padding="5,0"
+            FontSize="8"
+            FontWeight="Bold">
+            ---
+        </Label>
+
+        <Label
+            x:Name="profileFollowers"
+            Visibility="Hidden"
+            Canvas.Left="40"
+            Canvas.Top="28"
+            Margin="0,0,0,0"
+            Padding="5,0"
+            FontSize="8"
+            >
+            
+        </Label>
+
+        <Label
+            x:Name="profileInterests"
+            Visibility="Hidden"
+            Canvas.Left="40"
+            Canvas.Top="28"
+            Margin="0,0,0,0"
+            Padding="5,0"
+            FontSize="8"
+            >
+
+        </Label>
+
+        <Label
+            x:Name="profileCicates"
+            Visibility="Hidden"
+            Canvas.Left="40"
+            Canvas.Top="28"
+            Margin="0,0,0,0"
+            Padding="5,0"
+            FontSize="8"
+            >
+
+        </Label>
 
 
-        <Label x:Name = "maxLabel"  Padding="0" Margin="0 0 -10 0" Canvas.Top="-5" Canvas.Left="115">
+        <Label
+            x:Name="maxLabel"
+            Canvas.Left="115"
+            Canvas.Top="-5"
+            Margin="0,0,-10,0"
+            Padding="0">
             <Hyperlink x:Name="hyper" Click="onChangeState">
                 max
             </Hyperlink>
         </Label>
 
-        <ListView x:Name="datagrid" Background="White" Canvas.Top="50" Margin="5 1 1 1" Width="128"  Height="210" VerticalAlignment="Top" HorizontalAlignment="Stretch"  FontSize="12">
+        <ListView
+            x:Name="datagrid"
+            Canvas.Top="40"
+            Width="128"
+            Height="210"
+            Margin="1,1,1,1"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Background="White"
+            FontSize="12">
             <ListView.ItemContainerStyle>
 
                 <Style TargetType="{x:Type ListViewItem}">
@@ -54,15 +146,23 @@
                             <Setter Property="Height" Value="0" />
                         </Style>
                     </GridView.ColumnHeaderContainerStyle>
-                    <GridViewColumn Width="190">
+                    <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Margin="-10 0 0 0" FontWeight="Bold" Foreground="#42648b" Content="{Binding personName}"></Label>
-                                        <Label Margin="-5 3 0 0" Content="{Binding timeToString}" Foreground="#aeb2cc" FontSize="9"></Label>
+                                        <Label
+                                            Margin="-10,0,0,0"
+                                            Content="{Binding personName}"
+                                            FontWeight="Bold"
+                                            Foreground="#42648b" />
+                                        <Label
+                                            Margin="-5,3,0,0"
+                                            Content="{Binding timeToString}"
+                                            FontSize="9"
+                                            Foreground="#aeb2cc" />
                                     </StackPanel>
-                                    <Label Margin="-10 -10 0 0" Content="{Binding message}"></Label>
+                                    <Label Margin="-10,-10,0,0" Content="{Binding message}" />
                                 </StackPanel>
 
                             </DataTemplate>
@@ -72,8 +172,40 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Background="DarkGray" Width="45" Canvas.Top="260" Canvas.Left="0" x:Name="bmessage" Click="update">update</Button>
-        <Button Background="DarkGray" Width="45" Canvas.Top="260" Canvas.Left="45" x:Name="bwrite" Click="writeMsg">write</Button>
-        <Button Background="DarkGray" Canvas.Top="260" Canvas.Left="92" Width="45" x:Name="bclose">close</Button>
+        <Button
+            x:Name="bmessage"
+            Canvas.Left="0"
+            Canvas.Top="260"
+            Width="45"
+            Margin="0,0,0,0"
+            Padding="0,0,0,0"
+            Background="DarkGray"
+            Click="update"
+            Style="{StaticResource clearButton}">
+            update
+        </Button>
+        <Button
+            x:Name="bwrite"
+            Canvas.Left="45"
+            Canvas.Top="260"
+            Width="45"
+            Margin="0,0,0,0"
+            Padding="0,0,0,0"
+            Background="DarkGray"
+            Click="writeMsg"
+            Style="{StaticResource clearButton}">
+            write
+        </Button>
+        <Button
+            x:Name="bclose"
+            Canvas.Left="92"
+            Canvas.Top="260"
+            Width="45"
+            Margin="0,0,0,0"
+            Padding="0,0,0,0"
+            Background="DarkGray"
+            Style="{StaticResource clearButton}">
+            close
+        </Button>
     </Canvas>
 </Canvas>

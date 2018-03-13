@@ -10,7 +10,7 @@
         WindowStartupLocation="CenterScreen"
                  Icon="/Resources/vk_logo.png"
                  WindowTitleBrush="#4c75a3"  
-        Title="Поиск" Height="900" Width="900">
+        Title="Поиск" Height="670" Width="900">
 
     <Window.Resources>
 
@@ -41,8 +41,7 @@
 
             <Style x:Key="tCombo" TargetType="ComboBox">
                 <Setter Property="Height" Value="20" />
-                <Setter Property="Background" Value="Black" />
-                <Setter Property="Foreground" Value="Black" />
+
 
                 <Setter Property="Width" Value="150" />
                 <Setter Property="FontSize" Value="15" />
@@ -50,7 +49,7 @@
 
 
             <Style x:Key="ttextbox" TargetType="TextBox">
-                <Setter Property="Height" Value="20" />
+                <Setter Property="Height" Value="22" />
 
                 <Setter Property="Background" Value="White" />
                 <Setter Property="Foreground" Value="Black" />
@@ -183,63 +182,63 @@
 
                 </ComboBox>
             </StackPanel>
-            <Label  Canvas.Top="340" Canvas.Left="100"     Content="ДОПОЛНИТЕЛЬНЫЕ НАСТРОЙКИ" FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+            <Label  Canvas.Top="19" Canvas.Left="520"     Content="ДОПОЛНИТЕЛЬНЫЕ НАСТРОЙКИ" FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
                     FontSize="30" Foreground="White"
                     FontWeight="Bold"></Label>
 
 
-            <StackPanel Orientation="Horizontal" Canvas.Top="370" Canvas.Left="50">
+            <StackPanel Orientation="Horizontal" Canvas.Top="49" Canvas.Left="470">
                 <CheckBox Checked="oncheckChanged" Unchecked="oncheckChanged"  Tag="friendmin" Style="{StaticResource cbPropChecker}" x:Name="cfriendmin"></CheckBox>
                 <TextBlock  Style="{StaticResource tBock}"  Background="Black" Foreground="White" Text="Мин друзей" FontSize="20" Margin="15"/>
                 <TextBox x:Name="friendmin" Style="{StaticResource ttextbox}"></TextBox>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Canvas.Top="400" Canvas.Left="50">
+            <StackPanel Orientation="Horizontal" Canvas.Top="79" Canvas.Left="470">
                 <CheckBox Checked="oncheckChanged" Unchecked="oncheckChanged"  Tag="friendmax" Style="{StaticResource cbPropChecker}" x:Name="cfriendmax"></CheckBox>
                 <TextBlock  Style="{StaticResource tBock}"  Background="Black" Foreground="White" Text="Мax друзей" FontSize="20" Margin="15"/>
                 <TextBox x:Name="friendmax" Style="{StaticResource ttextbox}"></TextBox>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Canvas.Top="430" Canvas.Left="50">
+            <StackPanel Orientation="Horizontal" Canvas.Top="109" Canvas.Left="470">
                 <CheckBox Checked="oncheckChanged" Unchecked="oncheckChanged"  Tag="subsmin" Style="{StaticResource cbPropChecker}" x:Name="csubsmin"></CheckBox>
                 <TextBlock  Style="{StaticResource tBock}"  Background="Black" Foreground="White" Text="Мин подпис" FontSize="20" Margin="15"/>
                 <TextBox x:Name="subsmin" Style="{StaticResource ttextbox}"></TextBox>
             </StackPanel>
 
 
-            <StackPanel Orientation="Horizontal" Canvas.Top="460" Canvas.Left="50">
+            <StackPanel Orientation="Horizontal" Canvas.Top="139" Canvas.Left="470">
                 <CheckBox Checked="oncheckChanged" Unchecked="oncheckChanged"  Tag="subsmax" Style="{StaticResource cbPropChecker}" x:Name="csubsmax"></CheckBox>
                 <TextBlock  Style="{StaticResource tBock}"  Background="Black" Foreground="White" Text="Маx подпис" FontSize="20" Margin="15"/>
                 <TextBox x:Name="subsmax" Style="{StaticResource ttextbox}"></TextBox>
             </StackPanel>
 
 
-            <StackPanel Orientation="Horizontal" Canvas.Top="490" Canvas.Left="50">
+            <StackPanel Orientation="Horizontal" Canvas.Top="169" Canvas.Left="470">
                 <CheckBox Checked="oncheckChanged" Unchecked="oncheckChanged"  Tag="postmin" Style="{StaticResource cbPropChecker}" x:Name="cpostmin"></CheckBox>
                 <TextBlock  Style="{StaticResource tBock}"  Background="Black" Foreground="White" Text="Мин постов" FontSize="20" Margin="15"/>
                 <TextBox x:Name="postmin" Style="{StaticResource ttextbox}"></TextBox>
             </StackPanel>
 
 
-            <StackPanel Orientation="Horizontal" Canvas.Top="520" Canvas.Left="50">
+            <StackPanel Orientation="Horizontal" Canvas.Top="199" Canvas.Left="470">
                 <CheckBox Checked="oncheckChanged" Unchecked="oncheckChanged"  Tag="postmax" Style="{StaticResource cbPropChecker}" x:Name="cpostmax"></CheckBox>
                 <TextBlock  Style="{StaticResource tBock}"  Background="Black" Foreground="White" Text="Маx постов" FontSize="20" Margin="15"/>
                 <TextBox x:Name="postmax" Style="{StaticResource ttextbox}"></TextBox>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Canvas.Top="600" Canvas.Left="50">
+            <StackPanel Orientation="Horizontal" Canvas.Top="352" Canvas.Left="50">
                 <CheckBox Checked="oncheckChanged" Unchecked="oncheckChanged"  Tag="offcet" Style="{StaticResource cbPropChecker}" x:Name="coffcet"></CheckBox>
                 <TextBlock  Style="{StaticResource tBock}"  Background="Black" Foreground="White" Text="offcet" FontSize="20" Margin="15"/>
                 <TextBox x:Name="offcet" Style="{StaticResource ttextbox}"></TextBox>
             </StackPanel>
 
 
-            <Button Canvas.Top ="762" Canvas.Left="50" MinWidth="150" Background="Black" BorderThickness="2" Width="100" Foreground="White" Click="onSearch" >Найти</Button>
-            <Button Canvas.Top ="762" Canvas.Left="260" MinWidth="150" Background="Black" BorderThickness="2" Width="100" Foreground="White" Click="onSelect" >Выбрать</Button>
+            <Button Canvas.Top ="480" Canvas.Left="72" MinWidth="150" Background="Black" BorderThickness="2" Width="100" Foreground="White" Click="onSearch" >Найти</Button>
+            <Button Canvas.Top ="480" Canvas.Left="356" MinWidth="150" Background="Black" BorderThickness="2" Width="100" Foreground="White" Click="onSelect" >Выбрать</Button>
 
-            <Button Visibility="Visible" Canvas.Top ="762" Canvas.Left="460" MinWidth="150" Background="Black" BorderThickness="2" Width="100" Foreground="White" Click="onApply" >Применить</Button>
-            <Label x:Name="finded" Canvas.Top ="812" Canvas.Left="50" Foreground="AliceBlue">Найдено: 0</Label>
-            <Label x:Name="chosen" Canvas.Top ="812" Canvas.Left="150" Foreground="AliceBlue">Выбрано: 0</Label>
+            <Button Visibility="Visible" Canvas.Top ="480" Canvas.Left="672" MinWidth="150" Background="Black" BorderThickness="2" Width="100" Foreground="White" Click="onApply" >Применить</Button>
+            <Label x:Name="finded" Canvas.Top ="560" Canvas.Left="104" Foreground="AliceBlue">Найдено: 0</Label>
+            <Label x:Name="chosen" Canvas.Top ="560" Canvas.Left="380" Foreground="AliceBlue">Выбрано: 0</Label>
 
         </Canvas>
     </Grid>
