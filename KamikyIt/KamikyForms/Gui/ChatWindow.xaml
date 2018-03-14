@@ -13,6 +13,7 @@
     Height="750"
     Icon="/Resources/vk_logo.png"
     Left="0"
+    PreviewKeyUp="mainForm_PreviewKeyUp"
     Loaded="Chat_Loaded"
     PreviewKeyDown="nPreviewKeyDown"
     ResizeMode="NoResize"

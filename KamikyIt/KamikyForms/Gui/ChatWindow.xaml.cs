@@ -34,10 +34,6 @@ namespace Chat.Gui
         public String startMessage = "Привет, давай знакомиться =)";
         public DateTime playedTime;
         public StageEnum stage;
-
-
-
-
         public bool debug = true;
 
         public ChatWindow()
@@ -244,14 +240,27 @@ namespace Chat.Gui
             return null;
         }
 
+        private void gridExpand()
+        {
+            iconKind.Kind = PackIconModernKind.ArrowRight;
+            gridCanvas.Margin = new Thickness(500, 0, 0, 0);
+            gridCanvas.Width = 270 + 1092 - 500;
+            rTaskList.Width = 270 + 1092 - 500;
+        }
+
+        private void gridNormalize()
+        {
+            iconKind.Kind = PackIconModernKind.ArrowLeft;
+            gridCanvas.Margin = new Thickness(1092, 0, 0, 0);
+            gridCanvas.Width = 270;
+            rTaskList.Width = 270;
+        }
+
         private void onExpandTaskGrid(object sender, RoutedEventArgs e)
         {
             if (iconKind.Kind == PackIconModernKind.ArrowLeft)
             {
-                iconKind.Kind = PackIconModernKind.ArrowRight;
-                gridCanvas.Margin = new Thickness(500, 0, 0, 0);
-                gridCanvas.Width = 270 + 1092 - 500;
-                rTaskList.Width = 270 + 1092 - 500;
+
                 // sTaskList.Width = 270 + 997 - 500;
                 return;
             }
@@ -259,11 +268,7 @@ namespace Chat.Gui
 
             if (iconKind.Kind == PackIconModernKind.ArrowRight)
             {
-                iconKind.Kind = PackIconModernKind.ArrowLeft;
-                gridCanvas.Margin = new Thickness(1092, 0, 0, 0);
-                gridCanvas.Width = 270;
-                rTaskList.Width = 270;
-                //sTaskList.Width = 270;
+                gridNormalize();
                 return;
             }
         }
@@ -345,6 +350,21 @@ namespace Chat.Gui
                 e.Cancel = true;
             }
 
+        }
+
+
+        //HOTKEYS
+        private void mainForm_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Left)
+            {
+                gridExpand();
+            }
+
+            if (e.Key == Key.Right)
+            {
+                gridNormalize();
+            }
         }
     }
 }
