@@ -2,22 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using ApiWrapper.Core;
 using Chat.Core;
 using MahApps.Metro.Controls;
 using System.Threading;
-using System.Threading.Tasks;
+using KamikyForms.Core;
 using KamikyForms.Gui;
 using MahApps.Metro.IconPacks;
 using VkNet.Examples.ForChat;
@@ -38,15 +33,17 @@ namespace Chat.Gui
         public TaskExecuter te = new TaskExecuter();
         public String startMessage = "Привет, давай знакомиться =)";
         public DateTime playedTime;
+        public StageEnum stage;
 
 
 
 
-        public bool debug = false;
+        public bool debug = true;
 
         public ChatWindow()
         {
             InitializeComponent();
+            stage = StageEnum.INIT;
         }
 
 
@@ -61,7 +58,12 @@ namespace Chat.Gui
         {
             DateTime localDate = DateTime.Now;
             timer.Content = localDate.ToString("HH:mm:ss");
-            //updateTaskList();
+            button_play.IsEnabled = stage == StageEnum.CHOSEN;
+            button_search.IsEnabled = stage == StageEnum.LOADED;
+            button_update_all.IsEnabled = stage == StageEnum.LAUCHED;
+
+
+
         }
 
         private void FillPersons()
@@ -279,11 +281,17 @@ namespace Chat.Gui
             timerSync.Start();
             te.wire(this);
             te.init();
+            stage = StageEnum.LOADED;
             addConsoleMsg("Loaded");
         }
 
         private void onPlay(object sender, RoutedEventArgs e)
         {
+
+            if (stage != StageEnum.CHOSEN)
+            {
+                return;
+            }
 
             List<String> bans = new List<string>();
             foreach (PersonModel p in Persons)
@@ -297,7 +305,7 @@ namespace Chat.Gui
             }
             SendAll(startMessage);
             playedTime = DateTime.Now;
-
+            stage = StageEnum.LAUCHED;
         }
 
         private void onSearch(object sender, RoutedEventArgs e)
@@ -308,6 +316,8 @@ namespace Chat.Gui
             {
                 Persons = form.choosenpersons;
                 FillPersons();
+                stage = StageEnum.CHOSEN;
+
 
             }
         }
@@ -320,6 +330,11 @@ namespace Chat.Gui
 
         private void onClosingEvent(object sender, CancelEventArgs e)
         {
+            if (stage != StageEnum.LAUCHED)
+            {
+                e.Cancel = false;
+                return;
+            }
             var res = MessageBox.Show("Вы действительно хотите выйти?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Error);
             if (res == MessageBoxResult.Yes)
             {
