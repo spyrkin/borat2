@@ -7,13 +7,21 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Сообщение" Height="331.107" Width="300">
+    <Window.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="clearButton" TargetType="TextBox" />
+        </ResourceDictionary>
+
+    </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical">
             <TextBox TextWrapping="Wrap"
-                     AcceptsReturn="True"
+                     Style="{StaticResource clearButton}"
+                     Background="AliceBlue"
                      HorizontalScrollBarVisibility="Disabled"
                      VerticalScrollBarVisibility="Auto" x:Name="textblock" Margin="0,16,0,0" Height="232"/>
-            <Button Click="onSubmit" HorizontalAlignment="Right" Width="292" Margin="0,0,0,0" Content="Submit" Height="47"/>
+            <Button Background="Black" Click="onSubmit" HorizontalAlignment="Right" Width="292" Margin="0,0,0,0" Content="Submit" Height="47"/>
         </StackPanel>
     </Grid>
 </Window>

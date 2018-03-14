@@ -205,7 +205,15 @@
             Padding="0,0,0,0"
             Background="DarkGray"
             Style="{StaticResource clearButton}">
-            close
+            bot
         </Button>
+        <TextBox
+                 
+                 Visibility="Hidden"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Background="AliceBlue"
+                 HorizontalScrollBarVisibility="Disabled"
+                 VerticalScrollBarVisibility="Auto" x:Name="textblock" Margin="0,16,0,0" Height="232"/>
     </Canvas>
 </Canvas>

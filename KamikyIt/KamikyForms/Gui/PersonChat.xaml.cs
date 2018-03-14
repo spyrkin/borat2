@@ -94,6 +94,7 @@ namespace Chat.Gui
             profileCicates.Visibility = Visibility.Hidden;
             profileFollowers.Visibility = Visibility.Hidden;
             profileInterests.Visibility = Visibility.Hidden;
+            textblock.Visibility = Visibility.Hidden;
 
 
 
@@ -162,6 +163,8 @@ namespace Chat.Gui
             profileCicates.Visibility = Visibility.Visible;
             profileFollowers.Visibility = Visibility.Visible;
             profileInterests.Visibility = Visibility.Visible;
+            textblock.Visibility = Visibility.Visible;
+
 
 
             Canvas.SetTop(this, 0);
@@ -215,7 +218,12 @@ namespace Chat.Gui
             //datagrid
             Canvas.SetTop(datagrid, 200);
             datagrid.Width = Width - 270;
-            datagrid.Height = 450;
+            datagrid.Height = 350;
+
+            //textblock
+            Canvas.SetTop(textblock, 550);
+            textblock.Width = Width - 270;
+            textblock.Height = 70;
 
             //bmessage
             Canvas.SetTop(bmessage, Height - 55);
@@ -260,21 +268,43 @@ namespace Chat.Gui
         public void writeMsg(Object sender,
                        EventArgs e)
         {
-            SimpleMessageBox box = new SimpleMessageBox();
-            var res = box.ShowDialog();
-            if (res == true)
+            string mess = "";
+            if (isMin == false && textblock.Text != "")
             {
-                ChatTask t = new ChatTask();
-                t.type = Chat.Core.TaskEnum.MESSAGE;
-                t.message = box.msg;
-                t.vkId = personId;
-                t.timeExpared = ch.te.setTime(5);
-                t.personChatId = personChatId;
-                t.isStopped = false;
-                t.personName = ch.CurrentUser.Value;
-                ch.tasks.Add(t);
-                ch.updateTaskList();
+                mess = textblock.Text;
+
             }
+            if (isMin == false && textblock.Text == "")
+            {
+                return;
+
+            }
+            textblock.Text = "";
+            if (isMin)
+            {
+                SimpleMessageBox box = new SimpleMessageBox();
+                bool? res = box.ShowDialog();
+                if (res == true)
+                {
+                    mess = box.msg;
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            ChatTask t = new ChatTask();
+            t.type = Chat.Core.TaskEnum.MESSAGE;
+            t.message = mess;
+            t.vkId = personId;
+            t.timeExpared = ch.te.setTime(5);
+            t.personChatId = personChatId;
+            t.isStopped = false;
+            t.personName = ch.CurrentUser.Value;
+            ch.tasks.Add(t);
+            ch.updateTaskList();
+
         }
 
 
