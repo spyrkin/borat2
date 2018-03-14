@@ -12,6 +12,7 @@ using ApiWrapper.Core;
 using Chat.Core;
 using MahApps.Metro.Controls;
 using System.Threading;
+using KamikyForms.Bot;
 using KamikyForms.Core;
 using KamikyForms.Gui;
 using MahApps.Metro.IconPacks;
@@ -35,6 +36,7 @@ namespace Chat.Gui
         public DateTime playedTime;
         public StageEnum stage;
         public bool debug = true;
+        public Bot bot;
 
         public ChatWindow()
         {
@@ -162,7 +164,12 @@ namespace Chat.Gui
             message.time = localDate;
             message.message = msg;
             consoleMsg.Add(message);
-            console.ItemsSource = consoleMsg;
+            Render.DoAction(() =>
+            {
+                console.ItemsSource = consoleMsg;
+                console.Items.Refresh();
+            });
+            
         }
 
 
@@ -286,6 +293,8 @@ namespace Chat.Gui
             timerSync.Start();
             te.wire(this);
             te.init();
+            bot = new Bot();
+            bot.wire(this);
             stage = StageEnum.LOADED;
             addConsoleMsg("Loaded");
         }
@@ -306,7 +315,7 @@ namespace Chat.Gui
             }
             if (debug == false)
             {
-                BanList.setBanList(bans);
+                FileParser.setBanList(bans);
             }
             SendAll(startMessage);
             playedTime = DateTime.Now;

@@ -424,5 +424,32 @@ namespace Chat.Gui
             result = result + "П: " + Person.followers + "\n" + "Ц: " + Person.Status + "\n" + "И: " + Person.interests;
             (sender as Image).ToolTip = result;
         }
+
+        private void onBotExecute(object sender, ToolTipEventArgs e)
+        {
+
+            if (chatMessages.Count < 2)
+            {
+                e.Handled = true;
+                return;
+            }
+            ChatMessage lastMessage = chatMessages.Last();
+            if (lastMessage.isBot == true)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            List<string> mm = ch.bot.getMessages(lastMessage.message.ToLower());
+            string result = "";
+            foreach (String m in mm)
+            {
+                result = result + m + "\r\n";
+            }
+            ToolTip = result;
+            return;
+
+
+        }
     }
 }

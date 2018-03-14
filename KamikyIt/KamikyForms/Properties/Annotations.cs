@@ -169,7 +169,7 @@ namespace KamikyForms.Annotations
   ///   string _name;
   /// 
   ///   public string Name {
-  ///     get { return _name; }
+  ///     getBans { return _name; }
   ///     set { _name = value; NotifyChanged("LastName"); /* Warning */ }
   ///   }
   /// }
@@ -466,8 +466,8 @@ namespace KamikyForms.Annotations
 
   /// <summary>
   /// Indicates the type member or parameter of some type, that should be used instead of all other ways
-  /// to get the value that type. This annotation is useful when you have some "context" value evaluated
-  /// and stored somewhere, meaning that all other ways to get this value must be consolidated with existing one.
+  /// to getBans the value that type. This annotation is useful when you have some "context" value evaluated
+  /// and stored somewhere, meaning that all other ways to getBans this value must be consolidated with existing one.
   /// </summary>
   /// <example><code>
   /// class Foo {

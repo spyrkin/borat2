@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bot\Bot.cs" />
     <Compile Include="Core\ChatMessage.cs" />
     <Compile Include="Core\ChatTask.cs" />
     <Compile Include="Core\ConsoleMessage.cs" />

@@ -90,7 +90,7 @@
     <Compile Include="Core\SearchInstrument.cs" />
     <Compile Include="Core\VkApiInstrument.cs" />
     <Compile Include="DataBaseBehaviour\BotContext.cs" />
-    <Compile Include="ForChat\BanList.cs" />
+    <Compile Include="ForChat\FileParser.cs" />
     <Compile Include="ForChat\ChatCoreHelper.cs" />
     <Compile Include="ForChat\LoginCoreHelper.cs" />
     <Compile Include="Migrations\201803051744070_InitialCreate.cs" />

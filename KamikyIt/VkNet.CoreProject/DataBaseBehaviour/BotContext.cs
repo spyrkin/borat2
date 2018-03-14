@@ -91,7 +91,7 @@ namespace VkNet.Examples.DataBaseBehaviour
 		public int? SubscribersMax { get; set; }
 
 		// Дата регистрации
-		//public DateTime RegistrationDate { get; set; }
+		//public DateTime RegistrationDate { getBans; set; }
 
 		// Сейчас онлайн
 		public bool? IsOnline { get; set; }

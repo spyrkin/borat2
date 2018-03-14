@@ -73,7 +73,7 @@ namespace ApiWrapper.Core
                 //Console.WriteLine("==============================");
             }
             //bans
-            List<String> bans = BanList.get();
+            List<String> bans = FileParser.getBans();
             List<User> bans_users = peoples.Where(o => !bans.Contains(o.Domain)).ToList();
 
 

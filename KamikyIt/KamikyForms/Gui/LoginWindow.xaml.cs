@@ -28,6 +28,8 @@ namespace KamikyForms.Gui
             InitializeComponent();
             string version = getVersion();
             verText.Content = version;
+            //List<String> bans = FileParser.getAnswer();
+
         }
 
         public string getVersion()
