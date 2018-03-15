@@ -345,6 +345,27 @@ namespace Chat.Gui
             datagrid.ItemsSource = chatMessages.OrderBy(o => o.time);
             datagrid.Items.Refresh();
             datagrid.ScrollIntoView(chatMessages.Last());
+            updateBotAnswersNumber(chatMessages);
+
+        }
+
+        private void updateBotAnswersNumber(List<ChatMessage> list)
+        {
+            string message = "";
+            if (chatMessages.Count < 2)
+            {
+                bclose.Content = "";
+                return;
+            }
+            ChatMessage lastMessage = chatMessages.Last();
+            if (lastMessage.isBot == true)
+            {
+                bclose.Content = "-";
+                return;
+            }
+
+            List<string> mm = ch.bot.getMessages(lastMessage.message.ToLower());
+            bclose.Content = mm.Count;
         }
 
         public void updateMessage(List<string[]> messages)
