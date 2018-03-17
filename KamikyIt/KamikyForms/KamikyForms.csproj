@@ -67,7 +67,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bot\Bot.cs" />
-    <Compile Include="Bot\BotMessage.cs" />
+    <Compile Include="Bot\BotVariantsWindow.xaml.cs">
+      <DependentUpon>BotVariantsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Core\ChatMessage.cs" />
     <Compile Include="Core\ChatTask.cs" />
     <Compile Include="Core\ConsoleMessage.cs" />
@@ -100,6 +102,10 @@
     <Compile Include="SearchFilterWindow.xaml.cs">
       <DependentUpon>SearchFilterWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Bot\BotVariantsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\ChatWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

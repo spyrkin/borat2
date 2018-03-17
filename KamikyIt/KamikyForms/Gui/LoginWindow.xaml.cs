@@ -52,6 +52,7 @@ namespace KamikyForms.Gui
         {
             string login = Login.Text;
             string pass = Pass.Password;
+
             string res = LoginCoreHelper.Login(login, pass);
             if (String.IsNullOrEmpty(res))
             {

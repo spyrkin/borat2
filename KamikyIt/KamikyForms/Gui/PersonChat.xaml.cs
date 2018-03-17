@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ApiWrapper.Core;
 using Chat.Core;
+using KamikyForms.Bot;
 
 namespace Chat.Gui
 {
@@ -85,7 +86,7 @@ namespace Chat.Gui
         public void wire(ChatWindow ch)
         {
             this.ch = ch;
-            //test();
+            test();
         }
 
 
@@ -264,7 +265,7 @@ namespace Chat.Gui
         }
 
 
-
+        //нажимаем на кнопку руками
         public void writeMsg(Object sender,
                        EventArgs e)
         {
@@ -293,10 +294,17 @@ namespace Chat.Gui
                     return;
                 }
             }
+            writeMyMessage(mess);
 
+        }
+
+
+        //пишем сообщение сами
+        public void writeMyMessage(string message)
+        {
             ChatTask t = new ChatTask();
             t.type = Chat.Core.TaskEnum.MESSAGE;
-            t.message = mess;
+            t.message = message;
             t.vkId = personId;
             t.timeExpared = ch.te.setTime(5);
             t.personChatId = personChatId;
@@ -304,7 +312,6 @@ namespace Chat.Gui
             t.personName = ch.CurrentUser.Value;
             ch.tasks.Add(t);
             ch.updateTaskList();
-
         }
 
 
@@ -329,7 +336,7 @@ namespace Chat.Gui
             {
                 ChatMessage newmessage = new ChatMessage();
                 newmessage.isVirtual = false;
-                newmessage.message = "Привет, давай знакомиться и я тоже люблю макароны";
+                newmessage.message = "Привет, давай знакомиться и я тоже люблю макарон  112312 Привет, давай знакомиться и я тоже люблю макароны 112312 Привет, давай знакомиться и я тоже люблю макароны ";
                 newmessage.isBot = false;
                 newmessage.personChatId = personChatId;
                 newmessage.time = DateTime.Now;
@@ -351,6 +358,10 @@ namespace Chat.Gui
 
         private void updateBotAnswersNumber(List<ChatMessage> list)
         {
+            if (ch.bot == null)
+            {
+                return;
+            }
             string message = "";
             if (chatMessages.Count < 2)
             {
@@ -358,13 +369,18 @@ namespace Chat.Gui
                 return;
             }
             ChatMessage lastMessage = chatMessages.Last();
-            if (lastMessage.isBot == true)
+            if (lastMessage.isBot == false)
             {
-                bclose.Content = "-";
+                bclose.Content = "";
                 return;
             }
 
             List<string> mm = ch.bot.getMessages(lastMessage.message.ToLower());
+            if (mm.Count == 0)
+            {
+                bclose.Content = "";
+                return;
+            }
             bclose.Content = mm.Count;
         }
 
@@ -470,6 +486,37 @@ namespace Chat.Gui
             ToolTip = result;
             return;
 
+
+        }
+
+        private void botOpenMessages(object sender, RoutedEventArgs e)
+        {
+            if (ch.bot == null)
+            {
+                return;
+            }
+            string message = "";
+            if (chatMessages.Count < 2)
+            {
+                bclose.Content = "";
+                return;
+            }
+            ChatMessage lastMessage = chatMessages.Last();
+            if (lastMessage.isBot == false)
+            {
+                bclose.Content = "";
+                return;
+            }
+
+            List<string> mm = ch.bot.getMessages(lastMessage.message.ToLower());
+            if (mm.Count == 0)
+            {
+                bclose.Content = "";
+                return;
+            }
+
+            BotVariantsWindow bw = new BotVariantsWindow(lastMessage.message, mm, this);
+            bw.ShowDialog();
 
         }
     }

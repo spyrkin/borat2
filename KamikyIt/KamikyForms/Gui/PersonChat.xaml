@@ -207,6 +207,7 @@
             Background="DarkGray"
             ToolTip=""
             ToolTipOpening="onBotExecute"
+            Click="botOpenMessages"
             Style="{StaticResource clearButton}">
             -
         </Button>

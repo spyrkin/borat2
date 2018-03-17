@@ -1,0 +1,65 @@
+﻿<mah:MetroWindow x:Class="KamikyForms.Bot.BotVariantsWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:KamikyForms.Gui"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 mc:Ignorable="d"
+                 Loaded="_OnLoaded"
+                 WindowStartupLocation="CenterScreen"
+                 Icon="/Resources/vk_logo.png"
+                 WindowTitleBrush="#4c75a3"
+                 Background="White"
+                 ResizeMode="NoResize"
+                 Title="Варианты" Height="670" Width="900">
+    <mah:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <!--  Accent and AppTheme setting  -->
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </mah:MetroWindow.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label x:Name="phraz" FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                                   FontSize="30">Варианты на фразу:</Label>
+            <Label x:Name="phraz_col" FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                   FontSize="30">Количество:</Label>
+            <ListView
+            x:Name="datagrid"
+            Width="883"
+            Height="535"
+            Margin="1,1,0,1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            SelectionChanged="Datagrid_OnSelectionChanged"
+            Background="White"
+            FontSize="12">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Background" Value="DarkGray" />
+                                <Setter Property="Height" Value="0" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+ 
+                                <GridViewColumn
+                                    Width="auto"
+                                    DisplayMemberBinding="{Binding message}"
+                                    Header="MESSAGE" />
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>
