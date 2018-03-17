@@ -53,13 +53,14 @@ namespace Chat.Gui
 
         }
 
-        private void UpdateUI()
+        public void UpdateUI()
         {
             DateTime localDate = DateTime.Now;
             timer.Content = localDate.ToString("HH:mm:ss");
             button_play.IsEnabled = stage == StageEnum.CHOSEN;
             button_search.IsEnabled = stage == StageEnum.LOADED;
             button_update_all.IsEnabled = stage == StageEnum.LAUCHED;
+            int not_answered = 0;
             foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
             {
                 PersonChat pc = kvp.Value;
@@ -70,11 +71,54 @@ namespace Chat.Gui
                 }
                 else
                 {
+                    not_answered++;
                     pc.Background = Brushes.Green;
                 }
             }
-
-
+            if (not_answered == 0)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page0;
+            }
+            if (not_answered == 1)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page1;
+            }
+            if (not_answered == 2)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page2;
+            }
+            if (not_answered == 3)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page3;
+            }
+            if (not_answered == 4)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page4;
+            }
+            if (not_answered == 5)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page5;
+            }
+            if (not_answered == 6)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page6;
+            }
+            if (not_answered == 7)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page7;
+            }
+            if (not_answered == 8)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page8;
+            }
+            if (not_answered == 9)
+            {
+                PageAnswered.Kind = PackIconModernKind.Page9;
+            }
+            if (not_answered >= 10)
+            {
+                PageAnswered.Kind = PackIconModernKind.PageNew;
+            }
 
         }
 
@@ -282,7 +326,7 @@ namespace Chat.Gui
             if (iconKind.Kind == PackIconModernKind.ArrowLeft)
             {
 
-                // sTaskList.Width = 270 + 997 - 500;
+                gridExpand();
                 return;
             }
 
@@ -388,6 +432,16 @@ namespace Chat.Gui
             {
                 gridNormalize();
             }
+        }
+
+
+        //получает следующее окно, которое нужно ответить
+        private void getNextChatToAnswer(object sender, RoutedEventArgs e)
+        {
+            //foreach (PersonChat pc i)
+            //{
+                
+            //}
         }
     }
 }

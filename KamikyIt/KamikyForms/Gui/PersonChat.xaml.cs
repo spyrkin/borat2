@@ -85,6 +85,11 @@ namespace Chat.Gui
                 {
                     return null;
                 }
+                //теперь проверим что ответ может быть (в полете)
+                if (ch.tasks.Exists(o => o.personChatId == personChatId && o.type == TaskEnum.MESSAGE))
+                {
+                    return null;
+                }
                 return lastMessage;
             }
         }
@@ -329,6 +334,7 @@ namespace Chat.Gui
             t.personName = ch.CurrentUser.Value;
             ch.tasks.Add(t);
             ch.updateTaskList();
+            ch.UpdateUI();
         }
 
 
@@ -440,6 +446,7 @@ namespace Chat.Gui
             }
             chatMessages = chatMessages.OrderBy(o => o.time).ToList();
             UpdateUi();
+            ch.UpdateUI();
 
         }
 

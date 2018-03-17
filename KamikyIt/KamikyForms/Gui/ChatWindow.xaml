@@ -277,7 +277,7 @@
 
             <Button
                 x:Name="button_update_all"
-                Canvas.Left="20"
+                Canvas.Left="80"
                 Canvas.Top="580"
                 Width="48"
                 Height="48"
@@ -293,6 +293,27 @@
                     Width="28"
                     Height="28"
                     Kind="Alert" />
+
+            </Button>
+
+            <Button
+                x:Name="button_get_Next_chat"
+                Canvas.Left="10"
+                Canvas.Top="580"
+                Width="48"
+                Height="48"
+                Margin="5,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="White"
+                Click="getNextChatToAnswer"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                ToolTip="Загрузить маркера">
+                <iconPacks1:PackIconModern
+                    x:Name="PageAnswered"
+                    Width="28"
+                    Height="28"
+                    Kind="Page0"/>
 
             </Button>
         </Canvas>
