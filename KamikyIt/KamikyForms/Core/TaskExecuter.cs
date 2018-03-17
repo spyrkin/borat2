@@ -18,7 +18,7 @@ namespace Chat.Core
     {
         public DispatcherTimer timerExecute;
         public int UPDATEALLCHATS = 1000 * 60 * 2;  //интервал для упдате чатс
-        public int MESSAGESINTERVAL = 2;            //интерва между сообщения
+        public int MESSAGESINTERVAL = 1;            //интерва между сообщения
 
         public DispatcherTimer timerExecute2;
         public ChatWindow ch;

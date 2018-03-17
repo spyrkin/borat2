@@ -12,6 +12,7 @@ using ApiWrapper.Core;
 using Chat.Core;
 using MahApps.Metro.Controls;
 using System.Threading;
+using System.Windows.Documents;
 using KamikyForms.Bot;
 using KamikyForms.Core;
 using KamikyForms.Gui;
@@ -59,6 +60,19 @@ namespace Chat.Gui
             button_play.IsEnabled = stage == StageEnum.CHOSEN;
             button_search.IsEnabled = stage == StageEnum.LOADED;
             button_update_all.IsEnabled = stage == StageEnum.LAUCHED;
+            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            {
+                PersonChat pc = kvp.Value;
+                ChatMessage lastNotAnswered = pc.lastNotAnsweredMessage;
+                if (lastNotAnswered == null)
+                {
+                    pc.Background = Brushes.DarkGray;
+                }
+                else
+                {
+                    pc.Background = Brushes.Green;
+                }
+            }
 
 
 

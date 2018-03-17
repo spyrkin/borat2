@@ -72,6 +72,23 @@ namespace Chat.Gui
             }
         }
 
+        public ChatMessage lastNotAnsweredMessage
+        {
+            get
+            {
+                if (chatMessages == null)
+                {
+                    return null;
+                }
+                ChatMessage lastMessage = chatMessages.Last();
+                if (lastMessage.isBot == true)
+                {
+                    return null;
+                }
+                return lastMessage;
+            }
+        }
+
         public List<ChatMessage> chatMessages = new List<ChatMessage>();
 
         public PersonChat()
@@ -502,7 +519,7 @@ namespace Chat.Gui
                 return;
             }
             ChatMessage lastMessage = chatMessages.Last();
-            if (lastMessage.isBot == false)
+            if (lastMessage.isBot == true)
             {
                 bclose.Content = "";
                 return;
