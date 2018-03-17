@@ -80,6 +80,11 @@ namespace Chat.Gui
                 {
                     return null;
                 }
+
+                if (chatMessages.Count == 0)
+                {
+                    return null;
+                }
                 ChatMessage lastMessage = chatMessages.Last();
                 if (lastMessage.isBot == true)
                 {
@@ -108,7 +113,7 @@ namespace Chat.Gui
         public void wire(ChatWindow ch)
         {
             this.ch = ch;
-            test();
+           // test();
         }
 
 
@@ -355,6 +360,10 @@ namespace Chat.Gui
 
         public void test()
         {
+            if (personChatId == "person1")
+            {
+                return;
+            }
             for (int i = 0; i < 10; i++)
             {
                 ChatMessage newmessage = new ChatMessage();

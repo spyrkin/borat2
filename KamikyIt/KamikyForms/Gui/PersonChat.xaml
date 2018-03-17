@@ -185,6 +185,7 @@
             update
         </Button>
         <Button
+            IsTabStop="False"
             x:Name="bwrite"
             Canvas.Left="45"
             Canvas.Top="260"

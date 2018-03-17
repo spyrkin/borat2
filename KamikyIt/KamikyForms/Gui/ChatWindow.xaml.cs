@@ -276,6 +276,11 @@ namespace Chat.Gui
                     pc.normalize();
                 }
             }
+
+            if (e.Key == Key.Tab)
+            {
+                GNCHTA();
+            }
         }
         public PersonChat getPersonChat(string personChatId)
         {
@@ -434,14 +439,70 @@ namespace Chat.Gui
             }
         }
 
+        public void GNCHTA()
+        {
+
+            List<PersonChat> allchats = new List<PersonChat>();
+            List<PersonChat> notanswered = new List<PersonChat>();
+
+            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            {
+
+                allchats.Add(kvp.Value);
+                if (kvp.Value.lastNotAnsweredMessage != null)
+                {
+                    notanswered.Add(kvp.Value);
+                }
+            }
+
+            PersonChat chosen = null;
+            DateTime tt = DateTime.Now;
+
+            foreach (PersonChat pc in notanswered)
+            {
+                ChatMessage ms = pc.chatMessages.Last();
+                DateTime dt = ms.time;
+                if (chosen == null)
+                {
+                    chosen = pc;
+                    tt = dt;
+                    continue;
+                }
+                if (dt < tt)
+                {
+                    chosen = pc;
+                    tt = dt;
+                }
+            }
+
+            if (chosen == null)
+            {
+                return;
+            }
+
+            //а теперь выбираем
+            foreach (PersonChat pc in allchats)
+            {
+                if (pc.personChatId == chosen.personChatId)
+                {
+                    pc.isMin = false;
+                    pc.maximaze();
+                }
+                else
+                {
+                    pc.isMin = true;
+                    pc.normalize();
+                }
+            }
+
+        }
 
         //получает следующее окно, которое нужно ответить
         private void getNextChatToAnswer(object sender, RoutedEventArgs e)
         {
-            //foreach (PersonChat pc i)
-            //{
-                
-            //}
+
+            GNCHTA();
+
         }
     }
 }
