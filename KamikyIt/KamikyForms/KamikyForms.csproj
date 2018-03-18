@@ -73,6 +73,7 @@
     <Compile Include="Core\ChatMessage.cs" />
     <Compile Include="Core\ChatTask.cs" />
     <Compile Include="Core\ConsoleMessage.cs" />
+    <Compile Include="Core\Logger.cs" />
     <Compile Include="Core\Render.cs" />
     <Compile Include="Core\StageEnum.cs" />
     <Compile Include="Core\TaskEnum.cs" />

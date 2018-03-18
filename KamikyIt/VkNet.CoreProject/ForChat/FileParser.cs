@@ -11,7 +11,7 @@ namespace VkNet.Examples.ForChat
     {
         public static List<String> getBans()
         {
-            List < String > bans = new List<string>();
+            List<String> bans = new List<string>();
             string path = getBanFilePath();
             StreamReader fs = new StreamReader(path);
             string s = "";
@@ -25,6 +25,17 @@ namespace VkNet.Examples.ForChat
             }
             fs.Close();
             return bans;
+        }
+
+        public static string getLogPath()
+        {
+
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            return root_path + "Log\\";
+
+
         }
 
 
@@ -56,6 +67,9 @@ namespace VkNet.Examples.ForChat
         }
 
 
+
+
+
         public static string getAnswerFilePath()
         {
             string path = Directory.GetCurrentDirectory();
@@ -70,7 +84,7 @@ namespace VkNet.Examples.ForChat
             string path = getBanFilePath();
             foreach (String s in domains)
             {
-                File.AppendAllText(path, s +"\r\n");
+                File.AppendAllText(path, s + "\r\n");
             }
         }
     }

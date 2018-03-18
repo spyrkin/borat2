@@ -38,6 +38,7 @@ namespace Chat.Gui
         public StageEnum stage;
         public bool debug = true;
         public Bot bot;
+        public Logger log = new Logger();
 
         public ChatWindow()
         {
@@ -356,6 +357,8 @@ namespace Chat.Gui
             timerSync.Start();
             te.wire(this);
             te.init();
+            log.wire(this);
+            log.init();
             bot = new Bot();
             bot.wire(this);
             stage = StageEnum.LOADED;
