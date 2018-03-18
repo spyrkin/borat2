@@ -475,15 +475,16 @@ namespace Chat.Gui
                 }
             }
 
-            if (chosen == null)
-            {
-                return;
-            }
+            //if (chosen == null)
+            //{
+                
+            //    return;
+            //}
 
             //а теперь выбираем
             foreach (PersonChat pc in allchats)
             {
-                if (pc.personChatId == chosen.personChatId)
+                if (chosen!= null && pc.personChatId == chosen.personChatId)
                 {
                     pc.isMin = false;
                     pc.maximaze();

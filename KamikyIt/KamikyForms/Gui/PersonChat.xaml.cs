@@ -45,6 +45,7 @@ namespace Chat.Gui
         public int top;
         public int left;
         public bool isMin = true;
+        public bool isActive = true;
         public ChatWindow ch;
         public long _v;
         public string _s;
@@ -81,6 +82,11 @@ namespace Chat.Gui
                     return null;
                 }
 
+                if (isActive == false)
+                {
+                    return null;
+                }
+
                 if (chatMessages.Count == 0)
                 {
                     return null;
@@ -113,7 +119,7 @@ namespace Chat.Gui
         public void wire(ChatWindow ch)
         {
             this.ch = ch;
-           // test();
+            test();
         }
 
 
@@ -131,12 +137,11 @@ namespace Chat.Gui
             this.Height = person_height;
             this.Width = person_width;
             Canvas.SetZIndex(this, 1);
-            Background = Brushes.DarkGray;
 
 
             //max
-            Canvas.SetTop(maxLabel, -5);
-            Canvas.SetLeft(maxLabel, 125);
+            Canvas.SetTop(maxLabel, 0);
+            Canvas.SetLeft(maxLabel, 135);
             maxLabel.FontSize = 12;
 
             //image
@@ -200,12 +205,11 @@ namespace Chat.Gui
             this.Height = ch.Height - 40;
             this.Width = ch.Width - 15;
             Canvas.SetZIndex(this, 10);
-            Background = Brushes.Gray;
 
 
             //max
-            Canvas.SetTop(maxLabel, -5);
-            Canvas.SetLeft(maxLabel, this.Width - 55);
+            Canvas.SetTop(maxLabel, 10);
+            Canvas.SetLeft(maxLabel, this.Width - 295);
             maxLabel.FontSize = 20;
 
             //image
@@ -383,8 +387,12 @@ namespace Chat.Gui
         {
             datagrid.ItemsSource = chatMessages.OrderBy(o => o.time);
             datagrid.Items.Refresh();
-            datagrid.ScrollIntoView(chatMessages.Last());
+            if (chatMessages.Count > 0)
+            {
+                datagrid.ScrollIntoView(chatMessages.Last());
+            }
             updateBotAnswersNumber(chatMessages);
+            maxLabel.Background = isActive ? Brushes.LightGreen : Brushes.LightCoral;
 
         }
 
@@ -551,6 +559,17 @@ namespace Chat.Gui
             BotVariantsWindow bw = new BotVariantsWindow(lastMessage.message, mm, this);
             bw.ShowDialog();
 
+        }
+
+        private void Datagrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            onChangeState(null, null);
+        }
+
+        private void changeActive(object sender, RoutedEventArgs e)
+        {
+            isActive = !isActive;
+            UpdateUi();
         }
     }
 }

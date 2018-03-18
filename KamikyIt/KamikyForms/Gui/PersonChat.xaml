@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Chat.Gui"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     Width="137"
     Height="282"
     Margin="5,5,0,0"
@@ -93,16 +94,19 @@
         </Label>
 
 
-        <Label
+        <Button
             x:Name="maxLabel"
             Canvas.Left="115"
-            Canvas.Top="-5"
+            Canvas.Top="5"
             Margin="0,0,-10,0"
+            Background="LightGreen"
+            Click="changeActive"
+            Style="{StaticResource ButtonStyle2}"
+            Width="15"
+            Height="15"
             Padding="0">
-            <Hyperlink x:Name="hyper" Click="onChangeState">
-                max
-            </Hyperlink>
-        </Label>
+        </Button>
+
 
         <ListView
             x:Name="datagrid"
@@ -113,6 +117,7 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Top"
             Background="White"
+            MouseDoubleClick="Datagrid_OnMouseDoubleClick"
             FontSize="12">
             <ListView.ItemContainerStyle>
 

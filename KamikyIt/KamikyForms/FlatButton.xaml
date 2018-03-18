@@ -1,0 +1,255 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="FlatButton" TargetType="{x:Type Button}">
+        <!-- Template for button style -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <!-- Content handles within a border -->
+                    <Border x:Name="bdr" CornerRadius="7" Margin="0" BorderThickness="1" BorderBrush="Black" Background="White">
+                        <!-- ContentPresenter properties. Set the content source as the content from each control define below -->
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Content" />
+                    </Border>
+                    <!-- Required triggers define here -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bdr" Property="Background" Value="LightGray"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="bdr" Property="Background" Value="#FF25A0dA"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bdr" Property="Background" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Setter TargetName="bdr" Property="BorderBrush" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SessionButton" TargetType="{x:Type Button}">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="BorderThickness" Value="1,1,1,1"/>
+    </Style>
+
+    <Style x:Key="SessionButton1" TargetType="{x:Type Button}">
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="True">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="BorderThickness" Value="3"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                    <Grid>
+                        <Ellipse Fill="{TemplateBinding Background}" Stroke="Black" StrokeThickness="{TemplateBinding BorderThickness}"/>
+                        <ContentPresenter   
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"   
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"   
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"   
+                            RecognizesAccessKey="True"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonStyle2" TargetType="{x:Type Button}">
+        <!-- Template for button style -->
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <!-- Content handles within a border -->
+                    <Border x:Name="bdr" CornerRadius="20" Margin="0" BorderThickness="0.6" BorderBrush="Black" Background="{TemplateBinding Background}">
+                        <!-- ContentPresenter properties. Set the content source as the content from each control define below -->
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Content" />
+                    </Border>
+                    <!-- Required triggers define here -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bdr" Property="BorderThickness" Value="1.5"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="bdr" Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bdr" Property="BorderThickness" Value="0.6"/>
+                            <Setter TargetName="bdr" Property="Background" Value="Gray"/>
+                            <Setter Property="Foreground" Value="LightGray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="GoalButton" TargetType="{x:Type Button}">
+        <!-- Template for button style -->
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <!-- Content handles within a border -->
+                    <Border x:Name="bdr" CornerRadius="4" Margin="0" BorderThickness="2" BorderBrush="Black" Background="GreenYellow">
+                        <!-- ContentPresenter properties. Set the content source as the content from each control define below -->
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Content" />
+                    </Border>
+                    <!-- Required triggers define here -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bdr" Property="Background" Value="#FF73BB73"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="bdr" Property="Background" Value="GreenYellow"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bdr" Property="Background" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EmptyButton" TargetType="{x:Type Button}">
+        <Setter Property="BorderBrush" Value="{x:Null}"></Setter>
+        <Setter Property="Background" Value="{x:Null}"></Setter>
+        <Setter Property="FontSize" Value="11"></Setter>
+        <Setter Property="FontFamily" Value="Microsoft Sans Serif"></Setter>
+        <Setter Property="Height" Value="20"></Setter>
+    </Style>
+
+    <Style x:Key="GoalButtonMinus" TargetType="{x:Type Button}">
+        <!-- Template for button style -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <!-- Content handles within a border -->
+                    <Border x:Name="bdr" CornerRadius="4" Margin="0" BorderThickness="2" BorderBrush="Black" Background="Red">
+                        <!-- ContentPresenter properties. Set the content source as the content from each control define below -->
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Content" />
+                    </Border>
+                    <!-- Required triggers define here -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bdr" Property="Background" Value="#FFFF7373"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="bdr" Property="Background" Value="Red"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bdr" Property="Background" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="GoalButtonOrange" TargetType="{x:Type Button}">
+        <!-- Template for button style -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <!-- Content handles within a border -->
+                    <Border x:Name="bdr" CornerRadius="4" Margin="0" BorderThickness="2" BorderBrush="Black" Background="#FFFF952B">
+                        <!-- ContentPresenter properties. Set the content source as the content from each control define below -->
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Content" />
+                    </Border>
+                    <!-- Required triggers define here -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bdr" Property="Background" Value="#FFFF7373"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="bdr" Property="Background" Value="#FFFF952B"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bdr" Property="Background" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MySimpleScrollBar" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="MinHeight" Value="30"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Border x:Name="border" BorderThickness="0" BorderBrush="Silver">
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="bdr" VerticalAlignment="Center" TextAlignment="Right" FontSize="20" MinWidth="25" Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}"/>
+
+                            <Grid Grid.Column="1" x:Name="GridRoot" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Background="{TemplateBinding Background}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition MaxHeight="18"/>
+                                    <RowDefinition Height="0.00001*"/>
+                                    <RowDefinition MaxHeight="18"/>
+                                </Grid.RowDefinitions>
+                                <RepeatButton Grid.Row="0" x:Name="DecreaseRepeat" Command="ScrollBar.LineDownCommand" BorderThickness="0" Focusable="False">
+                                    <Grid>
+                                        <Path x:Name="DecreaseArrow" Stroke="{TemplateBinding Foreground}" StrokeThickness="1" Data="M 0 4 L 8 4 L 4 0 Z" Margin="-14,-1,3,-4" Stretch="Fill"/>
+                                    </Grid>
+                                </RepeatButton>
+                                <RepeatButton Grid.Row="2" x:Name="IncreaseRepeat" Command="ScrollBar.LineUpCommand" BorderThickness="0" Focusable="False">
+                                    <Grid>
+                                        <Path x:Name="IncreaseArrow" Stroke="{TemplateBinding Foreground}" StrokeThickness="1" Data="M 0 0 L 4 4 L 8 0 Z" Margin="-14,-1,3,-4" Stretch="Fill"/>
+                                    </Grid>
+                                </RepeatButton>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="bdr" Property="Foreground" Value="#FFC5C5C5"/>
+                            <Setter TargetName="IncreaseArrow" Property="Stroke" Value="#FFC5C5C5"/>
+                            <Setter TargetName="DecreaseArrow" Property="Stroke" Value="#FFC5C5C5"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FFC5C5C5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
