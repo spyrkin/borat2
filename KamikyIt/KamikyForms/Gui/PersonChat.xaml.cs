@@ -64,6 +64,11 @@ namespace Chat.Gui
             }
         }    //vkId
 
+        public bool banned = false;
+        public string bannedString = "";
+
+
+
         public string personChatId
         {
             get { return _s; }
@@ -383,7 +388,7 @@ namespace Chat.Gui
             UpdateUi();
         }
 
-        private void UpdateUi()
+        public void UpdateUi()
         {
             datagrid.ItemsSource = chatMessages.OrderBy(o => o.time);
             datagrid.Items.Refresh();
@@ -392,6 +397,15 @@ namespace Chat.Gui
                 datagrid.ScrollIntoView(chatMessages.Last());
             }
             updateBotAnswersNumber(chatMessages);
+            this.bclose.IsEnabled = banned == false;
+            this.bwrite.IsEnabled = banned == false;
+            this.bmessage.IsEnabled = banned == false;
+
+            if (banned)
+            {
+                maxLabel.Background = Brushes.Red;
+                return;
+            }
             maxLabel.Background = isActive ? Brushes.LightGreen : Brushes.LightCoral;
 
         }
@@ -426,6 +440,11 @@ namespace Chat.Gui
 
         public void updateMessage(List<string[]> messages)
         {
+
+            if (chatMessages == null || chatMessages.Count == 0)
+            {
+                return;
+            }
             ChatMessage firstMessage = chatMessages.First();
             int i = 0;
             List<String[]> receved = new List<string[]>();
@@ -568,8 +587,23 @@ namespace Chat.Gui
 
         private void changeActive(object sender, RoutedEventArgs e)
         {
+            if (banned)
+            {
+                isActive = false;
+                UpdateUi();
+                return;
+            }
             isActive = !isActive;
             UpdateUi();
+        }
+
+        private void MaxLabel_OnToolTipOpening(object sender, ToolTipEventArgs e)
+        {
+            if (banned == false)
+            {
+                e.Handled = true;
+            }
+            ToolTip = bannedString;
         }
     }
 }

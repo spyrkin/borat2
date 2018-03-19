@@ -104,6 +104,9 @@
             Style="{StaticResource ButtonStyle2}"
             Width="15"
             Height="15"
+            ToolTip=""
+            ToolTipOpening="MaxLabel_OnToolTipOpening"
+            ToolTipClosing="MaxLabel_OnToolTipOpening"
             Padding="0">
         </Button>
 

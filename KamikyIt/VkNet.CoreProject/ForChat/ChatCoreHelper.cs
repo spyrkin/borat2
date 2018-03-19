@@ -16,18 +16,31 @@ namespace VkNet.Examples.ForChat
 			api = instance;	
 		}
 
-		public static void WriteMessage(long userId, string message)
-		{
-			var messageInfo = new MessagesSendParams()
-			{
-				Message = message,
-				UserId = userId,
-			};
+	    public static long WriteMessage(long userId, string message)
+	    {
+	        var messageInfo = new MessagesSendParams()
+	        {
+	            Message = message,
+	            UserId = userId,
+	        };
 
-			api.Messages.Send(messageInfo);
-		}
+	        try
+	        {
+	            long res = api.Messages.Send(messageInfo);
+	            return res;
+	        }
+	        catch (System.Exception e)
+	        {
+	            object temp = null;
 
-		public static KeyValuePair<long, string> GetCurrentUserInfo()
+	            temp = e.GetType().GetProperty("ErrorCode").GetValue(temp);
+
+	            return (long)temp;
+
+	        }
+	    }
+
+        public static KeyValuePair<long, string> GetCurrentUserInfo()
 		{
 			return new KeyValuePair<long, string>(api.UserId.Value, api.Users.Get(new List<long>() {api.UserId.Value}).FirstOrDefault().FirstName);
 		}

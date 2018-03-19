@@ -78,6 +78,7 @@
     <Compile Include="Core\StageEnum.cs" />
     <Compile Include="Core\TaskEnum.cs" />
     <Compile Include="Core\TaskExecuter.cs" />
+    <Compile Include="Core\VKERROR.cs" />
     <Compile Include="Gui\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>

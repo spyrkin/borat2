@@ -227,6 +227,10 @@ namespace Chat.Gui
             {
                 console.ItemsSource = consoleMsg;
                 console.Items.Refresh();
+                if (consoleMsg.Count > 0)
+                {
+                    console.ScrollIntoView(consoleMsg.Last());
+                }
             });
             
         }
@@ -507,6 +511,26 @@ namespace Chat.Gui
 
             GNCHTA();
 
+        }
+
+
+        //получили бан от чата
+        public void ban(long vkId, long code)
+        {
+
+            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            {
+                PersonChat pc = kvp.Value;
+                if (pc.personId == vkId)
+                {
+                    pc.banned = true;
+                    pc.isActive = false;
+                    pc.bannedString = VKERROR.getErrorString(code);
+
+                    pc.UpdateUi();
+                    
+                }
+            }
         }
     }
 }

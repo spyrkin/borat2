@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using ApiWrapper.Core;
 using Chat.Gui;
@@ -18,7 +19,7 @@ namespace Chat.Core
     {
         public DispatcherTimer timerExecute;
         public int UPDATEALLCHATS = 1000 * 60 * 2;  //интервал для упдате чатс
-        public int MESSAGESINTERVAL = 1;            //интерва между сообщения
+        public int MESSAGESINTERVAL = 2;            //интерва между сообщения
 
         public DispatcherTimer timerExecute2;
         public ChatWindow ch;
@@ -62,6 +63,10 @@ namespace Chat.Core
         private void timerExecute_Tick2(object sender, EventArgs e)
         {
             if (ch.playedTime == null)
+            {
+                return;
+            }
+            if (ch.stage != StageEnum.LAUCHED)
             {
                 return;
             }
@@ -134,7 +139,22 @@ namespace Chat.Core
             }
             Task.Factory.StartNew(() =>
             {
-                ChatCoreHelper.WriteMessage(vkId, message);
+                long code  = ChatCoreHelper.WriteMessage(vkId, message);
+                //long code = 900;
+                if (VKERROR.isError(code))
+                {
+                    if (VKERROR.banned(code))
+                    {
+                        Render.DoAction(() =>
+                        {
+                            ch.ban(vkId, code);
+                        });
+                    }
+
+                    ch.addConsoleMsg(code + " : " +VKERROR.getErrorString(code));
+
+
+                }
             });
         }
 
@@ -219,6 +239,7 @@ namespace Chat.Core
             
             return de;
         }
+
     }
 
 }
