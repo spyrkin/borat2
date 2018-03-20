@@ -7,25 +7,24 @@ using System.Threading.Tasks;
 
 namespace Chat.Core
 {
-	public class ChatTask
-	{
+    public class ChatTask
+    {
 
-	    public bool isStopped = false;
-		public TaskEnum type;
-		public string message { get; set; }
-		public long vkId;
-		public string personChatId { get; set; }
+        public bool isStopped = false;
+        public TaskEnum type;
+        public string message { get; set; }
+        public long vkId;
+        public string personChatId { get; set; }
         public string personName { get; set; }
-
         public DateTime timeExpared;
 
-	    public ChatTask()
-	    {
-	        
-	    }
+        public bool isMessage
+        {
+            get { return type == TaskEnum.MESSAGE; }
+        }
 
 
-        //количество секунд до запуска
+    //количество секунд до запуска
         public int sekExpared
 	    {
             get

@@ -82,8 +82,8 @@
                                 <Setter Property="Background" Value="Gray" />
                             </DataTrigger>
 
-                            <DataTrigger Binding="{Binding FlagGenerated}" Value="true">
-                                <Setter Property="Foreground" Value="DarkOliveGreen" />
+                            <DataTrigger Binding="{Binding isError}" Value="true">
+                                <Setter Property="Foreground" Value="Red" />
                                 <Setter Property="Background" Value="White" />
                             </DataTrigger>
 
@@ -149,7 +149,7 @@
                 Background="White"
                 Click="onExpandTaskGrid"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Загрузить маркера">
+                ToolTip="))))">
                 <iconPacks1:PackIconModern
                     x:Name="iconKind"
                     Width="28"
@@ -168,13 +168,12 @@
                 Background="White"
                 Click="onPlay"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Загрузить маркера">
+                ToolTip="Начать диалог">
                 <iconPacks1:PackIconModern
                     x:Name="iconKindPlay"
                     Width="28"
                     Height="28"
                     Kind="ControlPlay" />
-
             </Button>
 
             <Button
@@ -188,13 +187,12 @@
                 Background="White"
                 Click="onSearch"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Загрузить маркера">
+                ToolTip="Фильтр">
                 <iconPacks1:PackIconModern
                     x:Name="iconKindSearch"
                     Width="28"
                     Height="28"
                     Kind="PeopleMagnify" />
-
             </Button>
             <Label
                 x:Name="timer"
@@ -231,7 +229,7 @@
                                 <Setter Property="Background" Value="White" />
                             </DataTrigger>
 
-                            <DataTrigger Binding="{Binding isBallParse}" Value="true">
+                            <DataTrigger Binding="{Binding isMessage}" Value="true">
                                 <Setter Property="Foreground" Value="DarkGreen" />
                                 <Setter Property="Background" Value="White" />
                             </DataTrigger>
@@ -287,7 +285,7 @@
                 Background="White"
                 Click="onUpdateAll"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Загрузить маркера">
+                ToolTip="Обновить все">
                 <iconPacks1:PackIconModern
                     x:Name="iconKindUpdateAll"
                     Width="28"
@@ -308,7 +306,7 @@
                 Background="White"
                 Click="getNextChatToAnswer"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Загрузить маркера">
+                ToolTip="Перейти к следующему чату">
                 <iconPacks1:PackIconModern
                     x:Name="PageAnswered"
                     Width="28"
@@ -329,7 +327,7 @@
                 Background="White"
                 Click="sendAllMessages"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Загрузить маркера">
+                ToolTip="Написать всем выделенным">
                 <iconPacks1:PackIconModern
                     Width="28"
                     Height="28"
@@ -349,7 +347,7 @@
                 Background="White"
                 Click="cleanSelection"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Загрузить маркера">
+                ToolTip="Очистить все выделенные">
                 <iconPacks1:PackIconModern
                     Width="28"
                     Height="28"

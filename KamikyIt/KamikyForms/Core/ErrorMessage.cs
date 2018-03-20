@@ -1,28 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chat.Core
+namespace KamikyForms.Core
 {
-    public class ConsoleMessage
+    public class ErrorMessage
     {
+
         public DateTime time;
-
-        public bool isError { get; set; }
-
 
         public string TimeString
         {
             get { return TimeToString(time); }
-          
         }
+
+        public string reason { get; set; }
+
         public string message { get; set; }
+
         public String TimeToString(DateTime time)
         {
-			return String.Format("{0}:{1}", time.Hour, time.Minute);
+            return String.Format("{0}:{1}", time.Hour, time.Minute);
         }
     }
 }

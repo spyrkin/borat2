@@ -150,8 +150,13 @@ namespace Chat.Core
                             ch.ban(vkId, code);
                         });
                     }
+                    ErrorMessage errorMessage = new ErrorMessage();
+                    errorMessage.time = DateTime.Now;
+                    errorMessage.message = VKERROR.getErrorString(code);
+                    errorMessage.reason = "Send message to " + vkId;
+                    ch.log.errMess.Add(errorMessage);
 
-                    ch.addConsoleMsg(code + " : " +VKERROR.getErrorString(code));
+                    ch.addConsoleMsg(code + " : " +VKERROR.getErrorString(code), true);
 
 
                 }

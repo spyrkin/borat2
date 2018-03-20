@@ -142,7 +142,7 @@ namespace Chat.Gui
                 }
                 catch (Exception e)
                 {
-                    addConsoleMsg(e.Message);
+                    addConsoleMsg(e.Message, true);
                 }
             }
 
@@ -216,12 +216,13 @@ namespace Chat.Gui
             return childs;
         }
 
-        public void addConsoleMsg(string msg)
+        public void addConsoleMsg(string msg, bool isError=false)
         {
             DateTime localDate = DateTime.Now;
             ConsoleMessage message = new ConsoleMessage();
             message.time = localDate;
             message.message = msg;
+            message.isError = isError;
             consoleMsg.Add(message);
             Render.DoAction(() =>
             {
