@@ -316,6 +316,46 @@
                     Kind="Page0"/>
 
             </Button>
+
+            <Button
+                x:Name="button_send_all"
+                Canvas.Left="10"
+                Canvas.Top="640"
+                Width="48"
+                Height="48"
+                Margin="5,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="White"
+                Click="sendAllMessages"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                ToolTip="Загрузить маркера">
+                <iconPacks1:PackIconModern
+                    Width="28"
+                    Height="28"
+                    Kind="PageMultiple"/>
+
+            </Button>
+
+            <Button
+                x:Name="button_clear_selection"
+                Canvas.Left="80"
+                Canvas.Top="640"
+                Width="48"
+                Height="48"
+                Margin="5,5,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="White"
+                Click="cleanSelection"
+                Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                ToolTip="Загрузить маркера">
+                <iconPacks1:PackIconModern
+                    Width="28"
+                    Height="28"
+                    Kind="Clean"/>
+
+            </Button>
         </Canvas>
 
 

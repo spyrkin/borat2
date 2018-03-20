@@ -325,18 +325,20 @@ namespace Chat.Gui
             textblock.Text = "";
             if (isMin)
             {
-                SimpleMessageBox box = new SimpleMessageBox();
+                List<PersonChat> resevers = new List<PersonChat> {this};
+                SimpleMessageBox box = new SimpleMessageBox(ch, resevers);
                 bool? res = box.ShowDialog();
-                if (res == true)
-                {
-                    mess = box.msg;
-                }
-                else
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(mess))
                 {
                     return;
                 }
+                writeMyMessage(mess);
+
             }
-            writeMyMessage(mess);
+
 
         }
 

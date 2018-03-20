@@ -16,6 +16,9 @@
     </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="10 0 0 -10" x:Name="whois"></Label>
+            </StackPanel>
             <TextBox TextWrapping="Wrap"
                      Style="{StaticResource clearButton}"
                      Background="AliceBlue"

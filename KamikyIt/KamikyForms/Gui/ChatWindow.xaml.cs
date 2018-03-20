@@ -532,5 +532,39 @@ namespace Chat.Gui
                 }
             }
         }
+
+
+        //отправляем сообщения всем выделенным чатам
+        private void sendAllMessages(object sender, RoutedEventArgs e)
+        {
+
+            List<PersonChat> resevers = new List<PersonChat>();
+            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            {
+                PersonChat pc = kvp.Value;
+                if (pc.selected && !pc.banned)
+                {
+                    resevers.Add(pc);
+                }
+            }
+            if (resevers.Count == 0)
+            {
+                return;
+            }
+            //List<PersonChat> resevers = new List<PersonChat> { this };
+            SimpleMessageBox box = new SimpleMessageBox(this, resevers);
+            bool? res = box.ShowDialog();
+        }
+
+        private void cleanSelection(object sender, RoutedEventArgs e)
+        {
+            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            {
+                PersonChat pc = kvp.Value;
+                pc.selected = false;
+                pc.UpdateUi();
+
+            }
+        }
     }
 }
