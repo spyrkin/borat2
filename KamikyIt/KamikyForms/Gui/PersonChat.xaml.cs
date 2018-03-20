@@ -66,6 +66,8 @@ namespace Chat.Gui
 
         public bool banned = false;
         public string bannedString = "";
+        public bool selected = false;
+
 
 
 
@@ -191,6 +193,8 @@ namespace Chat.Gui
             Canvas.SetLeft(bclose, 2 * (b_width + b_margin));
             bclose.Width = b_width;
             bclose.Height = b_height;
+            UpdateUi();
+
 
 
 
@@ -279,6 +283,8 @@ namespace Chat.Gui
             Canvas.SetLeft(bclose, 380);
             bclose.Width = 100;
             bclose.Height = 50;
+            UpdateUi();
+
 
         }
 
@@ -400,6 +406,19 @@ namespace Chat.Gui
             this.bclose.IsEnabled = banned == false;
             this.bwrite.IsEnabled = banned == false;
             this.bmessage.IsEnabled = banned == false;
+            if (!isMin)
+            {
+                profileImage.Opacity = 1;
+
+            }
+            else
+            {
+                profileImage.Opacity = selected ? 0.3 : 1;
+
+            }
+
+
+
 
             if (banned)
             {
@@ -412,6 +431,10 @@ namespace Chat.Gui
 
         private void updateBotAnswersNumber(List<ChatMessage> list)
         {
+            if (ch == null)
+            {
+                return;
+            }
             if (ch.bot == null)
             {
                 return;
@@ -604,6 +627,12 @@ namespace Chat.Gui
                 e.Handled = true;
             }
             ToolTip = bannedString;
+        }
+
+        private void selectItem(object sender, MouseButtonEventArgs e)
+        {
+            selected = !selected;
+            UpdateUi();
         }
     }
 }

@@ -26,7 +26,8 @@
             Height="40"
             ToolTip=""
             ToolTipOpening="vkOpenTooltip"
-            MouseLeftButtonUp="openVk"
+            MouseRightButtonDown="openVk"
+            MouseLeftButtonUp="selectItem"
             Margin="0,0,0,0" />
         <Label
             x:Name="profileName"
