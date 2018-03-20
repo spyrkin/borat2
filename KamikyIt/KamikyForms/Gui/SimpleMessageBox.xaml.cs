@@ -35,12 +35,12 @@ namespace Chat.Gui
 	    private void setName()
 	    {
 
-	        string name = "";
+	        string name = "SEND TO: ";
             foreach (PersonChat pc in resevers)
             {
-                name = name + pc.personChatId + ",";
+                name = name + pc.personChatId + ", ";
             }
-	        name = name.Substring(0, name.Length - 1);
+	        name = name.Substring(0, name.Length - 2);
 	        whois.Content = name;
 	    }
 
