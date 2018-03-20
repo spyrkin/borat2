@@ -155,10 +155,7 @@ namespace Chat.Core
                     errorMessage.message = VKERROR.getErrorString(code);
                     errorMessage.reason = "Send message to " + vkId;
                     ch.log.errMess.Add(errorMessage);
-
                     ch.addConsoleMsg(code + " : " +VKERROR.getErrorString(code), true);
-
-
                 }
             });
         }

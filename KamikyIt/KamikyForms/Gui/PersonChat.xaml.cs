@@ -454,7 +454,7 @@ namespace Chat.Gui
                 return;
             }
 
-            List<string> mm = ch.bot.getMessages(lastMessage.message.ToLower());
+            List<string> mm = ch.bot.getMessages(lastMessage.message);
             if (mm.Count == 0)
             {
                 bclose.Content = "";
@@ -562,7 +562,7 @@ namespace Chat.Gui
                 return;
             }
 
-            List<string> mm = ch.bot.getMessages(lastMessage.message.ToLower());
+            List<string> mm = ch.bot.getMessages(lastMessage.message);
             string result = "";
             foreach (String m in mm)
             {
@@ -593,7 +593,7 @@ namespace Chat.Gui
                 return;
             }
 
-            List<string> mm = ch.bot.getMessages(lastMessage.message.ToLower());
+            List<string> mm = ch.bot.getMessages(lastMessage.message);
             if (mm.Count == 0)
             {
                 bclose.Content = "";

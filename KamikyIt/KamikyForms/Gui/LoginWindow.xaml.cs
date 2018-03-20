@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Chat.Gui;
+using KamikyForms.Bot;
 using MahApps.Metro.Controls;
 using VkNet.Examples.ForChat;
 

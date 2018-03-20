@@ -43,7 +43,8 @@ namespace KamikyForms.Bot
             {
                 string[] words = s.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries);
                 if (words.Length != 2) continue;
-                string w1 = words[0].ToLower();
+                string w1 = BotHelper.prepareString(words[0]);
+               
                 string w2 = words[1];
                 if (answers.ContainsKey(w1))
                 {
@@ -59,7 +60,7 @@ namespace KamikyForms.Bot
 
         public List<String> getMessages(String message)
         {
-            if (answers.ContainsKey(message))
+            if (answers.ContainsKey(BotHelper.prepareString(message)))
             {
                 return answers[message];
             }
