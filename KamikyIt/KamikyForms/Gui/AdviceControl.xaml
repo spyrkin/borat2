@@ -1,0 +1,18 @@
+﻿<Canvas x:Class="KamikyForms.Gui.AdviceControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KamikyForms.Gui"
+        mc:Ignorable="d"
+        Background="White"
+        Height="32" Width="90">
+        <TextBlock Height="28" x:Name="mainBlock">
+
+            <Hyperlink x:Name="link" Click="onChose">
+                <Label x:Name="adviceName"   FontWeight="Bold" FontSize="18" FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi">УВЛЕЧЕНИЯ </Label>
+            </Hyperlink>
+
+        </TextBlock>
+
+</Canvas>
