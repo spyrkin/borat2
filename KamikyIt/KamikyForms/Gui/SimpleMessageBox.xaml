@@ -8,6 +8,7 @@
     Title="Сообщение"
     Width="500"
     Height="477.83"
+    Loaded="SimpleMessageBox_OnLoaded"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
@@ -29,7 +30,7 @@
                     FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                  <local:AdviceControl x:Name="hobby"></local:AdviceControl>
+                  <local:AdviceControl Tag="hobby"></local:AdviceControl>
             </StackPanel>
             <StackPanel Margin="0,2,0,0" Orientation="Horizontal" />
             <TextBox

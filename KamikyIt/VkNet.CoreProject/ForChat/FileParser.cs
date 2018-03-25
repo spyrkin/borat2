@@ -38,6 +38,26 @@ namespace VkNet.Examples.ForChat
 
         }
 
+        public static List<String> getAdvise(string filename)
+        {
+            List<String> advices = new List<string>();
+            string path = getAdviseFilePath(filename);
+            StreamReader fs = new StreamReader(path);
+            string s = "";
+            while (s != null)
+            {
+                
+                s = fs.ReadLine();
+                if (String.IsNullOrEmpty(s))
+                {
+                    break;
+                }
+                advices.Add(s);
+            }
+            fs.Close();
+            return advices;
+        }
+
 
         public static List<String> getAnswer()
         {
@@ -57,6 +77,15 @@ namespace VkNet.Examples.ForChat
             return bans;
         }
 
+        public static string getAdviseFilePath(String name)
+        {
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            return root_path + "Data\\"+name+".txt";
+
+        }
+
         public static string getBanFilePath()
         {
             string path = Directory.GetCurrentDirectory();
@@ -65,6 +94,8 @@ namespace VkNet.Examples.ForChat
             return root_path + "Data\\banlist.txt";
 
         }
+
+
 
 
 

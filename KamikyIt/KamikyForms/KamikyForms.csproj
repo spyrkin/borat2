@@ -84,6 +84,9 @@
     <Compile Include="Gui\AdviceControl.xaml.cs">
       <DependentUpon>AdviceControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gui\AdviceList.xaml.cs">
+      <DependentUpon>AdviceList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Gui\AdviceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\AdviceList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

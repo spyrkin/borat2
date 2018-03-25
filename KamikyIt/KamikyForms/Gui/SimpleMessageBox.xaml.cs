@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using KamikyForms.Gui;
 
 namespace Chat.Gui
 {
@@ -32,7 +33,34 @@ namespace Chat.Gui
 
 		}
 
-	    private void setName()
+	    private void wireAdvisec()
+	    {
+	        List<AdviceControl> advControls =
+	            GetVisualChilds<AdviceControl>(this as DependencyObject);
+	        foreach (AdviceControl ac in advControls)
+	        {
+	            ac.wire(ac.Tag, textblock);
+	            ac.setResourcec();
+
+	        }
+        }
+
+	    public static List<T> GetVisualChilds<T>(DependencyObject parent) where T : DependencyObject
+	    {
+	        List<T> childs = new List<T>();
+	        int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+	        for (int i = 0; i < numVisuals; i++)
+	        {
+	            DependencyObject v = VisualTreeHelper.GetChild(parent, i);
+	            if (v is T)
+	                childs.Add(v as T);
+	            childs.AddRange(GetVisualChilds<T>(v));
+	        }
+	        return childs;
+	    }
+
+
+        private void setName()
 	    {
 
 	        string name = "SEND TO: ";
@@ -62,5 +90,10 @@ namespace Chat.Gui
 		    return;
 
         }
-	}
+
+	    private void SimpleMessageBox_OnLoaded(object sender, RoutedEventArgs e)
+	    {
+	        wireAdvisec();
+	    }
+    }
 }

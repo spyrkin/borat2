@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VkNet.Examples.ForChat;
 
 namespace KamikyForms.Gui
 {
@@ -19,21 +20,33 @@ namespace KamikyForms.Gui
     /// </summary>
     public partial class AdviceControl : Canvas
     {
+        public List<String> advices = new List<string>();
+        public string tag;
+        public string ruName;
+        public TextBox textblock;
+
         public AdviceControl()
         {
             InitializeComponent();
-            setResourcec();
         }
 
-        private void setResourcec()
+
+        public void setResourcec()
         {
             double margin = (Width - mainBlock.Width) / 2;
             Canvas.SetLeft(mainBlock, margin);
-            String t = Name;
-            if (t == "hobby")
+            if (tag == "hobby")
             {
-                adviceName.Content = "УВЛЕЧЕНИЯ";
+                ruName = "УВЛЕЧЕНИЯ";
             }
+            adviceName.Content = ruName;
+            loadResources();
+
+        }
+
+        private void loadResources()
+        {
+            advices = FileParser.getAdvise(tag);
         }
 
 
@@ -41,6 +54,18 @@ namespace KamikyForms.Gui
 
         private void onChose(object sender, RoutedEventArgs e)
         {
+            AdviceList alist = new AdviceList(advices, ruName);
+            var res = alist.ShowDialog();
+            if (res == true)
+            {
+                textblock.Text = alist.message;
+            }
+        }
+
+        public void wire(object acTag, TextBox textblock)
+        {
+            tag = acTag.ToString();
+            this.textblock = textblock;
         }
     }
 }
