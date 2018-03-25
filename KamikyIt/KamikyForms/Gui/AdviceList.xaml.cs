@@ -65,5 +65,13 @@ namespace KamikyForms.Gui
             message = (datagrid.SelectedItems[0] as MM).message;
             DialogResult = true;
         }
+
+        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            TextBox bl = sender as TextBox;
+            message = bl.Text;
+            DialogResult = true;
+
+        }
     }
 }

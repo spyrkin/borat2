@@ -44,11 +44,23 @@
                                 <Setter Property="Height" Value="0" />
                             </Style>
                         </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox
+                                        MouseDoubleClick="Control_OnMouseDoubleClick"
+                                        Text="{Binding message}"
+                                        Height="Auto"
+                                        Width="700"
+                                        TextWrapping="Wrap"
+                                        AcceptsReturn="True"
+                                        HorizontalScrollBarVisibility="Disabled"
+                                        VerticalScrollBarVisibility="Auto"/>
 
-                        <GridViewColumn
-                                    Width="auto"
-                                    DisplayMemberBinding="{Binding message}"
-                                    Header="MESSAGE" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
 
                     </GridView>
                 </ListView.View>
