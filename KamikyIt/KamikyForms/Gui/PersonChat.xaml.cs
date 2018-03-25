@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using ApiWrapper.Core;
 using Chat.Core;
 using KamikyForms.Bot;
+using KamikyForms.Gui;
 
 namespace Chat.Gui
 {
@@ -136,6 +137,7 @@ namespace Chat.Gui
             profileFollowers.Visibility = Visibility.Hidden;
             profileInterests.Visibility = Visibility.Hidden;
             textblock.Visibility = Visibility.Hidden;
+            adviseStack.Visibility = Visibility.Hidden;
 
 
 
@@ -206,6 +208,7 @@ namespace Chat.Gui
             profileFollowers.Visibility = Visibility.Visible;
             profileInterests.Visibility = Visibility.Visible;
             textblock.Visibility = Visibility.Visible;
+            adviseStack.Visibility = Visibility.Visible;
 
 
 
@@ -283,6 +286,11 @@ namespace Chat.Gui
             Canvas.SetLeft(bclose, 380);
             bclose.Width = 100;
             bclose.Height = 50;
+
+
+            //adviceStack
+            Canvas.SetTop(adviseStack, 170);
+            Canvas.SetLeft(adviseStack, 210);
             UpdateUi();
 
 
@@ -636,5 +644,36 @@ namespace Chat.Gui
             selected = !selected;
             UpdateUi();
         }
+        #region for advices
+        public static List<T> GetVisualChilds<T>(DependencyObject parent) where T : DependencyObject
+        {
+            List<T> childs = new List<T>();
+            int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < numVisuals; i++)
+            {
+                DependencyObject v = VisualTreeHelper.GetChild(parent, i);
+                if (v is T)
+                    childs.Add(v as T);
+                childs.AddRange(GetVisualChilds<T>(v));
+            }
+            return childs;
+        }
+
+        private void wireAdvisec()
+        {
+            List<AdviceControl> advControls =
+                GetVisualChilds<AdviceControl>(this as DependencyObject);
+            foreach (AdviceControl ac in advControls)
+            {
+                ac.wire(ac.Tag, textblock);
+                ac.setResourcec();
+            }
+        }
+
+        private void PersonChat_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            wireAdvisec();
+        }
+        #endregion
     }
 }

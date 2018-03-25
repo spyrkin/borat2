@@ -6,10 +6,12 @@
     xmlns:local="clr-namespace:Chat.Gui"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:gui="clr-namespace:KamikyForms.Gui"
     Width="137"
     Height="282"
     Margin="5,5,0,0"
     Background="#FFE8E8E8"
+    Loaded="PersonChat_OnLoaded"
     mc:Ignorable="d">
 
     <Canvas.Resources>
@@ -69,6 +71,9 @@
             >
             
         </Label>
+        <StackPanel x:Name="adviseStack" Visibility="Hidden" Orientation="Horizontal" HorizontalAlignment="Right">
+            <gui:AdviceControl Tag="hobby"></gui:AdviceControl>
+        </StackPanel>
 
         <Label
             x:Name="profileInterests"
