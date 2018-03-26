@@ -665,7 +665,7 @@ namespace Chat.Gui
                 GetVisualChilds<AdviceControl>(this as DependencyObject);
             foreach (AdviceControl ac in advControls)
             {
-                ac.wire(ac.Tag, textblock);
+                ac.wire(ac.Tag, textblock, new List<PersonChat>(){this});
                 ac.setResourcec();
             }
         }

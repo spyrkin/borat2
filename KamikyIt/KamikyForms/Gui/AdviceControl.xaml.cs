@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Chat.Core;
+using Chat.Gui;
 using VkNet.Examples.ForChat;
 
 namespace KamikyForms.Gui
@@ -24,6 +26,8 @@ namespace KamikyForms.Gui
         public string tag;
         public string ruName;
         public TextBox textblock;
+        public List<PersonChat> resevers;
+
 
         public AdviceControl()
         {
@@ -54,7 +58,8 @@ namespace KamikyForms.Gui
 
         private void onChose(object sender, RoutedEventArgs e)
         {
-            AdviceList alist = new AdviceList(advices, ruName);
+            List<string> adv = filterAdvices();
+            AdviceList alist = new AdviceList(adv, ruName);
             var res = alist.ShowDialog();
             if (res == true)
             {
@@ -62,10 +67,36 @@ namespace KamikyForms.Gui
             }
         }
 
-        public void wire(object acTag, TextBox textblock)
+
+        //выбираем только те фразы что не говорили
+        private List<string> filterAdvices()
+        {
+            //собираем все сказанное
+            List<string> sayed = new List<string>();
+            foreach (PersonChat pc in resevers)
+            {
+                foreach (ChatMessage ch in pc.chatMessages)
+                {
+                    if (ch.isBot == false)
+                    {
+                        continue;
+                    }
+                    sayed.Add(ch.message);
+                }
+            }
+
+
+            List<string> result = advices.Where(o => !sayed.Contains(o)).ToList();
+            return result;
+
+
+        }
+
+        public void wire(object acTag, TextBox textblock, List<PersonChat> reseverse)
         {
             tag = acTag.ToString();
             this.textblock = textblock;
+            this.resevers = reseverse;
         }
     }
 }
