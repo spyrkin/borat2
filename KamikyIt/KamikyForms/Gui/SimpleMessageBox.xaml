@@ -30,7 +30,9 @@
                     FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                  <local:AdviceControl Tag="hobby"></local:AdviceControl>
+                <local:AdviceControl Tag="quastins"></local:AdviceControl>
+
+                <local:AdviceControl Tag="hobby"></local:AdviceControl>
             </StackPanel>
             <StackPanel Margin="0,2,0,0" Orientation="Horizontal" />
             <TextBox

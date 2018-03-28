@@ -72,6 +72,8 @@
             
         </Label>
         <StackPanel x:Name="adviseStack" Visibility="Hidden" Orientation="Horizontal" HorizontalAlignment="Right">
+            <gui:AdviceControl Tag="quastins"></gui:AdviceControl>
+
             <gui:AdviceControl Tag="hobby"></gui:AdviceControl>
         </StackPanel>
 

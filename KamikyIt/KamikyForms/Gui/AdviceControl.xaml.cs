@@ -43,6 +43,10 @@ namespace KamikyForms.Gui
             {
                 ruName = "УВЛЕЧЕНИЯ";
             }
+            if (tag == "quastins")
+            {
+                ruName = "ВОПРОСЫ";
+            }
             adviceName.Content = ruName;
             loadResources();
 
