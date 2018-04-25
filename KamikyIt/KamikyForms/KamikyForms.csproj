@@ -96,6 +96,9 @@
     <Compile Include="Gui\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gui\OpenPhrase.xaml.cs">
+      <DependentUpon>OpenPhrase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\PersonChat.xaml.cs">
       <DependentUpon>PersonChat.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Gui\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\OpenPhrase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

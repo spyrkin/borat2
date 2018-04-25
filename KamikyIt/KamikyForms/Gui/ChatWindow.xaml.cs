@@ -33,7 +33,6 @@ namespace Chat.Gui
         public List<PersonModel> Persons = new List<PersonModel>();
         public KeyValuePair<long, string> CurrentUser;
         public TaskExecuter te = new TaskExecuter();
-        public String startMessage = "Привет, давай знакомиться =)";
         public DateTime playedTime;
         public StageEnum stage;
         public bool debug = true;
@@ -378,6 +377,16 @@ namespace Chat.Gui
                 return;
             }
 
+
+
+            string startMessage = "";
+            OpenPhrase phrase = new OpenPhrase();
+            phrase.ShowDialog();
+            startMessage = phrase.startMessage;
+
+            SendAll(startMessage);
+            playedTime = DateTime.Now;
+            stage = StageEnum.LAUCHED;
             List<String> bans = new List<string>();
             foreach (PersonModel p in Persons)
             {
@@ -388,9 +397,6 @@ namespace Chat.Gui
             {
                 FileParser.setBanList(bans);
             }
-            SendAll(startMessage);
-            playedTime = DateTime.Now;
-            stage = StageEnum.LAUCHED;
         }
 
         private void onSearch(object sender, RoutedEventArgs e)
