@@ -74,8 +74,8 @@ namespace KamikyForms.Gui
             online.SelectedIndex = 0;
             foto.SelectedIndex = 0;
             sort.SelectedIndex = 0;
-            minage.Text = "25";
-            maxage.Text = "30";
+            minage.Text = "20";
+            maxage.Text = "24";
             friendmin.Text = "50";
             friendmax.Text = "500";
             subsmin.Text = "0";

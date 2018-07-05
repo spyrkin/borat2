@@ -393,7 +393,7 @@ namespace Chat.Gui
             {
                 ChatMessage newmessage = new ChatMessage();
                 newmessage.isVirtual = false;
-                newmessage.message = "Привет, давай знакомиться и я тоже люблю макарон  112312 Привет, давай знакомиться и я тоже люблю макароны 112312 Привет, давай знакомиться и я тоже люблю макароны ";
+                newmessage.message = "привет,у меня есть молодой человек,извини не знакомлюсь";
                 newmessage.isBot = false;
                 newmessage.personChatId = personChatId;
                 newmessage.time = DateTime.Now;

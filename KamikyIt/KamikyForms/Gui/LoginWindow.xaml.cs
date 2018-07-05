@@ -24,9 +24,12 @@ namespace KamikyForms.Gui
     /// </summary>
     public partial class LoginWindow : MetroWindow
     {
+        public Hero hero;
+
         public LoginWindow()
         {
             InitializeComponent();
+            combo.SelectedIndex = 0;
             string version = getVersion();
             verText.Content = version;
             //List<String> bans = FileParser.getAnswer();
@@ -66,6 +69,23 @@ namespace KamikyForms.Gui
             {
                 errorText.Text = res;
             }
+        }
+
+        private void onChangeUser(object sender, SelectionChangedEventArgs e)
+        {
+            if (combo.SelectedIndex == 0)
+            {
+                hero = Hero.getInstance(1);
+            }
+
+            if (combo.SelectedIndex == 1)
+            {
+                hero = Hero.getInstance(2);
+            }
+            Login.Text = hero.login;
+            Pass.Password = hero.pass;
+
+
         }
     }
 }

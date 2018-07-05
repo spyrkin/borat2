@@ -37,9 +37,9 @@
             <StackPanel Orientation="Vertical" Margin="40,100,100,20" >
 
                 <TextBlock  Text="Логин" Margin="0, 5" Foreground="White"/>
-                <TextBox x:Name="Login"  Text="jinny19861@mail.ru"/>
+                <TextBox x:Name="Login"  Text="" Width="130"/>
                 <TextBlock Text="Пароль" Margin="0, 5" Foreground="White"/>
-                <PasswordBox  x:Name="Pass" Password="crescent912" PasswordChar="*"/>
+                <PasswordBox  x:Name="Pass" Password="" PasswordChar="*"/>
 
                 <Button Name="LoginButton"  Click="onLogin"  Margin="0 20" Background="#4c75a3" Foreground="White">Логин</Button>
 
@@ -53,7 +53,12 @@
             </StackPanel>
 
             <Label x:Name="verText" Canvas.Top="260" Canvas.Left="40" Foreground="AliceBlue"></Label>
-
+            <ComboBox x:Name="combo" Canvas.Top="220" Canvas.Left="500" Width="120" SelectionChanged="onChangeUser" >
+                <ComboBox.Items>
+                    <ComboBoxItem>Сергей</ComboBoxItem>
+                    <ComboBoxItem>Александр</ComboBoxItem>
+                </ComboBox.Items>
+            </ComboBox>
             <StackPanel Canvas.Top ="250" Canvas.Left="480"/>
         </Canvas>
 
