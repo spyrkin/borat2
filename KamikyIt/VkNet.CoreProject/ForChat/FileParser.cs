@@ -91,7 +91,7 @@ namespace VkNet.Examples.ForChat
             string path = Directory.GetCurrentDirectory();
             int index = path.IndexOf("Kami");
             string root_path = path.Substring(0, index);
-            return root_path + "Data\\banlist.txt";
+            return root_path + "Data\\" + Hero.instance.log_name;
 
         }
 

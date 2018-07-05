@@ -12,6 +12,7 @@ namespace VkNet.Examples.ForChat
         public string login;
         public string pass;
         public string log_name;
+        public static Hero instance;
 
         public  static Hero getInstance(int i)
         {
@@ -21,7 +22,8 @@ namespace VkNet.Examples.ForChat
                 h.id = 1;
                 h.login = "jinny19861@mail.ru";
                 h.pass = "crescent912";
-                h.log_name = "bunlist1.txt";
+                h.log_name = "banlist1.txt";
+                instance = h;
                 return h;
             }
 
@@ -31,7 +33,8 @@ namespace VkNet.Examples.ForChat
                 h.id = 2;
                 h.login = "+79022888672";
                 h.pass = "RoflanEbalo1488";
-                h.log_name = "bunlist2.txt";
+                h.log_name = "banlist2.txt";
+                instance = h;
                 return h;
             }
             return null;
