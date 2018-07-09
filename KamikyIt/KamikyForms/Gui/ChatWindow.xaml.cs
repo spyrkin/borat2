@@ -35,7 +35,7 @@ namespace Chat.Gui
         public TaskExecuter te = new TaskExecuter();
         public DateTime playedTime;
         public StageEnum stage;
-        public bool debug = false;
+        public bool debug = true;
         public Bot bot;
         public Logger log = new Logger();
 

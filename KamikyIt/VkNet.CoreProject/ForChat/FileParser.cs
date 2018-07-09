@@ -27,6 +27,30 @@ namespace VkNet.Examples.ForChat
             return bans;
         }
 
+
+        public static List<String> getStartUps()
+        {
+            List<String> startups = new List<string>();
+            string path = getStartUpFilePath();
+            StreamReader fs = new StreamReader(path);
+            string s = "";
+            while (s != null)
+            {
+                s = fs.ReadLine();
+                if (!String.IsNullOrEmpty(s))
+                {
+                    startups.Add(s);
+                }
+            }
+            fs.Close();
+            return startups;
+        }
+
+
+
+
+
+
         public static string getLogPath()
         {
 
@@ -92,9 +116,16 @@ namespace VkNet.Examples.ForChat
             int index = path.IndexOf("Kami");
             string root_path = path.Substring(0, index);
             return root_path + "Data\\" + Hero.instance.log_name;
-
         }
 
+
+        public static string getStartUpFilePath()
+        {
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            return root_path + "Data\\startup.txt";
+        }
 
 
 
@@ -117,6 +148,12 @@ namespace VkNet.Examples.ForChat
             {
                 File.AppendAllText(path, s + "\r\n");
             }
+        }
+
+        public static void WriteStartUps(string message)
+        {
+            string path = getStartUpFilePath();
+            File.AppendAllText(path, "\r\n"+ message);
         }
     }
 }

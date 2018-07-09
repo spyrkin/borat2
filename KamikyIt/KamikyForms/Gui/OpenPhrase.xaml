@@ -19,20 +19,49 @@
     </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Label
-                    x:Name="whois"
-                    Height="30"
-                    Margin="10,0,0,-10"
-                    FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
-                    FontSize="16"
-                    FontWeight="Bold" />
-            </StackPanel>
+            <ListView
+                x:Name="datagrid"
+                Width="463"
+                Height="265"
+                Margin="1,1,0,1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="White"
+                MouseDoubleClick="Datagrid_OnMouseDoubleClick"
+                FontSize="12">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="Background" Value="DarkGray" />
+                                <Setter Property="Height" Value="0" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox
+                                        MouseDoubleClick="Control_OnMouseDoubleClick"
+                                        Text="{Binding message}"
+                                        Height="Auto"
+                                        Width="700"
+                                        TextWrapping="Wrap"
+                                        AcceptsReturn="True"
+                                        HorizontalScrollBarVisibility="Disabled"
+                                        VerticalScrollBarVisibility="Auto"/>
 
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
             <StackPanel Margin="0,2,0,0" Orientation="Horizontal" />
             <TextBox
                 x:Name="textblock"
-                Height="315"
+                Height="105"
                 Margin="0,16,0,0"
                 Background="AliceBlue"
                 HorizontalScrollBarVisibility="Disabled"
