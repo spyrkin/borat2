@@ -426,6 +426,11 @@ namespace Chat.Gui
                 e.Cancel = false;
                 return;
             }
+            if (debug)
+            {
+                e.Cancel = false;
+                return;
+            }
             var res = MessageBox.Show("Вы действительно хотите выйти?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Error);
             if (res == MessageBoxResult.Yes)
             {
