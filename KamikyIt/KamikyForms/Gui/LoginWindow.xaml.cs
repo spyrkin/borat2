@@ -25,7 +25,7 @@ namespace KamikyForms.Gui
     public partial class LoginWindow : MetroWindow
     {
         public Hero hero;
-
+        public bool debug;
         public LoginWindow()
         {
             InitializeComponent();
@@ -60,7 +60,7 @@ namespace KamikyForms.Gui
             string res = LoginCoreHelper.Login(login, pass);
             if (String.IsNullOrEmpty(res))
             {
-                var chatWindow = new ChatWindow();
+                var chatWindow = new ChatWindow(debug, hero);
                 chatWindow.Show();
                 this.Close();
                 chatWindow.Show();
@@ -86,6 +86,13 @@ namespace KamikyForms.Gui
             Pass.Password = hero.pass;
 
 
+        }
+
+        //change debug mode
+        private void checkBox1_Checked(object sender, RoutedEventArgs e)
+        {
+            debug = !debug;
+          //  checkBox1.IsChecked = debug;
         }
     }
 }

@@ -35,12 +35,18 @@ namespace Chat.Gui
         public TaskExecuter te = new TaskExecuter();
         public DateTime playedTime;
         public StageEnum stage;
-        public bool debug = true;
+        public bool debug;
+        public Hero hero;
         public Bot bot;
         public Logger log = new Logger();
 
-        public ChatWindow()
+        
+
+        public ChatWindow(bool debug, Hero hero)
         {
+
+            this.debug = debug;
+            this.hero = hero;
             InitializeComponent();
             stage = StageEnum.INIT;
         }

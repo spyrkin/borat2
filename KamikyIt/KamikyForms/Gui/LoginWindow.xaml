@@ -53,6 +53,19 @@
             </StackPanel>
 
             <Label x:Name="verText" Canvas.Top="260" Canvas.Left="40" Foreground="AliceBlue"></Label>
+            <mah:ToggleSwitch
+                Canvas.Top="180" Canvas.Left="500"
+                x:Name="checkBox1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Checked="checkBox1_Checked"
+                FontSize="16"
+                Foreground="White"
+                FontWeight="Normal"
+                OffLabel="Debug OFF"
+                OnLabel="Debug ON"
+                Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}"
+                Unchecked="checkBox1_Checked" />
             <ComboBox x:Name="combo" Canvas.Top="220" Canvas.Left="500" Width="120" SelectionChanged="onChangeUser" >
                 <ComboBox.Items>
                     <ComboBoxItem>Сергей</ComboBoxItem>
