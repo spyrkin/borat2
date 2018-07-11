@@ -26,12 +26,20 @@ namespace KamikyForms.Gui
     {
         public Hero hero;
         public bool debug;
+        public Options options;
+        public bool loading = true;
         public LoginWindow()
         {
             InitializeComponent();
-            combo.SelectedIndex = 0;
+            options = new Options();
+            options.load();
+            hero = options.hero;
+            debug = options.debug;
+            checkBox1.IsChecked = options.debug;
+            combo.SelectedIndex = options.hero.id == 1 ? 0 : 1;
             string version = getVersion();
             verText.Content = version;
+            loading = false;
             //List<String> bans = FileParser.getAnswer();
 
         }
@@ -73,6 +81,7 @@ namespace KamikyForms.Gui
 
         private void onChangeUser(object sender, SelectionChangedEventArgs e)
         {
+
             if (combo.SelectedIndex == 0)
             {
                 hero = Hero.getInstance(1);
@@ -84,6 +93,11 @@ namespace KamikyForms.Gui
             }
             Login.Text = hero.login;
             Pass.Password = hero.pass;
+            if (loading)
+            {
+                return;
+            }
+            options.save(debug, hero);
 
 
         }
@@ -91,8 +105,14 @@ namespace KamikyForms.Gui
         //change debug mode
         private void checkBox1_Checked(object sender, RoutedEventArgs e)
         {
+            if (loading)
+            {
+                return;
+            }
             debug = !debug;
-          //  checkBox1.IsChecked = debug;
+            options.save(debug, hero);
+
+            //  checkBox1.IsChecked = debug;
         }
     }
 }

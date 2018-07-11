@@ -47,6 +47,26 @@ namespace VkNet.Examples.ForChat
         }
 
 
+        public static List<String> getInits()
+        {
+            List<String> data = new List<string>();
+            string path = getInitFilePath();
+            StreamReader fs = new StreamReader(path);
+            string s = "";
+            while (s != null)
+            {
+                s = fs.ReadLine();
+                if (!String.IsNullOrEmpty(s))
+                {
+                    data.Add(s);
+                }
+            }
+            fs.Close();
+            return data;
+        }
+
+
+
 
 
 
@@ -128,8 +148,13 @@ namespace VkNet.Examples.ForChat
         }
 
 
-
-
+        public static string getInitFilePath()
+        {
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            return root_path + "Data\\init.txt";
+        }
 
 
         public static string getAnswerFilePath()
@@ -154,6 +179,18 @@ namespace VkNet.Examples.ForChat
         {
             string path = getStartUpFilePath();
             File.AppendAllText(path, "\r\n"+ message);
+        }
+
+        public static void saveInits(bool debug, Hero hero)
+        {
+            string path = getInitFilePath();
+           // string data = "debug: " + Convert.ToInt32(debug) + "\r\n" + "user: " + hero.id;
+            StreamWriter sw = new StreamWriter(path);
+
+            //Write a line of text
+            sw.WriteLine("debug: " + Convert.ToInt32(debug));
+            sw.WriteLine("user: " + hero.id);
+            sw.Close();
         }
     }
 }
