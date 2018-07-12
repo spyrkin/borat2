@@ -386,7 +386,7 @@ namespace Chat.Gui
 
 
             string startMessage = "";
-            OpenPhrase phrase = new OpenPhrase();
+            OpenPhrase phrase = new OpenPhrase(debug);
             phrase.ShowDialog();
             startMessage = phrase.startMessage;
 

@@ -23,8 +23,10 @@ namespace Chat.Gui
     {
         public String startMessage = "Привет, давай знакомиться =)";
         public List<StartUps> st = new List<StartUps>();
-        public OpenPhrase()
+        public bool debug;
+        public OpenPhrase(bool debug)
         {
+            this.debug = debug;
             InitializeComponent();
             List<String> startups = FileParser.getStartUps();
             foreach (String s in startups)
@@ -48,9 +50,12 @@ namespace Chat.Gui
                 Close();
                 return;
             }
-            if (!st.Any(o => o.message == startMessage))
+            if (!debug)
             {
-                FileParser.WriteStartUps(startMessage);
+                if (!st.Any(o => o.message == startMessage))
+                {
+                    FileParser.WriteStartUps(startMessage);
+                }
             }
             Close();
         }
