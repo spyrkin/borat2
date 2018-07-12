@@ -84,5 +84,11 @@ namespace Chat.Gui
         private void Datagrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
         }
+
+        private void emodziClick(object sender, RoutedEventArgs e)
+        {
+            string em = (sender as Button).Content.ToString();
+            textblock.Text = textblock.Text + em;
+        }
     }
 }
