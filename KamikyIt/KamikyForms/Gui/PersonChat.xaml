@@ -188,6 +188,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
         <Button
             x:Name="bmessage"
             Canvas.Left="0"
@@ -236,5 +237,59 @@
                  Background="AliceBlue"
                  HorizontalScrollBarVisibility="Disabled"
                  VerticalScrollBarVisibility="Auto" x:Name="textblock" Margin="0,16,0,0" Height="232"/>
+        <StackPanel x:Name="em1" Visibility="Hidden" Margin="0,2,0,0" Orientation="Horizontal">
+            <Button FontSize="14" Margin="5 0 0 0" Content="&#128513;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128514;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128515;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128516;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128517;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128518;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128519;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128520;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128521;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128522;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128523;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128524;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128525;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128526;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128527;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128528;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128529;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128530;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128531;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128532;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128533;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128534;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128535;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128536;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+
+        </StackPanel>
+        <StackPanel x:Name="em2" Visibility="Hidden" Margin="0,2,0,0" Orientation="Horizontal">
+            <Button FontSize="14"  Margin="5 0 0 0" Content="&#128560;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128537;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128538;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128539;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128540;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128541;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128542;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128543;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128544;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128545;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128546;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128547;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128548;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128549;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128550;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128551;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128552;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128553;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128554;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128555;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128556;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128557;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128558;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+            <Button FontSize="14" Content="&#128559;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+
+        </StackPanel>
     </Canvas>
 </Canvas>

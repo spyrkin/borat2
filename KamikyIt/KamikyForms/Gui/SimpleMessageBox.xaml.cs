@@ -95,5 +95,11 @@ namespace Chat.Gui
 	    {
 	        wireAdvisec();
 	    }
-    }
+
+	    private void emodziClick(object sender, RoutedEventArgs e)
+	    {
+	        string em = (sender as Button).Content.ToString();
+	        textblock.Text = textblock.Text + em;
+        }
+	}
 }

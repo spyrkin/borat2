@@ -133,6 +133,9 @@ namespace Chat.Gui
 
         public void normalize()
         {
+            em1.Visibility = Visibility.Hidden;
+            em2.Visibility = Visibility.Hidden;
+
             profileCicates.Visibility = Visibility.Hidden;
             profileFollowers.Visibility = Visibility.Hidden;
             profileInterests.Visibility = Visibility.Hidden;
@@ -204,6 +207,9 @@ namespace Chat.Gui
 
         public void maximaze()
         {
+            em1.Visibility = Visibility.Visible;
+            em2.Visibility = Visibility.Visible;
+
             profileCicates.Visibility = Visibility.Visible;
             profileFollowers.Visibility = Visibility.Visible;
             profileInterests.Visibility = Visibility.Visible;
@@ -277,16 +283,22 @@ namespace Chat.Gui
 
             //bmessage
             Canvas.SetTop(bwrite, Height - 55);
-            Canvas.SetLeft(bwrite, 200);
+            Canvas.SetLeft(bwrite, 120);
             bwrite.Width = 100;
             bwrite.Height = 50;
 
             //bclose
             Canvas.SetTop(bclose, Height - 55);
-            Canvas.SetLeft(bclose, 380);
+            Canvas.SetLeft(bclose, 230);
             bclose.Width = 100;
             bclose.Height = 50;
 
+
+            Canvas.SetTop(em1, Height - 70);
+            Canvas.SetLeft(em1, 330);
+
+            Canvas.SetTop(em2, Height - 35);
+            Canvas.SetLeft(em2, 330);
 
             //adviceStack
             Canvas.SetTop(adviseStack, 170);
@@ -675,5 +687,11 @@ namespace Chat.Gui
             wireAdvisec();
         }
         #endregion
+
+        private void emodziClick(object sender, RoutedEventArgs e)
+        {
+            string em = (sender as Button).Content.ToString();
+            textblock.Text = textblock.Text + em;
+        }
     }
 }

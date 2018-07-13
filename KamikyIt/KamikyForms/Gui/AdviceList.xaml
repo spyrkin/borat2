@@ -7,7 +7,7 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Loaded="AdviceList_OnLoaded"
-        Title="AdviceList" Height="450" Width="800">
+        Title="AdviceList" Height="450" Width="900">
     <mah:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,7 +28,7 @@
                                    FontSize="30"></Label>
             <ListView
             x:Name="datagrid"
-            Width="883"
+            Width="903"
             Height="535"
             Margin="1,1,0,1"
             HorizontalAlignment="Left"
@@ -51,7 +51,7 @@
                                         MouseDoubleClick="Control_OnMouseDoubleClick"
                                         Text="{Binding message}"
                                         Height="Auto"
-                                        Width="700"
+                                        Width="900"
                                         TextWrapping="Wrap"
                                         AcceptsReturn="True"
                                         HorizontalScrollBarVisibility="Disabled"
