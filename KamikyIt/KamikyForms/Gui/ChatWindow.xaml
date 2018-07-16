@@ -18,7 +18,7 @@
     PreviewKeyDown="nPreviewKeyDown"
     ResizeMode="NoResize"
     Top="0"
-    WindowStartupLocation="Manual"
+    WindowStartupLocation="CenterScreen"
     WindowTitleBrush="#4c75a3"
     Closing="onClosingEvent"
     mc:Ignorable="d">

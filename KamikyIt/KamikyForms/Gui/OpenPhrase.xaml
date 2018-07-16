@@ -78,18 +78,16 @@
                 <Button Content="&#128528;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128529;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128530;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
-                <Button Content="&#128513;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128531;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128532;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128533;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128534;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128535;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+                <Button Content="&#128536;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
 
             </StackPanel>
             <StackPanel Margin="0,2,0,0" Orientation="Horizontal">
-                <Button Margin="5 0 0 0" Content="&#128513;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
-                <Button Content="&#128536;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
-                <Button Content="&#128537;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+                <Button Margin="5 0 0 0" Content="&#128537;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128538;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128539;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128540;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
@@ -111,6 +109,8 @@
                 <Button Content="&#128556;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128557;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
                 <Button Content="&#128558;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+                <Button Content="&#128559;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
+                <Button Content="&#128560;" Background="Yellow" BorderThickness="1" Foreground="Black"  Click="emodziClick"></Button>
 
             </StackPanel>
             <TextBox
