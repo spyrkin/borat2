@@ -13,7 +13,7 @@ namespace Chat.Core
         public DateTime time { get; set; }
         public bool isVirtual { get; set; } = false;
         public long vkId { get; set; }
-        public bool isBot { get; set; }
+        public bool isBot { get; set; }  //true - я написал; false - человек написал
         public string personName { get; set; }
 
 

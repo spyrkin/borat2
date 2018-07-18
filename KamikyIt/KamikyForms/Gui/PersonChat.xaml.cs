@@ -331,6 +331,7 @@ namespace Chat.Gui
         public void writeMsg(Object sender,
                        EventArgs e)
         {
+            //test();
             string mess = "";
             if (isMin == false && textblock.Text != "")
             {
@@ -405,7 +406,7 @@ namespace Chat.Gui
             {
                 ChatMessage newmessage = new ChatMessage();
                 newmessage.isVirtual = false;
-                newmessage.message = "привет,у меня есть молодой человек,извини не знакомлюсь";
+                newmessage.message = "Посоветуй, хорошую музыку";
                 newmessage.isBot = false;
                 newmessage.personChatId = personChatId;
                 newmessage.time = DateTime.Now;
@@ -468,7 +469,7 @@ namespace Chat.Gui
                 return;
             }
             ChatMessage lastMessage = chatMessages.Last();
-            if (lastMessage.isBot == false)
+            if (lastMessage.isBot == true)
             {
                 bclose.Content = "";
                 return;
@@ -569,7 +570,7 @@ namespace Chat.Gui
 
         private void onBotExecute(object sender, ToolTipEventArgs e)
         {
-
+            Button b = sender as Button;
             if (chatMessages.Count < 2)
             {
                 e.Handled = true;
@@ -588,7 +589,7 @@ namespace Chat.Gui
             {
                 result = result + m + "\r\n";
             }
-            ToolTip = result;
+            b.ToolTip = result;
             return;
 
 

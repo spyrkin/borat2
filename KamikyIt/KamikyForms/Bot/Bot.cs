@@ -60,9 +60,22 @@ namespace KamikyForms.Bot
 
         public List<String> getMessages(String message)
         {
-            if (answers.ContainsKey(BotHelper.prepareString(message)))
+            string prepared = BotHelper.prepareString(message);
+            if (answers.ContainsKey(prepared))
             {
-                return answers[message];
+                List<string> all = answers[prepared];
+                List<string> result = new List<string>();
+                //будем возвращать только максимум 30;
+                int MAX_COUNT = 30;
+                if (all.Count < MAX_COUNT)
+                {
+                    return all;
+                }
+                for (int i = 0; i < MAX_COUNT; i++)
+                {
+                    result.Add(all[i]);
+                }
+                return result;
             }
             else
             {
