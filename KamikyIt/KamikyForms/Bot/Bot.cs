@@ -29,10 +29,26 @@ namespace KamikyForms.Bot
             Task.Factory.StartNew(() =>
             {
                 loadAction();
-                
+                loaded = true;
                 cw.addConsoleMsg("Bot loaded: "+ answers.Keys.Count);
 
             });
+        }
+
+
+        //проверяем что нету в словаре
+        public bool exist(string mess1, string mess2)
+        {
+            if (!answers.ContainsKey(mess1))
+            {
+                return false;
+            }
+            List<string> messages = answers[mess1];
+            if (!messages.Contains(mess2))
+            {
+                return false;
+            }
+            return true;
         }
 
 

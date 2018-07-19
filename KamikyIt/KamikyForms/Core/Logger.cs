@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using Chat.Core;
 using Chat.Gui;
+using KamikyForms.Bot;
 using VkNet.Examples.ForChat;
 
 namespace KamikyForms.Core
@@ -47,10 +48,56 @@ namespace KamikyForms.Core
             Task.Factory.StartNew(() =>
             {
                 writeLog();
-
+                writeAnswers();
             });
         }
 
+
+        public void writeAnswers()
+        {
+            //пишем мои сообщения также в чат
+            if (ch.bot.loaded == false)
+            {
+                return;
+            }
+            foreach (KeyValuePair<string, PersonChat> kvp in ch.personWindows)
+            {
+                PersonChat pc = kvp.Value;
+                List<ChatMessage> messages = pc.chatMessages;
+                if (messages.Count < 2)
+                {
+                    continue;
+                }
+                ChatMessage last = messages.Last();
+                ChatMessage previous = messages[messages.Count - 2];
+                //записываем только когда последняя моя, а предыдущая бабья
+                if (last.isBot && !previous.isBot)
+                {
+                    string mess1 = previous.message;
+                    mess1 = BotHelper.prepareString(mess1);
+                    string mess2 = last.message;
+                    //теперь проверяем что такой хрени еще нету
+                    if (!ch.bot.exist(mess1, mess2))
+                    {
+                        addAnswerToHistory(mess1, mess2);
+                    }
+
+                }
+
+
+
+                //foreach (ChatMessage mess in messages)
+                //{
+                //    if (mess.isVirtual) continue;
+                //    messagesAll.Add(mess);
+                //}
+            }
+        }
+
+        public void addAnswerToHistory(string mess1, string mess2)
+        {
+            
+        }
 
         public void writeLog()
         {
