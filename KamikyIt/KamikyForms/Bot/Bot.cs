@@ -55,6 +55,11 @@ namespace KamikyForms.Bot
         public void loadAction()
         {
             lines = FileParser.getAnswer();
+            List<string> lines2 = FileParser.getMyAnswer();
+            foreach (string s in lines2)
+            {
+                lines.Add(s);
+            }
             foreach (string s in lines)
             {
                 string[] words = s.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries);
@@ -62,14 +67,19 @@ namespace KamikyForms.Bot
                 string w1 = BotHelper.prepareString(words[0]);
                
                 string w2 = words[1];
-                if (answers.ContainsKey(w1))
-                {
-                    answers[w1].Add(w2);
-                }
-                else
-                {
-                    answers.Add(w1, new List<string>() { w2 });
-                }
+                addM1M2(w1, w2);
+            }
+        }
+
+        public void addM1M2(string w1, string w2)
+        {
+            if (answers.ContainsKey(w1))
+            {
+                answers[w1].Add(w2);
+            }
+            else
+            {
+                answers.Add(w1, new List<string>() { w2 });
             }
         }
 

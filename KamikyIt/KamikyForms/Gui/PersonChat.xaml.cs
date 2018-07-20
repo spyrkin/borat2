@@ -127,7 +127,7 @@ namespace Chat.Gui
         public void wire(ChatWindow ch)
         {
             this.ch = ch;
-            test();
+           // test();
         }
 
 
@@ -406,7 +406,7 @@ namespace Chat.Gui
             {
                 ChatMessage newmessage = new ChatMessage();
                 newmessage.isVirtual = false;
-                newmessage.message = "Посоветуй, хорошую музыку";
+                newmessage.message = "Посоветуй, хорошую музыку2";
                 newmessage.isBot = false;
                 newmessage.personChatId = personChatId;
                 newmessage.time = DateTime.Now;
@@ -414,15 +414,15 @@ namespace Chat.Gui
                 newmessage.personName = "Катя";
                 chatMessages.Add(newmessage);
 
-                ChatMessage newmessage2 = new ChatMessage();
-                newmessage2.isVirtual = false;
-                newmessage2.message = "Хуй тебе на воротник не предложить?";
-                newmessage2.isBot = true;
-                newmessage2.personChatId = personChatId;
-                newmessage2.time = DateTime.Now;
-                newmessage2.vkId = 111;
-                newmessage2.personName = "Сергей";
-                chatMessages.Add(newmessage2);
+                //ChatMessage newmessage2 = new ChatMessage();
+                //newmessage2.isVirtual = false;
+                //newmessage2.message = "Хуй тебе на воротник не предложить?";
+                //newmessage2.isBot = true;
+                //newmessage2.personChatId = personChatId;
+                //newmessage2.time = DateTime.Now;
+                //newmessage2.vkId = 111;
+                //newmessage2.personName = "Сергей";
+                //chatMessages.Add(newmessage2);
             }
             UpdateUi();
         }

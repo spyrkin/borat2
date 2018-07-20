@@ -82,6 +82,26 @@ namespace VkNet.Examples.ForChat
 
         }
 
+
+        public static string getMyAdviseFilePath()
+        {
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            return root_path + "Data\\" + "answer_databse_me" + ".txt";
+
+        }
+
+        public static void WriteMyAnswer(string message1, string message2)
+        {
+            string path = getMyAdviseFilePath();
+            message1 = message1.Replace("\r", "");
+            message1 = message1.Replace("\n", "");
+            message2 = message2.Replace("\r", "");
+            message2 = message2.Replace("\n", "");
+            File.AppendAllText(path, "\r\n" + message1 + "\\"+ message2);
+        }
+
         public static List<String> getAdvise(string filename)
         {
             List<String> advices = new List<string>();
@@ -107,6 +127,25 @@ namespace VkNet.Examples.ForChat
         {
             List<String> bans = new List<string>();
             string path = getAnswerFilePath();
+            StreamReader fs = new StreamReader(path);
+            string s = "";
+            while (s != null)
+            {
+                s = fs.ReadLine();
+                if (!String.IsNullOrEmpty(s))
+                {
+                    bans.Add(s);
+                }
+            }
+            fs.Close();
+
+            return bans;
+        }
+
+        public static List<String> getMyAnswer()
+        {
+            List<String> bans = new List<string>();
+            string path = getMyAdviseFilePath();
             StreamReader fs = new StreamReader(path);
             string s = "";
             while (s != null)

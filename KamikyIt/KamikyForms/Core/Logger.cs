@@ -84,19 +84,15 @@ namespace KamikyForms.Core
 
                 }
 
-
-
-                //foreach (ChatMessage mess in messages)
-                //{
-                //    if (mess.isVirtual) continue;
-                //    messagesAll.Add(mess);
-                //}
             }
         }
 
         public void addAnswerToHistory(string mess1, string mess2)
         {
-            
+            //запись
+            FileParser.WriteMyAnswer(mess1, mess2);
+            //add to bot
+            ch.bot.addM1M2(mess1, mess2);
         }
 
         public void writeLog()
