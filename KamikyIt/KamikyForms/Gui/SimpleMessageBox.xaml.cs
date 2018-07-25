@@ -26,7 +26,7 @@ namespace Chat.Gui
         public string msg;
 		public SimpleMessageBox(ChatWindow ch, List<PersonChat> resevers)
 		{
-            this.ch = this.ch;
+            this.ch = ch;
 		    this.resevers = resevers;
 			InitializeComponent();
 		    setName();

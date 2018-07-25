@@ -30,6 +30,9 @@
                     FontWeight="Bold" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <local:AdviceControl Tag="why"></local:AdviceControl>
+
+
                 <local:AdviceControl Tag="quastins"></local:AdviceControl>
 
                 <local:AdviceControl Tag="hobby"></local:AdviceControl>

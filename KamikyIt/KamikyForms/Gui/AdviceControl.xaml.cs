@@ -47,6 +47,11 @@ namespace KamikyForms.Gui
             {
                 ruName = "ВОПРОСЫ";
             }
+
+            if (tag == "why")
+            {
+                ruName = "ПОЧЕМУ";
+            }
             adviceName.Content = ruName;
             loadResources();
 
