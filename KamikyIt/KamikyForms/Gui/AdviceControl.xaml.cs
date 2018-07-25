@@ -52,6 +52,21 @@ namespace KamikyForms.Gui
             {
                 ruName = "ПОЧЕМУ";
             }
+
+            if (tag == "history")
+            {
+                ruName = "ИСТОРИИ";
+            }
+
+            if (tag == "comp")
+            {
+                ruName = "КОМПЛ.";
+            }
+
+            if (tag == "current")
+            {
+                ruName = "CURRENT";
+            }
             adviceName.Content = ruName;
             loadResources();
 

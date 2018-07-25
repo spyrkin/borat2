@@ -75,6 +75,12 @@
             Visibility="Hidden">
             <gui:AdviceControl Tag="why" />
 
+            <gui:AdviceControl Tag="history" />
+
+            <gui:AdviceControl Tag="comp" />
+
+            <gui:AdviceControl Tag="current" />
+
             <gui:AdviceControl Tag="quastins" />
 
             <gui:AdviceControl Tag="hobby" />
