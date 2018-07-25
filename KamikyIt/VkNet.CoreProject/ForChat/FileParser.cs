@@ -9,6 +9,34 @@ namespace VkNet.Examples.ForChat
 {
     public static class FileParser
     {
+
+        public static string getPath(string mypath)
+        {
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            return root_path + "Data\\" + mypath;
+        }
+
+        public static List<String> getData(string mypath)
+        {
+            List<String> raws = new List<string>();
+            string path = getPath(mypath);
+            StreamReader fs = new StreamReader(path);
+            string s = "";
+            while (s != null)
+            {
+                s = fs.ReadLine();
+                if (!String.IsNullOrEmpty(s))
+                {
+                    raws.Add(s);
+                }
+            }
+            fs.Close();
+            return raws;
+        }
+
+
         public static List<String> getBans()
         {
             List<String> bans = new List<string>();
