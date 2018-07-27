@@ -17,6 +17,7 @@ using ApiWrapper.Core;
 using Chat.Core;
 using KamikyForms.Bot;
 using KamikyForms.Gui;
+using VkNet.Examples.ForChat;
 
 namespace Chat.Gui
 {
@@ -26,19 +27,25 @@ namespace Chat.Gui
     public partial class PersonChat : Canvas
     {
 
+        private ContextMenu contextMenuDataGrid = new ContextMenu();
+
+
         //настройки PersonChat
         public int person_height = 232;
+
         public int person_width = 152;
         public int person_width_margin = 5;
         public int person_height_margin = 5;
 
         //настройка чата диалого
         public int ch_margin_top = 40;
+
         public int ch_width = 150;
         public int ch_height = 170;
 
         //кнопки
         public int b_margin_top = 212;
+
         public int b_width = 50;
         public int b_height = 19;
         public int b_margin = 1;
@@ -50,20 +57,15 @@ namespace Chat.Gui
         public ChatWindow ch;
         public long _v;
         public string _s;
+
         public long personId
 
+
+
         {
-            get
-            {
-                return _v;
-
-            }
-            set
-            {
-                _v = value;
-
-            }
-        }    //vkId
+            get { return _v; }
+            set { _v = value; }
+        } //vkId
 
         public bool banned = false;
         public string bannedString = "";
@@ -75,10 +77,7 @@ namespace Chat.Gui
         public string personChatId
         {
             get { return _s; }
-            set
-            {
-                _s = value;
-            }
+            set { _s = value; }
         }
 
         public ChatMessage lastNotAnsweredMessage
@@ -120,14 +119,21 @@ namespace Chat.Gui
             InitializeComponent();
             profileImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/notFound2.png"));
             profileChatNumber.Content = personChatId;
+            contextMenuDataGrid.Opened += contextMenuDataGrid_Opened;
+            datagrid.ContextMenu = contextMenuDataGrid;
 
 
+
+        }
+
+        private void contextMenuDataGrid_Opened(object sender, RoutedEventArgs e)
+        {
         }
 
         public void wire(ChatWindow ch)
         {
             this.ch = ch;
-           // test();
+            test();
         }
 
 
@@ -329,7 +335,7 @@ namespace Chat.Gui
 
         //нажимаем на кнопку руками
         public void writeMsg(Object sender,
-                       EventArgs e)
+            EventArgs e)
         {
             //test();
             string mess = "";
@@ -407,7 +413,7 @@ namespace Chat.Gui
                 ChatMessage newmessage = new ChatMessage();
                 newmessage.isVirtual = false;
                 newmessage.message = "Посоветуй, хорошую музыку2";
-                newmessage.isBot = false;
+                newmessage.isBot = true;
                 newmessage.personChatId = personChatId;
                 newmessage.time = DateTime.Now;
                 newmessage.vkId = 111;
@@ -525,7 +531,9 @@ namespace Chat.Gui
                 string message = rec[0];
                 string recever = rec[1];
                 string sdate = rec[2];
-                string pName = recever == ch.CurrentUser.Key.ToString() ? ch.CurrentUser.Value : this.profileName.Content.ToString();
+                string pName = recever == ch.CurrentUser.Key.ToString()
+                    ? ch.CurrentUser.Value
+                    : this.profileName.Content.ToString();
                 ChatMessage newmessage = new ChatMessage();
                 newmessage.isVirtual = false;
                 newmessage.message = message;
@@ -566,6 +574,7 @@ namespace Chat.Gui
             string profilePage = "https://vk.com/" + Person.Domain;
             System.Diagnostics.Process.Start(profilePage);
         }
+
         private void vkOpenTooltip(object sender, ToolTipEventArgs e)
         {
             if (Person == null)
@@ -667,7 +676,9 @@ namespace Chat.Gui
             selected = !selected;
             UpdateUi();
         }
+
         #region for advices
+
         public static List<T> GetVisualChilds<T>(DependencyObject parent) where T : DependencyObject
         {
             List<T> childs = new List<T>();
@@ -688,7 +699,7 @@ namespace Chat.Gui
                 GetVisualChilds<AdviceControl>(this as DependencyObject);
             foreach (AdviceControl ac in advControls)
             {
-                ac.wire(ac.Tag, textblock, new List<PersonChat>(){this});
+                ac.wire(ac.Tag, textblock, new List<PersonChat>() {this});
                 ac.setResourcec();
             }
         }
@@ -697,12 +708,147 @@ namespace Chat.Gui
         {
             wireAdvisec();
         }
+
         #endregion
 
         private void emodziClick(object sender, RoutedEventArgs e)
         {
             string em = (sender as Button).Content.ToString();
             textblock.Text = textblock.Text + em;
+        }
+
+        private void dataGridView1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            contextMenuDataGrid.Items.Clear();
+            if (datagrid.SelectedItems.Count == 1)
+            {
+                ChatMessage ch = (ChatMessage)datagrid.SelectedItems[0];
+                if (ch.isBot == false)
+                {
+                    return;
+                }
+                {
+                    MenuItem mi11 = new MenuItem();
+                    mi11.Header = "УВЛЕЧЕНИЯ";
+                    mi11.Click += mi_opr;
+                    mi11.Tag = ch;
+                    contextMenuDataGrid.Items.Add(mi11);
+                }
+                {
+                    MenuItem mi11 = new MenuItem();
+                    mi11.Header = "ВОПРОСЫ";
+                    mi11.Click += mi_opr;
+                    mi11.Tag = ch;
+                    contextMenuDataGrid.Items.Add(mi11);
+                }
+                {
+                    MenuItem mi11 = new MenuItem();
+                    mi11.Header = "ПОЧЕМУ";
+                    mi11.Click += mi_opr;
+                    mi11.Tag = ch;
+                    contextMenuDataGrid.Items.Add(mi11);
+                }
+                {
+                    MenuItem mi11 = new MenuItem();
+                    mi11.Header = "ИСТОРИИ";
+                    mi11.Click += mi_opr;
+                    mi11.Tag = ch;
+                    contextMenuDataGrid.Items.Add(mi11);
+                }
+                {
+                    MenuItem mi11 = new MenuItem();
+                    mi11.Header = "КОМПЛ.";
+                    mi11.Click += mi_opr;
+                    mi11.Tag = ch;
+                    contextMenuDataGrid.Items.Add(mi11);
+                }
+                {
+                    MenuItem mi11 = new MenuItem();
+                    mi11.Header = "CURRENT";
+                    mi11.Click += mi_opr;
+                    mi11.Tag = ch;
+                    contextMenuDataGrid.Items.Add(mi11);
+                }
+                //MenuItem mi12 = new MenuItem();
+                //mi12.Header = "Неоправданный";
+                //mi12.Click += mi_neopr;
+                //mi12.Tag = mk;
+                //contextMenuDataGrid.Items.Add(mi12);
+
+
+            }
+        }
+        //if (tag == "hobby")
+        //{
+        //    ruName = "УВЛЕЧЕНИЯ";
+        //}
+        //if (tag == "quastins")
+        //{
+        //    ruName = "ВОПРОСЫ";
+        //}
+
+        //if (tag == "why")
+        //{
+        //    ruName = "ПОЧЕМУ";
+        //}
+
+        //if (tag == "history")
+        //{
+        //    ruName = "ИСТОРИИ";
+        //}
+
+        //if (tag == "comp")
+        //{
+        //    ruName = "КОМПЛ.";
+        //}
+
+        //if (tag == "current")
+        //{
+        //    ruName = "CURRENT";
+        //}
+        private void mi_opr(object sender, RoutedEventArgs e)
+        {
+            MenuItem mi = (sender as MenuItem);
+            ChatMessage mess = mi.Tag as ChatMessage;
+            string text = mess.message.ToString();
+            text = text.Replace("\n", "");
+            text = text.Replace("\r", "");
+            text = text.Replace("\t", "");
+            string tag = "";
+            if (mi.Header.ToString() == "УВЛЕЧЕНИЯ")
+            {
+                tag = "hobby";
+            }
+            if (mi.Header.ToString() == "ВОПРОСЫ")
+            {
+                tag = "quastins";
+            }
+            if (mi.Header.ToString() == "ПОЧЕМУ")
+            {
+                tag = "why";
+            }
+            if (mi.Header.ToString() == "ИСТОРИИ")
+            {
+                tag = "history";
+            }
+            if (mi.Header.ToString() == "КОМПЛ.")
+            {
+                tag = "comp";
+            }
+            if (mi.Header.ToString() == "CURRENT")
+            {
+                tag = "current";
+            }
+            FileParser.saveAdvise(tag, text);
+            datagrid.SelectedItems.Clear();
+            datagrid.SelectedItem = null;
+            datagrid.Items.Refresh();
+
         }
     }
 }

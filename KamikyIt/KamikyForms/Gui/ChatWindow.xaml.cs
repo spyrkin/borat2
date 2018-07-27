@@ -580,6 +580,9 @@ namespace Chat.Gui
             {
                 PersonChat pc = kvp.Value;
                 pc.selected = false;
+                pc.datagrid.SelectedItem = null;
+                pc.datagrid.SelectedItems.Clear();
+                pc.datagrid.Items.Refresh();
                 pc.UpdateUi();
 
             }

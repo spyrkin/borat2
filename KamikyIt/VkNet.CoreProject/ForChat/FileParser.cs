@@ -259,5 +259,15 @@ namespace VkNet.Examples.ForChat
             sw.WriteLine("user: " + hero.id);
             sw.Close();
         }
+
+        public static void saveAdvise(string tag, string text)
+        {
+            List<String> advices = getAdvise(tag);
+            string path = getAdviseFilePath(tag);
+            if (!advices.Contains(text))
+            {
+                File.AppendAllText(path, "\r\n" + text);
+            }
+        }
     }
 }

@@ -131,6 +131,8 @@
             VerticalAlignment="Top"
             Background="White"
             FontSize="12"
+            PreviewMouseLeftButtonDown="dataGridView1_PreviewMouseLeftButtonDown"
+            SelectionChanged="dataGridView1_SelectionChanged"
             MouseDoubleClick="Datagrid_OnMouseDoubleClick">
             <ListView.ItemContainerStyle>
 
@@ -151,6 +153,10 @@
                         <DataTrigger Binding="{Binding isBot}" Value="false">
                             <Setter Property="Background" Value="#edf0f5" />
                         </DataTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="Background" Value="DarkGray" />
+                        </Trigger>
 
                     </Style.Triggers>
 
