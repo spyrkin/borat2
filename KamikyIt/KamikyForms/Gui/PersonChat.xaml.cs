@@ -133,7 +133,7 @@ namespace Chat.Gui
         public void wire(ChatWindow ch)
         {
             this.ch = ch;
-            test();
+            //test();
         }
 
 

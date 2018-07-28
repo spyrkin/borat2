@@ -74,7 +74,7 @@ namespace ApiWrapper.Core
             }
             //bans
             List<String> bans = FileParser.getBans();
-            List<User> bans_users = peoples.Where(o => !bans.Contains(o.Domain)).ToList();
+            List<User> bans_users = peoples.Where(o => !(bans.Contains(o.Domain) || bans.Contains(o.Id.ToString()))).ToList();
 
 
 

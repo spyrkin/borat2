@@ -396,7 +396,7 @@ namespace Chat.Gui
             List<String> bans = new List<string>();
             foreach (PersonModel p in Persons)
             {
-                string domain = p.Domain;
+                string domain = p.id.ToString();
                 bans.Add(domain);
             }
             if (debug == false)
