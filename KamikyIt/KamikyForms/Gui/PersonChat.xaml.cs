@@ -57,7 +57,7 @@ namespace Chat.Gui
         public ChatWindow ch;
         public long _v;
         public string _s;
-
+        public ChatMessage ovInfo;
         public long personId
 
 
@@ -412,7 +412,7 @@ namespace Chat.Gui
             {
                 ChatMessage newmessage = new ChatMessage();
                 newmessage.isVirtual = false;
-                newmessage.message = "Посоветуй, хорошую музыку2";
+                newmessage.message = "Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2";
                 newmessage.isBot = true;
                 newmessage.personChatId = personChatId;
                 newmessage.time = DateTime.Now;
@@ -849,6 +849,19 @@ namespace Chat.Gui
             datagrid.SelectedItem = null;
             datagrid.Items.Refresh();
 
+        }
+
+
+
+        private void openTooltip(object sender, ToolTipEventArgs e)
+        {
+            (sender as Label).ToolTip = ovInfo.message;
+        }
+
+        private void lvi_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ListViewItem lv = sender as ListViewItem;
+            ovInfo = lv.Content as ChatMessage;
         }
     }
 }

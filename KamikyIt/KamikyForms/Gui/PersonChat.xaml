@@ -137,7 +137,10 @@
             <ListView.ItemContainerStyle>
 
                 <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseEnter" Handler="lvi_MouseEnter" />
+
                     <Style.Triggers>
+                        
                         <DataTrigger Binding="{Binding isVirtual}" Value="true">
                             <Setter Property="Opacity" Value="0.55" />
                         </DataTrigger>
@@ -181,12 +184,13 @@
                                             FontWeight="Bold"
                                             Foreground="#42648b" />
                                         <Label
+                                            
                                             Margin="-5,3,0,0"
                                             Content="{Binding timeToString}"
                                             FontSize="9"
                                             Foreground="#aeb2cc" />
                                     </StackPanel>
-                                    <Label Margin="-10,-10,0,0" Content="{Binding message}" />
+                                    <Label ToolTip="11" ToolTipOpening="openTooltip" Margin="-10,-10,0,0" Content="{Binding message}" />
                                 </StackPanel>
 
                             </DataTemplate>
