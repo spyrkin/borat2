@@ -410,17 +410,35 @@ namespace Chat.Gui
             }
             for (int i = 0; i < 10; i++)
             {
-                ChatMessage newmessage = new ChatMessage();
+                {
+                    ChatMessage newmessage = new ChatMessage();
+                    newmessage.isVirtual = false;
+                    newmessage.message =
+                        "Привет,ничем помочь не могу,я работаю и";
+                    newmessage.isBot = true;
+                    newmessage.personChatId = personChatId;
+                    newmessage.time = DateTime.Now;
+                    newmessage.vkId = 111;
+                    newmessage.personName = "Катя";
+                    chatMessages.Add(newmessage);
+
+                }
+
+                {
+                    ChatMessage newmessage = new ChatMessage();
+                
                 newmessage.isVirtual = false;
-                newmessage.message = "Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2 Посоветуй, хорошую музыку2";
+                newmessage.message =
+                    "Привет,ничем помочь не могу,я работаю и мне не скучно и моя работа не развлекать других парней";
                 newmessage.isBot = true;
                 newmessage.personChatId = personChatId;
                 newmessage.time = DateTime.Now;
                 newmessage.vkId = 111;
                 newmessage.personName = "Катя";
                 chatMessages.Add(newmessage);
+            }
 
-                //ChatMessage newmessage2 = new ChatMessage();
+            //ChatMessage newmessage2 = new ChatMessage();
                 //newmessage2.isVirtual = false;
                 //newmessage2.message = "Хуй тебе на воротник не предложить?";
                 //newmessage2.isBot = true;
