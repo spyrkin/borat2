@@ -381,6 +381,14 @@ namespace Chat.Gui
             t.personChatId = personChatId;
             t.isStopped = false;
             t.personName = ch.CurrentUser.Value;
+            
+            string fullname = Person.name;
+            string[] words = fullname.Split(new string[] { " " }, StringSplitOptions.None);
+            string name = words[0];
+            
+            t.message = t.message.Replace("$name", name);
+            t.message = t.message.Replace("$fullname", fullname);
+
             ch.tasks.Add(t);
             ch.updateTaskList();
             ch.UpdateUI();
@@ -397,6 +405,7 @@ namespace Chat.Gui
             message.time = DateTime.Now;
             message.vkId = ch.CurrentUser.Key;
             message.personName = task.personName;
+
             chatMessages.Add(message);
             UpdateUi();
 

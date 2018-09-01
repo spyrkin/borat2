@@ -135,6 +135,7 @@ namespace Chat.Gui
             {
                 try
                 {
+                    
                     var persWindow = personWindows["person" + i++];
                     persWindow.personId = person.id;
                     persWindow.profileName.Content = person.name;
@@ -250,6 +251,7 @@ namespace Chat.Gui
             int i = 1;
             foreach (PersonModel person in Persons)
             {
+
                 Thread.Sleep(12);
                 ChatTask t = new ChatTask();
                 t.type = Chat.Core.TaskEnum.MESSAGE;
@@ -259,6 +261,17 @@ namespace Chat.Gui
                 t.personChatId = "person" + i;
                 t.isStopped = false;
                 t.personName = CurrentUser.Value;
+
+                string fullname = person.name;
+                string[] words = fullname.Split(new string[] { " " }, StringSplitOptions.None);
+                string name = words[0];
+
+
+                t.message = t.message.Replace("$name", name);
+                t.message = t.message.Replace("$fullname", fullname);
+
+
+
                 tasks.Add(t);
                 i++;
             }
@@ -270,9 +283,7 @@ namespace Chat.Gui
             rTaskList.ItemsSource = null;
             rTaskList.ItemsSource = tasks.Where(o => !o.isStopped).OrderBy(o => o.sekExpared);
             rTaskList.Items.Refresh();
-            //sTaskList.ItemsSource = null;
-            //sTaskList.ItemsSource = tasks.Where(o => o.isStopped).OrderBy(o => o.sekExpared);
-            //sTaskList.Items.Refresh();
+
         }
 
         private void nPreviewKeyDown(object sender, KeyEventArgs e)

@@ -54,7 +54,7 @@ namespace Chat.Core
                     executeTasks(rt);
                     //удаляем
                     deleteTasks(rt);
-                    //обновляем task дшые
+                    //обновляем task list
                     ch.updateTaskList();
                 }
             }
@@ -113,9 +113,21 @@ namespace Chat.Core
             {
                 if (task.type == TaskEnum.MESSAGE)
                 {
+
+
+
+
+                    PersonChat pchat = ch.getPersonChat(task.personChatId);
+                    string fullname = pchat.Person.name;
+                    string[] words = fullname.Split(new string[] { " " }, StringSplitOptions.None);
+                    string name = words[0];
+
+
+                    task.message = task.message.Replace("$name", name);
+                    task.message = task.message.Replace("$fullname", fullname);
+
                     startExecuteMessageTask(task.vkId, task.message);
                     //шлем непроверенное сообщение
-                    PersonChat pchat = ch.getPersonChat(task.personChatId);
                     pchat.sendVirtualMessage(task);
                     addUpdateTask(task.personChatId,30);
                 }
