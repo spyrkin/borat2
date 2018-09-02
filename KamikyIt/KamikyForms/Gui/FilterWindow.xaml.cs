@@ -74,8 +74,15 @@ namespace KamikyForms.Gui
             online.SelectedIndex = 0;
             foto.SelectedIndex = 0;
             sort.SelectedIndex = 0;
+            Random r = new Random();
+            double rand = r.NextDouble();
             minage.Text = "20";
             maxage.Text = "24";
+            if (rand >= 0.5)
+            {
+                minage.Text = "25";
+                maxage.Text = "30";
+            }
             friendmin.Text = "50";
             friendmax.Text = "500";
             subsmin.Text = "0";
