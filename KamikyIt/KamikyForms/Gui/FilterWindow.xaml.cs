@@ -78,10 +78,15 @@ namespace KamikyForms.Gui
             double rand = r.NextDouble();
             minage.Text = "20";
             maxage.Text = "24";
-            if (rand >= 0.5)
+            if (rand >= 0.75)
             {
                 minage.Text = "25";
                 maxage.Text = "30";
+            }
+            if (rand < 0.25)
+            {
+                minage.Text = "18";
+                maxage.Text = "19";
             }
             friendmin.Text = "50";
             friendmax.Text = "500";

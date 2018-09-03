@@ -9,6 +9,8 @@
     Width="520"
     Height="520.83"
     WindowStartupLocation="CenterScreen"
+    PreviewKeyUp="mainForm_PreviewKeyUp"
+
     mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary>

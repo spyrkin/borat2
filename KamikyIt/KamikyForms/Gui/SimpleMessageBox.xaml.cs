@@ -101,5 +101,27 @@ namespace Chat.Gui
 	        string em = (sender as Button).Content.ToString();
 	        textblock.Text = textblock.Text + em;
         }
+
+	    private void mainForm_PreviewKeyUp(object sender, KeyEventArgs e)
+	    {
+	        if (Keyboard.IsKeyDown(Key.LeftCtrl))
+	        {
+
+	            if (e.Key == Key.N)
+	            {
+	                textblock.Text = textblock.Text + "$name";
+	            }
+	            if (e.Key == Key.F)
+	            {
+	                textblock.Text = textblock.Text + "$fullname";
+
+	            }
+	            if (e.Key == Key.P)
+	            {
+	                textblock.Text = textblock.Text + "Хорошо, $name. Если вдруг с парнем не сложится, напиши мне потом на эту страницу, отвечу сразу же, не пожалеешь.";
+
+	            }
+	        }
+        }
 	}
 }

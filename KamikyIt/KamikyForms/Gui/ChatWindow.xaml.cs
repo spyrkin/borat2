@@ -461,6 +461,21 @@ namespace Chat.Gui
         }
 
 
+        //получаем активный personChat
+        public PersonChat getActiverChat()
+        {
+            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            {
+
+                if (!kvp.Value.isMin)
+                {
+                    return kvp.Value;
+                }
+            }
+            return null;
+        }
+
+
         //HOTKEYS
         private void mainForm_PreviewKeyUp(object sender, KeyEventArgs e)
         {
@@ -472,6 +487,28 @@ namespace Chat.Gui
             if (e.Key == Key.Right)
             {
                 gridNormalize();
+            }
+            if (Keyboard.IsKeyDown(Key.LeftCtrl))
+            {
+                PersonChat ph = getActiverChat();
+                if (ph == null)
+                {
+                    return;
+                }
+                if (e.Key == Key.N)
+                {
+                    ph.textblock.Text = ph.textblock.Text + "$name";
+                }
+                if (e.Key == Key.F)
+                {
+                    ph.textblock.Text = ph.textblock.Text + "$fullname";
+
+                }
+                if (e.Key == Key.P)
+                {
+                    ph.textblock.Text = ph.textblock.Text + "Хорошо, $name. Если вдруг с парнем не сложится, напиши мне потом на эту страницу, отвечу сразу же, не пожалеешь.";
+
+                }
             }
         }
 
@@ -598,5 +635,7 @@ namespace Chat.Gui
 
             }
         }
+
+
     }
 }

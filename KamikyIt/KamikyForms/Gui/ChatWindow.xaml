@@ -15,7 +15,6 @@
     Left="0"
     PreviewKeyUp="mainForm_PreviewKeyUp"
     Loaded="Chat_Loaded"
-    PreviewKeyDown="nPreviewKeyDown"
     ResizeMode="NoResize"
     Top="0"
     WindowStartupLocation="CenterScreen"

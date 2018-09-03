@@ -9,6 +9,7 @@
     Width="580"
     Height="535.83"
     Loaded="SimpleMessageBox_OnLoaded"
+    PreviewKeyUp="mainForm_PreviewKeyUp"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
