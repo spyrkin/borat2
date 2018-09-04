@@ -382,6 +382,7 @@ namespace Chat.Gui
             t.isStopped = false;
             t.personName = ch.CurrentUser.Value;
             
+            
             string fullname = Person.name;
             string[] words = fullname.Split(new string[] { " " }, StringSplitOptions.None);
             string name = words[0];
@@ -610,6 +611,7 @@ namespace Chat.Gui
                 return;
             }
             String result = "";
+  
             result = result + "П: " + Person.followers + "\n" + "Ц: " + Person.Status + "\n" + "И: " + Person.interests;
             (sender as Image).ToolTip = result;
         }
