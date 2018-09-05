@@ -24,18 +24,14 @@ namespace KamikyForms.Bot
         public void findAnswer()
         {
 
-           messages = pc.chatMessages;
-           if (messages.Count < 2)
-           {
-              return;
-           }
-           ChatMessage mess = messages.Last();
-           if (mess.isBot == true)
-           {
-              return;
-           } 
-           //пришел ответ от няши!!!!
-           MessageBox.Show("лолка");
+            ChatMessage lastNotAnswered = pc.lastNotAnsweredMessage;
+            if (lastNotAnswered == null)
+            {
+                return;
+            }
+
+            //пришел ответ от няши!!!!
+            MessageBox.Show("лолка");
         }
 
 
