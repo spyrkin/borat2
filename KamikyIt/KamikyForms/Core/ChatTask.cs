@@ -18,6 +18,11 @@ namespace Chat.Core
         public string personName { get; set; }
         public DateTime timeExpared;
 
+        public ChatTask()
+        {
+            
+        }
+
         public bool isMessage
         {
             get { return type == TaskEnum.MESSAGE; }
