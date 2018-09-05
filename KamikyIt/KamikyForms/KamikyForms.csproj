@@ -71,6 +71,7 @@
     <Compile Include="Bot\BotVariantsWindow.xaml.cs">
       <DependentUpon>BotVariantsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Bot\SmartBot.cs" />
     <Compile Include="Core\ChatMessage.cs" />
     <Compile Include="Core\ChatTask.cs" />
     <Compile Include="Core\ConsoleMessage.cs" />

@@ -28,6 +28,7 @@ namespace Chat.Gui
     {
 
         private ContextMenu contextMenuDataGrid = new ContextMenu();
+        public SmartBot sm;
 
 
         //настройки PersonChat
@@ -121,6 +122,7 @@ namespace Chat.Gui
             profileChatNumber.Content = personChatId;
             contextMenuDataGrid.Opened += contextMenuDataGrid_Opened;
             datagrid.ContextMenu = contextMenuDataGrid;
+            sm = new SmartBot(this);
 
 
 
@@ -205,10 +207,6 @@ namespace Chat.Gui
             bclose.Width = b_width;
             bclose.Height = b_height;
             UpdateUi();
-
-
-
-
         }
 
         public void maximaze()
