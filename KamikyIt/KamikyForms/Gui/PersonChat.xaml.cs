@@ -135,7 +135,10 @@ namespace Chat.Gui
         public void wire(ChatWindow ch)
         {
             this.ch = ch;
-            //test();
+            if (ch.debug)
+            {
+                test();
+            }
         }
 
 
@@ -423,7 +426,7 @@ namespace Chat.Gui
                     newmessage.isVirtual = false;
                     newmessage.message =
                         "Привет,ничем помочь не могу,я работаю и";
-                    newmessage.isBot = true;
+                    newmessage.isBot = false;
                     newmessage.personChatId = personChatId;
                     newmessage.time = DateTime.Now;
                     newmessage.vkId = 111;
@@ -438,7 +441,7 @@ namespace Chat.Gui
                 newmessage.isVirtual = false;
                 newmessage.message =
                     "Привет,ничем помочь не могу,я работаю и мне не скучно и моя работа не развлекать других парней";
-                newmessage.isBot = true;
+                newmessage.isBot = false;
                 newmessage.personChatId = personChatId;
                 newmessage.time = DateTime.Now;
                 newmessage.vkId = 111;
@@ -526,6 +529,9 @@ namespace Chat.Gui
             bclose.Content = mm.Count;
         }
 
+
+        
+        //хрень вызывается когда приходят сообщения от сервера
         public void updateMessage(List<string[]> messages)
         {
 
@@ -573,6 +579,7 @@ namespace Chat.Gui
             chatMessages = chatMessages.OrderBy(o => o.time).ToList();
             UpdateUi();
             ch.UpdateUI();
+            sm.findAnswer();
 
         }
 
