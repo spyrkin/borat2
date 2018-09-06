@@ -88,6 +88,9 @@
     <Compile Include="Gui\AdviceList.xaml.cs">
       <DependentUpon>AdviceList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gui\BotChatWindow.xaml.cs">
+      <DependentUpon>BotChatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,9 @@
     <Compile Include="Gui\SimpleMessageBox.xaml.cs">
       <DependentUpon>SimpleMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gui\SmartBotWindow.xaml.cs">
+      <DependentUpon>SmartBotWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IntervalControl.xaml.cs">
       <DependentUpon>IntervalControl.xaml</DependentUpon>
     </Compile>
@@ -129,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Gui\AdviceList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\BotChatWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,6 +169,10 @@
     <Page Include="Gui\SimpleMessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Gui\SmartBotWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImageResources.xaml">
       <SubType>Designer</SubType>

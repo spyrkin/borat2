@@ -660,22 +660,24 @@ namespace Chat.Gui
                 bclose.Content = "";
                 return;
             }
-            ChatMessage lastMessage = chatMessages.Last();
-            if (lastMessage.isBot == true)
-            {
-                bclose.Content = "";
-                return;
-            }
+            SmartBotWindow win = new SmartBotWindow(this);
+            win.ShowDialog();
+            //ChatMessage lastMessage = chatMessages.Last();
+            //if (lastMessage.isBot == true)
+            //{
+            //    bclose.Content = "";
+            //    return;
+            //}
 
-            List<string> mm = ch.bot.getMessages(lastMessage.message);
-            if (mm.Count == 0)
-            {
-                bclose.Content = "";
-                return;
-            }
+            //List<string> mm = ch.bot.getMessages(lastMessage.message);
+            //if (mm.Count == 0)
+            //{
+            //    bclose.Content = "";
+            //    return;
+            //}
 
-            BotVariantsWindow bw = new BotVariantsWindow(lastMessage.message, mm, this);
-            bw.ShowDialog();
+            //BotVariantsWindow bw = new BotVariantsWindow(lastMessage.message, mm, this);
+            //bw.ShowDialog();
 
         }
 
