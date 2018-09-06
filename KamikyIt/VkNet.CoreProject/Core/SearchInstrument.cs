@@ -52,16 +52,20 @@ namespace ApiWrapper.Core
                 HasPhoto = filter.HasPhoto,
                 Online = filter.IsOnline,
                 Sort = (VkNet.Enums.UserSort)filter.profileSort,
-                Sex = (VkNet.Enums.Sex)filter.Sex,
-                
+                Sex = (VkNet.Enums.Sex)filter.Sex,             
                 Offset = (uint?)filter.Offcet,
-                Status = (VkNet.Enums.MaritalStatus)filter.FamilyState,
-                // GroupId = 22751485,
                 Count = 1000,
                 Fields = ProfileFields.All,
             });
+            List<string> aa = new List<string>();
             foreach (User p in peoples)
             {
+                //Status = (VkNet.Enums.MaritalStatus)filter.FamilyState,
+                // GroupId = 22751485,
+                //if (!aa.Contains(p.Relation.ToString()))
+                //{
+                //    aa.Add(p.Relation.ToString());
+                //}
                 //Console.WriteLine(p.Domain);
                 //Console.WriteLine("==============================");
                 //Console.WriteLine(p.FirstName + " " + p.LastName);
@@ -76,10 +80,12 @@ namespace ApiWrapper.Core
             List<String> bans = FileParser.getBans();
             List<User> bans_users = peoples.Where(o => !(bans.Contains(o.Domain) || bans.Contains(o.Id.ToString()))).ToList();
 
+            //фильтрация по статусу
+            List<User> status_users = bans_users.Where(o => !(o.Relation.ToString()== "Married" || o.Relation.ToString()== "CivilMarriage" || o.Relation.ToString() == "Engaged")).ToList();
 
 
             //онлайна
-            List<User> onlines = bans_users.Where(o => o.Online == true && o.IsFriend == false && o.Photo200 != null).ToList();
+            List<User> onlines = status_users.Where(o => o.Online == true && o.IsFriend == false && o.Photo200 != null).ToList();
             //можем писать
             List<User> canWrites = onlines.Where(o => o.CanWritePrivateMessage && !o.Blacklisted).ToList();
             //доп опции
