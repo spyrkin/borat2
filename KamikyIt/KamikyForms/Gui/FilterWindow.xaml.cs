@@ -334,19 +334,19 @@ namespace KamikyForms.Gui
             {
                 case "не женат (не замужем)":
                     return FamilyState.NotMarry;
-                case "встречается<":
+                case "встречается":
                     return FamilyState.Dating;
                 case "помолвлен(-а)":
                     return FamilyState.Betrothed;
                 case "женат (замужем)":
                     return FamilyState.Marry;
-                case "всё сложно<":
+                case "всё сложно":
                     return FamilyState.AllHardShit;
-                case "в активном поиске<":
+                case "в активном поиске":
                     return FamilyState.ActiveSearch;
                 case "влюблен(-а)":
                     return FamilyState.Loved;
-                case "в гражданском браке<":
+                case "в гражданском браке":
                     return FamilyState.CivilMarry;
                 default:
                     throw new Exception("Невозможно распарсить");

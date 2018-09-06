@@ -31,7 +31,7 @@ namespace KamikyForms.Bot
             }
 
             //пришел ответ от няши!!!!
-            MessageBox.Show("лолка");
+            //MessageBox.Show("лолка");
         }
 
 

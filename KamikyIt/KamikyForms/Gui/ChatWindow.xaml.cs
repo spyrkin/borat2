@@ -145,10 +145,15 @@ namespace Chat.Gui
                     persWindow.profileInterests.Content = "И: " + person.interests;
                     persWindow.profileCicates.Content = "Ц: " + person.Status;
                     //интересные для них
-                    if (person.interests.Contains("кальян") || person.interests.Contains("дорам") || person.interests.Contains("аниме") ||
-                        person.interests.Contains("дота") || person.interests.Contains("it") || person.interests.Contains("велоспорт"))
+                    if (person.interests != null)
                     {
-                        persWindow.profileName.Foreground = Brushes.Green;
+                        if (person.interests.Contains("кальян") || person.interests.Contains("дорам") ||
+                            person.interests.Contains("аниме") ||
+                            person.interests.Contains("дота") || person.interests.Contains("it") ||
+                            person.interests.Contains("велоспорт"))
+                        {
+                            persWindow.profileName.Foreground = Brushes.Green;
+                        }
                     }
 
                 }
