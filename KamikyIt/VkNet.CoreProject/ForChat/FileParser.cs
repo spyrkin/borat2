@@ -269,5 +269,26 @@ namespace VkNet.Examples.ForChat
                 File.AppendAllText(path, "\r\n" + text);
             }
         }
+
+        public static List<string> getTheme(string themeName)
+        {
+            List<string> mlist = new List<string>();
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            root_path  = root_path +  "SmartBot\\" + themeName + ".txt";
+            StreamReader fs = new StreamReader(root_path);
+            string s = "";
+            while (s != null)
+            {
+                s = fs.ReadLine();
+                if (!String.IsNullOrEmpty(s))
+                {
+                    mlist.Add(s);
+                }
+            }
+            fs.Close();
+            return mlist;
+        }
     }
 }

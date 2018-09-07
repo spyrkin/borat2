@@ -13,7 +13,8 @@ namespace KamikyForms.Core
         public string Name;
         public List<ThemeItem> messages = new List<ThemeItem>();
         public int curIndex;
-
+        public List<int> expired = new List<int>();                 //сообщение которые уже написаны
+ 
         public class ThemeItem
         {
             public int n;
