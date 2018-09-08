@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Chat.Gui;
+using KamikyForms.Bot;
 using MahApps.Metro.Controls;
 
 namespace KamikyForms.Gui
@@ -22,18 +23,34 @@ namespace KamikyForms.Gui
     public partial class SmartBotWindow : MetroWindow
     {
         public Chat.Gui.PersonChat personChat;
-   
+        public SmartBot sm;
+
         public SmartBotWindow(Chat.Gui.PersonChat personChat)
         {
             this.personChat = personChat;
+            sm = personChat.sm;
             InitializeComponent();
-            if (personChat.Person == null)
-            {
-                return;
-            }
-            pName.Content = personChat.Person.name;
-            datagrid.ItemsSource = personChat.chatMessages;
-            datagrid.Items.Refresh();
+            //if (personChat.Person == null)
+            //{
+            //    return;
+            //}
+            //сообщения
+            //pName.Content = personChat.Person.name;
+            //datagrid.ItemsSource = personChat.chatMessages;
+            //datagrid.Items.Refresh();
+
+
+            bc1.wireData(sm, "общее");
+            bc2.wireData(sm, "путешествия");
+            bc3.wireData(sm, "детство");
+            bc4.wireData(sm, "спорт");
+            bc5.wireData(sm, "увлечения");
+            bc6.wireData(sm, "кино");
+            bc7.wireData(sm, "учеба");
+            bc8.wireData(sm, "отношения");
+
+
+
         }
 
 

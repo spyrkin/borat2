@@ -17,8 +17,8 @@ namespace KamikyForms.Core
  
         public class ThemeItem
         {
-            public int n;
-            public string message;
+            public int n { get; set; }
+            public string message { get; set; }
         }
     }
 }

@@ -28,12 +28,14 @@ namespace KamikyForms.Bot
         private void setThemes()
         {
             setTheme("детство");
-            setTheme("друзья");
+            setTheme("общее");
             setTheme("кино");
             setTheme("путешествия");
             setTheme("спорт");
             setTheme("увлечения");
             setTheme("отношения");
+            setTheme("учеба");
+
 
         }
 
