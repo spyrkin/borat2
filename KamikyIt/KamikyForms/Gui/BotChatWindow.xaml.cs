@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using KamikyForms.Core;
 
 namespace KamikyForms.Gui
 {
@@ -20,16 +21,20 @@ namespace KamikyForms.Gui
     /// </summary>
     public partial class BotChatWindow : Canvas
     {
-        private Core.Theme theme;
-        private string name;
+        public Bot.SmartBot sm;
+        public Core.Theme theme;
+        public string name;
+        public SmartBotWindow win;
         public BotChatWindow()
         {
             InitializeComponent();
         }
 
-        public void wireData(Bot.SmartBot sm, string name)
+        public void wireData(SmartBotWindow win, Bot.SmartBot sm, string name)
         {
+            this.sm = sm;
             this.name = name;
+            this.win = win;
             theme = sm.themes.FirstOrDefault(o => o.Name == name);
             themeName.Content = name;
             datagrid.ItemsSource = theme.messages;
@@ -39,6 +44,17 @@ namespace KamikyForms.Gui
 
         private void Datagrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (datagrid.SelectedItems.Count == 1)
+            {
+                //убираем у других chatWindowSelection
+                win.clearSelections(name);
+                Theme.ThemeItem item = (Theme.ThemeItem)datagrid.SelectedItems[0];
+                string message = item.message;
+                win.setMessage(message);
+
+
+            }
+
         }
     }
 }

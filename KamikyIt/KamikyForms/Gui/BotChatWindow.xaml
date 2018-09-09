@@ -27,6 +27,7 @@
         HorizontalAlignment="Left"
         VerticalAlignment="Top"
         SelectionChanged="Datagrid_OnSelectionChanged"
+        SelectionMode="Single"
         Background="White"
         FontSize="12">
         <ListView.View>

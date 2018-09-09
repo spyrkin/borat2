@@ -24,6 +24,7 @@ namespace KamikyForms.Gui
     {
         public Chat.Gui.PersonChat personChat;
         public SmartBot sm;
+        public List<BotChatWindow> chats = new List<BotChatWindow>();
 
         public SmartBotWindow(Chat.Gui.PersonChat personChat)
         {
@@ -40,14 +41,23 @@ namespace KamikyForms.Gui
             //datagrid.Items.Refresh();
 
 
-            bc1.wireData(sm, "общее");
-            bc2.wireData(sm, "путешествия");
-            bc3.wireData(sm, "детство");
-            bc4.wireData(sm, "спорт");
-            bc5.wireData(sm, "увлечения");
-            bc6.wireData(sm, "кино");
-            bc7.wireData(sm, "учеба");
-            bc8.wireData(sm, "отношения");
+            bc1.wireData(this, sm, "общее");
+            bc2.wireData(this, sm, "путешествия");
+            bc3.wireData(this, sm, "детство");
+            bc4.wireData(this, sm, "спорт");
+            bc5.wireData(this, sm, "увлечения");
+            bc6.wireData(this, sm, "кино");
+            bc7.wireData(this, sm, "учеба");
+            bc8.wireData(this, sm, "отношения");
+            chats.Add(bc1);
+            chats.Add(bc2);
+            chats.Add(bc3);
+            chats.Add(bc4);
+            chats.Add(bc5);
+            chats.Add(bc6);
+            chats.Add(bc7);
+            chats.Add(bc8);
+
 
 
 
@@ -57,8 +67,16 @@ namespace KamikyForms.Gui
         //отправка сообщений через бота
         private void onSubmit(object sender, RoutedEventArgs e)
         {
-
+            string msg = textblock.Text;
+            if (String.IsNullOrEmpty(msg))
+            {
+                Close();
+                return;
+            }
+            personChat.writeMyMessage(msg);
+            Close();
         }
+
         #region события гриды чата персоны
         private void dataGridView1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -79,6 +97,23 @@ namespace KamikyForms.Gui
 
         private void openTooltip(object sender, ToolTipEventArgs e)
         {
+        }
+
+        public void clearSelections(string name)
+        {
+            foreach (BotChatWindow c in chats)
+            {
+                if (c.name == name)
+                {
+                    continue;
+                }
+                c.datagrid.SelectedIndex = -1;
+            }
+        }
+
+        public void setMessage(string message)
+        {
+            textblock.Text = message;
         }
     }
 }
