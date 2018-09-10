@@ -25,6 +25,8 @@ namespace KamikyForms.Gui
         public Chat.Gui.PersonChat personChat;
         public SmartBot sm;
         public List<BotChatWindow> chats = new List<BotChatWindow>();
+        public Core.Theme currentTheme;
+        public int currentI;
 
         public SmartBotWindow(Chat.Gui.PersonChat personChat)
         {
@@ -73,6 +75,11 @@ namespace KamikyForms.Gui
                 Close();
                 return;
             }
+            string pText = pNumber.Text;
+            if (!String.IsNullOrEmpty(pText))
+            {
+                currentTheme.expired.Add(currentI);
+            }
             personChat.writeMyMessage(msg);
             Close();
         }
@@ -111,9 +118,13 @@ namespace KamikyForms.Gui
             }
         }
 
-        public void setMessage(string message)
+        public void setMessage(string message, int i,  Core.Theme theme)
         {
             textblock.Text = message;
+            pNumber.Text = i.ToString();
+            currentI = i;
+            currentTheme = theme;
+
         }
     }
 }

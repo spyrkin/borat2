@@ -47,11 +47,27 @@
                 <local:BotChatWindow x:Name="bc8" />
             </StackPanel>
         </StackPanel>
+
         <TextBox
+            Canvas.Left="0"
+            Canvas.Top="620"
+            x:Name="pNumber"
+            Height="91"
+            Width="90"
+            FontWeight="Bold"
+            FontSize="60"
+            Text =""
+            Background="LightYellow"
+            HorizontalScrollBarVisibility="Disabled"
+            TextWrapping="Wrap"
+            VerticalScrollBarVisibility="Auto" />
+
+        <TextBox
+            Canvas.Left=" 95"
             Canvas.Top="620"
             x:Name="textblock"
             Height="95"
-            Width="1110"
+            Width="1020"
             Background="AliceBlue"
             HorizontalScrollBarVisibility="Disabled"
             TextWrapping="Wrap"

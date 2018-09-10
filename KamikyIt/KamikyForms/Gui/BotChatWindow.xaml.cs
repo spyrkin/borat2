@@ -50,9 +50,16 @@ namespace KamikyForms.Gui
                 win.clearSelections(name);
                 Theme.ThemeItem item = (Theme.ThemeItem)datagrid.SelectedItems[0];
                 string message = item.message;
-                win.setMessage(message);
-
-
+                int i = 0;
+                foreach (Theme.ThemeItem mess in theme.messages)
+                {
+                    if (mess.message == message)
+                    {
+                        break;
+                    }
+                    i++;
+                }
+                win.setMessage(message, i, theme);
             }
 
         }
