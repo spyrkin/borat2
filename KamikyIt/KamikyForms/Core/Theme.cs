@@ -19,6 +19,7 @@ namespace KamikyForms.Core
         {
             public int n { get; set; }
             public string message { get; set; }
+            public bool isExpired { get; set; }
         }
     }
 }

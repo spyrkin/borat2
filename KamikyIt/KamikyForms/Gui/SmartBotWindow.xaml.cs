@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Chat.Gui;
 using KamikyForms.Bot;
 using MahApps.Metro.Controls;
+using Theme = KamikyForms.Core.Theme;
 
 namespace KamikyForms.Gui
 {
@@ -78,6 +79,16 @@ namespace KamikyForms.Gui
             string pText = pNumber.Text;
             if (!String.IsNullOrEmpty(pText))
             {
+                int k = 0;
+                foreach (Theme.ThemeItem ti in currentTheme.messages)
+                {
+                    if (k == currentI)
+                    {
+                        ti.isExpired = true;
+                        break;
+                    }
+                    k++;
+                }
                 currentTheme.expired.Add(currentI);
             }
             personChat.writeMyMessage(msg);

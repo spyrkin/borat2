@@ -96,19 +96,6 @@
                                 <Setter Property="Foreground" Value="White" />
                                 <Setter Property="Background" Value="Blue" />
                             </Trigger>
-                            <DataTrigger Binding="{Binding IsCritical}" Value="true">
-                                <Setter Property="Foreground" Value="White" />
-                                <Setter Property="Background" Value="Red" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding IsWarning}" Value="true">
-                                <Setter Property="Foreground" Value="Black" />
-                                <Setter Property="Background" Value="Yellow" />
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding FlagDel}" Value="true">
-                                <Setter Property="Foreground" Value="Gray" />
-                                <Setter Property="Background" Value="White" />
-                            </DataTrigger>
                         </Style.Triggers>
 
                     </Style>

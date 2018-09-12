@@ -30,8 +30,28 @@
         SelectionMode="Single"
         Background="White"
         FontSize="12">
+        <ListView.ItemContainerStyle>
+            <Style TargetType="{x:Type ListViewItem}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding isExpired}" Value="true">
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="Background" Value="LightGray" />
+                    </DataTrigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Background" Value="Blue" />
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+        </ListView.ItemContainerStyle>
+
+
+
         <ListView.View>
+            
             <GridView>
+                
                 <GridView.ColumnHeaderContainerStyle>
                     <Style TargetType="{x:Type GridViewColumnHeader}">
                         <Setter Property="Background" Value="DarkGray" />
