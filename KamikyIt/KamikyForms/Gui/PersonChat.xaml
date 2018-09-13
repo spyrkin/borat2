@@ -120,6 +120,24 @@
             ToolTipClosing="MaxLabel_OnToolTipOpening"
             ToolTipOpening="MaxLabel_OnToolTipOpening" />
 
+        <Button
+            x:Name="botNext"
+            Width="15"
+            Height="15"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="White"
+            Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+            BorderThickness="0"
+            Canvas.Left="115" Canvas.Top="25">
+            <iconPacks:PackIconModern
+                x:Name="iconKind"
+                Width="8"
+                Height="8"
+                Kind="ArrowLeft" />
+        </Button>
+
+
 
         <ListView
             x:Name="datagrid"
@@ -140,7 +158,7 @@
                     <EventSetter Event="MouseEnter" Handler="lvi_MouseEnter" />
 
                     <Style.Triggers>
-                        
+
                         <DataTrigger Binding="{Binding isVirtual}" Value="true">
                             <Setter Property="Opacity" Value="0.55" />
                         </DataTrigger>

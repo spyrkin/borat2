@@ -167,6 +167,12 @@ namespace Chat.Gui
             Canvas.SetLeft(maxLabel, 135);
             maxLabel.FontSize = 12;
 
+
+            //botNext
+            Canvas.SetTop(botNext, 25);
+            Canvas.SetLeft(botNext, 135);
+            botNext.FontSize = 12;
+
             //image
             profileImage.Width = 40;
             profileImage.Height = 40;
@@ -236,6 +242,11 @@ namespace Chat.Gui
             Canvas.SetTop(maxLabel, 10);
             Canvas.SetLeft(maxLabel, this.Width - 295);
             maxLabel.FontSize = 20;
+
+            //nextBot
+            Canvas.SetTop(botNext, 552);
+            Canvas.SetLeft(botNext, 10);
+            botNext.FontSize = 20;
 
             //image
             profileImage.Width = 200;
@@ -898,6 +909,12 @@ namespace Chat.Gui
         {
             ListViewItem lv = sender as ListViewItem;
             ovInfo = lv.Content as ChatMessage;
+        }
+
+        //следующий ответ от бота
+        private void onBotNext(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

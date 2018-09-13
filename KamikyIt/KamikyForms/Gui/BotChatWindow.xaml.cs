@@ -63,5 +63,9 @@ namespace KamikyForms.Gui
             }
 
         }
+
+        private void openTooltip(object sender, ToolTipEventArgs e)
+        {
+        }
     }
 }
