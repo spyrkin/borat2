@@ -90,6 +90,7 @@ namespace KamikyForms.Gui
                     k++;
                 }
                 currentTheme.expired.Add(currentI);
+                personChat.sm.currentTheme = currentTheme;
             }
             personChat.writeMyMessage(msg);
             Close();

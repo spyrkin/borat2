@@ -916,5 +916,17 @@ namespace Chat.Gui
         {
 
         }
+
+
+        //куррент тем
+        private void openSmTooltip(object sender, ToolTipEventArgs e)
+        {
+            if (sm.currentTheme == null)
+            {
+                e.Handled = true;
+                return;
+            }
+            botNext.ToolTip = sm.currentTheme.Name;
+        }
     }
 }

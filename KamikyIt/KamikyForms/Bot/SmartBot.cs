@@ -18,6 +18,7 @@ namespace KamikyForms.Bot
         public PersonChat pc;
         private List<ChatMessage> messages;
         public List<Theme> themes = new List<Theme>();
+        public Theme currentTheme;
 
         public SmartBot(PersonChat pc)
         {

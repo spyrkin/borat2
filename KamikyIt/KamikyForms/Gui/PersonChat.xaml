@@ -129,6 +129,7 @@
             Background="White"
             Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
             BorderThickness="0"
+            ToolTip="" ToolTipOpening="openSmTooltip"
             Canvas.Left="115" Canvas.Top="25">
             <iconPacks:PackIconModern
                 x:Name="iconKind"
