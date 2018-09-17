@@ -34,14 +34,14 @@ namespace KamikyForms.Gui
             this.personChat = personChat;
             sm = personChat.sm;
             InitializeComponent();
-            //if (personChat.Person == null)
-            //{
-            //    return;
-            //}
+            if (personChat.Person == null)
+            {
+                return;
+            }
             //сообщения
-            //pName.Content = personChat.Person.name;
-            //datagrid.ItemsSource = personChat.chatMessages;
-            //datagrid.Items.Refresh();
+            pName.Content = personChat.Person.name;
+            datagrid.ItemsSource = personChat.chatMessages;
+            datagrid.Items.Refresh();
 
 
             bc1.wireData(this, sm, "общее");

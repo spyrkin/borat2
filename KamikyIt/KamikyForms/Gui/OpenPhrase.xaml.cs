@@ -107,7 +107,7 @@ namespace Chat.Gui
                 }
                 if (e.Key == Key.P)
                 {
-                    textblock.Text = textblock.Text + "Хорошо, $name. Если вдруг с парнем не сложится, напиши мне потом на эту страницу, отвечу сразу же, не пожалеешь.";
+                    textblock.Text = textblock.Text + "Хорошо, $name. Если вдруг с парнем не сложится, напиши мне потом на эту страницу ))";
 
                 }
             }
