@@ -256,17 +256,33 @@ namespace Chat.Gui
 
 
 
-        private void SendAll(string message)
+        private void SendAll(string message, bool isStartUp=false)
         {
             tasks.Clear();
+
             int i = 1;
+  
+
             foreach (PersonModel person in Persons)
             {
+                string m = message;
+                if (isStartUp)
+                {
+                    Random rand = new Random(unchecked((int)(DateTime.Now.Ticks)));
+                    double r = rand.NextDouble();
+                    if (r > 0.5)
+                    {
+                        m = "Привет, $name, скучно на работе сидеть. Давай пообщаемся 😈";
+
+                    }
+
+                }
+
 
                 Thread.Sleep(12);
                 ChatTask t = new ChatTask();
                 t.type = Chat.Core.TaskEnum.MESSAGE;
-                t.message = message;
+                t.message = m;
                 t.vkId = person.id;
                 t.timeExpared = te.setTime(10);
                 t.personChatId = "person" + i;
@@ -412,7 +428,7 @@ namespace Chat.Gui
             phrase.ShowDialog();
             startMessage = phrase.startMessage;
 
-            SendAll(startMessage);
+            SendAll(startMessage, true);
             playedTime = DateTime.Now;
             stage = StageEnum.LAUCHED;
             List<String> bans = new List<string>();
