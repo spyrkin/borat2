@@ -268,6 +268,7 @@ namespace Chat.Gui
                 string m = message;
                 if (isStartUp)
                 {
+                    Thread.Sleep(1);
                     Random rand = new Random(unchecked((int)(DateTime.Now.Ticks)));
                     double r = rand.NextDouble();
                     if (r > 0.5)

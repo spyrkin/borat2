@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -40,6 +41,15 @@ namespace KamikyForms.Gui
             string version = getVersion();
             verText.Content = version;
             loading = false;
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Random rand = new Random(unchecked((int)(DateTime.Now.Ticks)));
+            //    Thread.Sleep(1);
+
+            //    double r = rand.NextDouble();
+            //    Console.WriteLine(r);
+            //}
             //List<String> bans = FileParser.getAnswer();
 
         }
