@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ApiWrapper.Core;
@@ -391,6 +392,8 @@ namespace KamikyForms.Gui
         public void UpdateUi()
         {
             finded.Content = "Найдено : " + persons.Count;
+            inactiv.Content = "inActiveS : " + persons.Where(o=>o.Relation == "InActiveSearch").ToList().Count;
+            itsComplex.Content = "itCompex : " + persons.Where(o => o.Relation == "ItsComplex").ToList().Count;
             chosen.Content = "Выбрано : " + choosenpersons.Count;
         }
 

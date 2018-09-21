@@ -62,10 +62,10 @@ namespace ApiWrapper.Core
             {
                 //Status = (VkNet.Enums.MaritalStatus)filter.FamilyState,
                 // GroupId = 22751485,
-                //if (!aa.Contains(p.Relation.ToString()))
-                //{
-                //    aa.Add(p.Relation.ToString());
-                //}
+                if (!aa.Contains(p.Relation.ToString()))
+                {
+                    aa.Add(p.Relation.ToString());
+                }
                 //Console.WriteLine(p.Domain);
                 //Console.WriteLine("==============================");
                 //Console.WriteLine(p.FirstName + " " + p.LastName);
@@ -90,7 +90,18 @@ namespace ApiWrapper.Core
             List<User> canWrites = onlines.Where(o => o.CanWritePrivateMessage && !o.Blacklisted).ToList();
             //доп опции
             List<User> normGirls = canWrites.Where(o => isNormalGirl(o, filter)).ToList();
-            return normGirls.Select(x => new PersonModel(x)).ToList();
+
+            //foreach (User u in normGirls)
+            //{
+            //    if (u.Counters != null)
+            //    {
+                    
+            //    }
+            //}
+
+            List <PersonModel> persons = normGirls.Select(x => new PersonModel(x)).ToList();
+            persons = persons.OrderBy(o => o.statusCode).ThenBy(o=>Math.Abs(30 - o.followers)).ToList();
+            return persons;
         }
 
 

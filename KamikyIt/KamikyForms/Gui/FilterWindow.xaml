@@ -238,6 +238,10 @@
 
             <Button Visibility="Visible" Canvas.Top ="480" Canvas.Left="672" MinWidth="150" Background="Black" BorderThickness="2" Width="100" Foreground="White" Click="onApply" >Применить</Button>
             <Label x:Name="finded" Canvas.Top ="560" Canvas.Left="104" Foreground="AliceBlue">Найдено: 0</Label>
+            <Label x:Name="inactiv" Canvas.Top ="580" Canvas.Left="104" Foreground="AliceBlue">inActiveS: 0</Label>
+            <Label x:Name="itsComplex" Canvas.Top ="600" Canvas.Left="104" Foreground="AliceBlue">itCompex: 0</Label>
+
+
             <Label x:Name="chosen" Canvas.Top ="560" Canvas.Left="380" Foreground="AliceBlue">Выбрано: 0</Label>
 
         </Canvas>

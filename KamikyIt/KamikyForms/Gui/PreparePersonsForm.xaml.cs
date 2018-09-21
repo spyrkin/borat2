@@ -39,7 +39,6 @@ namespace KamikyForms.Gui
                 pl1.Add(pl);
                 allp.Add(pl);
             }
-            pl1 = pl1.OrderBy(o => o.followers).ToList();
             refreshDg();
         }
 

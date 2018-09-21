@@ -22,6 +22,7 @@ namespace ApiWrapper.Core
 		    this.interests = user.Interests;
 		    this.followers = user.FollowersCount == null ? 0 : (int)user.FollowersCount;
 		    this.Domain = user.Domain;
+		    this.Relation = user.Relation.ToString();
 
 		}
 
@@ -29,7 +30,10 @@ namespace ApiWrapper.Core
 		{
 		}
 
-		public string birthDate { get; set; }
+
+	    public string Relation { get; set; }
+
+	    public string birthDate { get; set; }
 
 		public Uri photoUrlMax { get; set; }
 
@@ -49,5 +53,37 @@ namespace ApiWrapper.Core
 		public string name { get; set; }
 
 		public string city { get; set; }
+
+	    public int statusCode
+	    {
+	        get
+	        {
+	            if (Relation == "InActiveSearch")
+	            {
+	                return 0;
+	            }
+	            if (Relation == "ItsComplex")
+	            {
+	                return 1;
+	            }
+	            if (Relation == "NotMarried")
+	            {
+	                return 2;
+	            }
+	            if (Relation == "HasFriend")
+	            {
+	                return 200;
+	            }
+	            if (Relation == "Engaged")
+	            {
+	                return 2000;
+	            }
+                return 100;
+
+	        }
+	    }
+
+
+
 	}
 }
