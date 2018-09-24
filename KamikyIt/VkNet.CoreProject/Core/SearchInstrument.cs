@@ -60,6 +60,10 @@ namespace ApiWrapper.Core
             List<string> aa = new List<string>();
             foreach (User p in peoples)
             {
+                if (p.Counters != null)
+                {
+                    
+                }
                 //Status = (VkNet.Enums.MaritalStatus)filter.FamilyState,
                 // GroupId = 22751485,
                 if (!aa.Contains(p.Relation.ToString()))
@@ -100,7 +104,7 @@ namespace ApiWrapper.Core
             //}
 
             List <PersonModel> persons = normGirls.Select(x => new PersonModel(x)).ToList();
-            persons = persons.OrderBy(o => o.statusCode).ThenBy(o=>Math.Abs(30 - o.followers)).ToList();
+            persons = persons.OrderBy(o => o.statusCode).ThenBy(o=>Math.Abs(250 - o.followers)).ToList();
             return persons;
         }
 
