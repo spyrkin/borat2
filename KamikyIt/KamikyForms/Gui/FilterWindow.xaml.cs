@@ -391,9 +391,9 @@ namespace KamikyForms.Gui
 
         public void UpdateUi()
         {
-            finded.Content = "Найдено : " + persons.Count;
-            inactiv.Content = "inActiveS : " + persons.Where(o=>o.Relation == "InActiveSearch").ToList().Count;
-            itsComplex.Content = "itCompex : " + persons.Where(o => o.Relation == "ItsComplex").ToList().Count;
+            finded.Content = "Найдено: " + persons.Count;
+            inactiv.Content = "inActiveS: " + persons.Where(o=>o.Relation == "InActiveSearch").ToList().Count;
+            itsComplex.Content = "itCompx : " + persons.Where(o => o.Relation == "ItsComplex").ToList().Count;
             chosen.Content = "Выбрано : " + choosenpersons.Count;
         }
 
