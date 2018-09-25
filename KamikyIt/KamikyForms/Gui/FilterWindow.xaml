@@ -571,6 +571,14 @@
                 itCompx : 0
             </Label>
 
+            <Label
+                x:Name="notMarried"
+                Canvas.Left="104"
+                Canvas.Top="620"
+                Foreground="AliceBlue">
+                notMarri : 0
+            </Label>
+
 
             <Label
                 x:Name="chosen"

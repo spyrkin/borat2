@@ -393,7 +393,8 @@ namespace KamikyForms.Gui
         {
             finded.Content = "Найдено: " + persons.Count;
             inactiv.Content = "inActiveS: " + persons.Where(o=>o.Relation == "InActiveSearch").ToList().Count;
-            itsComplex.Content = "itCompx : " + persons.Where(o => o.Relation == "ItsComplex").ToList().Count;
+            itsComplex.Content = "itCompx : " + persons.Where(o => o.Relation == "ItsComplex").ToList().Count; 
+            notMarried.Content = "notMarri : " + persons.Where(o => o.Relation == "NotMarried").ToList().Count;
             chosen.Content = "Выбрано : " + choosenpersons.Count;
         }
 
