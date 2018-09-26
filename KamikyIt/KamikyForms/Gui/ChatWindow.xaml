@@ -188,7 +188,13 @@
                 FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
                 FontSize="30"
                 FontWeight="Bold"
-                Foreground="Black" />
+                ToolTipOpening="tolTimerOpening"
+                Foreground="Black">
+                <Label.ToolTip>
+                    <Label x:Name="tolTimer"                FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                                           FontSize="30"></Label>
+                </Label.ToolTip>
+            </Label>
             <ListView
                 x:Name="rTaskList"
                 Canvas.Top="50"

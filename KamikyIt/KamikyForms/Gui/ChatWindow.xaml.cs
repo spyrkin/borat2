@@ -34,6 +34,7 @@ namespace Chat.Gui
         public KeyValuePair<long, string> CurrentUser;
         public TaskExecuter te = new TaskExecuter();
         public DateTime playedTime;
+        public DateTime StartUpTime; //время запуска приложения
         public StageEnum stage;
         public bool debug;
         public Hero hero;
@@ -49,6 +50,7 @@ namespace Chat.Gui
             this.hero = hero;
             InitializeComponent();
             stage = StageEnum.INIT;
+            StartUpTime = DateTime.Now;
         }
 
 
@@ -664,6 +666,13 @@ namespace Chat.Gui
             }
         }
 
-
+        //открытие Tooltip for window
+        private void tolTimerOpening(object sender, ToolTipEventArgs e)
+        {
+            DateTime time = DateTime.Now;
+            TimeSpan ts = time - StartUpTime;
+            string s = new DateTime(ts.Ticks).ToString("HH:mm:ss");
+            tolTimer.Content = s;
+        }
     }
 }
