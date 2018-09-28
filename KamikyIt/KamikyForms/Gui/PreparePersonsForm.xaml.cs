@@ -26,7 +26,7 @@ namespace KamikyForms.Gui
         public List<ApiWrapper.Core.PersonModel> pl2 = new List<PersonModel>();
         public List<ApiWrapper.Core.PersonModel> allp = new List<PersonModel>();
 
-        public ApiWrapper.Core.PersonModel ovPlayer = null;
+        public ApiWrapper.Core.PersonModel ovPerson = null;
 
         public readonly int MAX_COUNT = 20;
 
@@ -70,14 +70,6 @@ namespace KamikyForms.Gui
         //    refreshDg();
         //}
 
-        private void dataGridView2_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            pl1 = AddPlayer(pl1, ovPlayer);
-            pl2 = RemovePlayer(pl2, ovPlayer);
-
-
-            refreshDg();
-        }
 
         public List<PersonModel> RemovePlayer(List<PersonModel> p, PersonModel pl)
         {
@@ -122,6 +114,56 @@ namespace KamikyForms.Gui
         {
             int chosen = dataGridView1.SelectedItems.Count;
             s2.Content = "Выбрано: " + chosen;
+        }
+
+
+        //открытие VK
+        private void openVk(object sender, MouseButtonEventArgs e)
+        {
+            if (ovPerson == null)
+            {
+                return;
+            }
+            string profilePage = "https://vk.com/" + ovPerson.Domain;
+            System.Diagnostics.Process.Start(profilePage);
+        }
+
+        private void lvi_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ListViewItem lv = sender as ListViewItem;
+            ovPerson = lv.Content as PersonModel;
+        }
+
+
+        private void PreparePersonsForm_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.ToString() == "Return")
+            {
+                if (ovPerson == null)
+                {
+                    return;
+                }
+                //проверяем что есть
+                bool del = false;
+                foreach (var ps in dataGridView1.SelectedItems)
+                {
+                    PersonModel pm = ps as PersonModel;
+                    if (pm.id == ovPerson.id)
+                    {
+                        del = true;
+                    }
+                }
+                if (del)
+                {
+                    dataGridView1.SelectedItems.Remove(ovPerson);
+
+                }
+                else
+                {
+                    dataGridView1.SelectedItems.Add(ovPerson);
+                }
+                dataGridView1.Items.Refresh();
+            }
         }
     }
 }

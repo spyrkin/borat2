@@ -10,6 +10,7 @@
     Height="800"
     Background="White"
     ResizeMode="NoResize"
+                      KeyDown="PreparePersonsForm_OnKeyDown"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <controls:MetroWindow.Resources>
@@ -137,6 +138,22 @@
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 SelectionMode="Multiple"
                 Style="{StaticResource clearListView}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseEnter" Handler="lvi_MouseEnter" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding FlagSaved}" Value="true">
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="Background" Value="LightGray" />
+                        </DataTrigger>
+
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="Background" Value="Gray" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
 
                 <GridView ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
@@ -144,7 +161,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Height="220">
-                                    <Image Stretch="None" Margin="0 0 0 0" x:Name="profileImage">
+                                    <Image             MouseRightButtonDown="openVk"
+                                                       Stretch="None" Margin="0 0 0 0" x:Name="profileImage">
                                         <Image.Source>
                                             <BitmapImage  UriSource="{Binding Path = photoUrl200, Mode=TwoWay}" />
                                         </Image.Source>
