@@ -114,6 +114,14 @@ namespace KamikyForms.Gui
         {
             int chosen = dataGridView1.SelectedItems.Count;
             s2.Content = "Выбрано: " + chosen;
+            if (chosen == 20)
+            {
+                foreach (PersonModel p in dataGridView1.SelectedItems)
+                {
+                    pl2.Add(p);
+                }
+                DialogResult = true;
+            }
         }
 
 

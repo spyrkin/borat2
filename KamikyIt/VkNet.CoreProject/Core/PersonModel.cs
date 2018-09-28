@@ -83,7 +83,32 @@ namespace ApiWrapper.Core
 	        }
 	    }
 
+        //используется на форме выбора телочки для сайта
+	    public string RelationColor
+	    {
+	        get
+	        {
+	            if (Relation == "InActiveSearch")
+	            {
+	                return "Green";
+	            }
+	            if (Relation == "ItsComplex")
+	            {
+	                return "Blue";
+	            }
+
+	            if (Relation == "NotMarried")
+	            {
+	                return "CadetBlue";
+	            }
+
+                return "Black";
+	        }
+	    }
 
 
-	}
+
+
+
+    }
 }
