@@ -37,6 +37,7 @@
             Canvas.Top="0"
             Margin="0,0,0,0"
             Padding="5,0"
+            MouseDown="goodGirl"
             FontSize="8">
             Имя
         </Label>

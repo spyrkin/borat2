@@ -35,6 +35,7 @@ namespace Chat.Gui
         public TaskExecuter te = new TaskExecuter();
         public DateTime playedTime;
         public DateTime StartUpTime; //время запуска приложения
+        public Statistic stat;
         public StageEnum stage;
         public bool debug;
         public Hero hero;
@@ -51,6 +52,7 @@ namespace Chat.Gui
             InitializeComponent();
             stage = StageEnum.INIT;
             StartUpTime = DateTime.Now;
+            stat = new Statistic(this);
         }
 
 
@@ -481,6 +483,7 @@ namespace Chat.Gui
             var res = MessageBox.Show("Вы действительно хотите выйти?", "Предупреждение", MessageBoxButton.YesNo, MessageBoxImage.Error);
             if (res == MessageBoxResult.Yes)
             {
+                stat.Write();
                 e.Cancel = false;
             }
             else

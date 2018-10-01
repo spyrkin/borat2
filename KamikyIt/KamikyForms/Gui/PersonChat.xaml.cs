@@ -29,7 +29,7 @@ namespace Chat.Gui
 
         private ContextMenu contextMenuDataGrid = new ContextMenu();
         public SmartBot sm;
-
+        public bool _goodTalk; //с ней мы начали общение
 
         //настройки PersonChat
         public int person_height = 232;
@@ -927,6 +927,13 @@ namespace Chat.Gui
                 return;
             }
             botNext.ToolTip = sm.currentTheme.Name;
+        }
+
+        private void goodGirl(object sender, MouseButtonEventArgs e)
+        {
+            _goodTalk = !_goodTalk;
+            profileName.Foreground = _goodTalk ? Brushes.Green : Brushes.Black;
+
         }
     }
 }

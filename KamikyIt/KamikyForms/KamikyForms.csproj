@@ -79,6 +79,7 @@
     <Compile Include="Core\Logger.cs" />
     <Compile Include="Core\Render.cs" />
     <Compile Include="Core\StageEnum.cs" />
+    <Compile Include="Core\Statistic.cs" />
     <Compile Include="Core\TaskEnum.cs" />
     <Compile Include="Core\TaskExecuter.cs" />
     <Compile Include="Core\Theme.cs" />
