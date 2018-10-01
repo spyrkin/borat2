@@ -29,7 +29,8 @@ namespace Chat.Gui
 
         private ContextMenu contextMenuDataGrid = new ContextMenu();
         public SmartBot sm;
-        public bool _goodTalk; //с ней мы начали общение
+        public bool _goodTalk;      //с ней мы начали общение
+        public string startUpFraze; //фраза с которой начали общение
 
         //настройки PersonChat
         public int person_height = 232;

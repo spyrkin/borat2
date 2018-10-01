@@ -294,6 +294,12 @@ namespace Chat.Gui
                 t.isStopped = false;
                 t.personName = CurrentUser.Value;
 
+                if (isStartUp)
+                {
+                    PersonChat pc = personWindows[t.personChatId];
+                    pc.startUpFraze = m;
+                }
+
                 string fullname = person.name;
                 string[] words = fullname.Split(new string[] { " " }, StringSplitOptions.None);
                 string name = words[0];

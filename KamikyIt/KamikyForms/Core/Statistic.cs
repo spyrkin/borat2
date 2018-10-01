@@ -10,6 +10,7 @@ namespace KamikyForms.Core
     public class Statistic
     {
         public ChatWindow cw;
+        public Dictionary<string, List<StatisticItem>> info = new Dictionary<string, List<StatisticItem>>();
 
         public Statistic(ChatWindow chatWindow)
         {
@@ -25,6 +26,15 @@ namespace KamikyForms.Core
                 return;
             }
 
+
+        }
+
+        public class StatisticItem
+        {
+            public string m;
+            public int current;
+            public int all;
+            public double percent;
 
         }
     }
