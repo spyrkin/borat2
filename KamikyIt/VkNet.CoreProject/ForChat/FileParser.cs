@@ -290,5 +290,26 @@ namespace VkNet.Examples.ForChat
             fs.Close();
             return mlist;
         }
+
+        public static List<string> LoadStatData(string name)
+        {
+            List<string> mlist = new List<string>();
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            root_path = root_path + "Stat\\" + name + ".txt";
+            StreamReader fs = new StreamReader(root_path);
+            string s = "";
+            while (s != null)
+            {
+                s = fs.ReadLine();
+                if (!String.IsNullOrEmpty(s))
+                {
+                    mlist.Add(s);
+                }
+            }
+            fs.Close();
+            return mlist;
+        }
     }
 }
