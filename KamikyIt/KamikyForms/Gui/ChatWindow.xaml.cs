@@ -476,6 +476,7 @@ namespace Chat.Gui
 
         private void onClosingEvent(object sender, CancelEventArgs e)
         {
+            //stat.Write();
             if (stage != StageEnum.LAUCHED)
             {
                 e.Cancel = false;

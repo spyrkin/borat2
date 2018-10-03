@@ -28,6 +28,64 @@ namespace KamikyForms.Core
 
         }
 
+        public void change()
+        {
+
+            foreach (KeyValuePair<string, PersonChat> kvp in cw.personWindows)
+            {
+                PersonChat chat = kvp.Value;
+                if (chat.Person != null)
+                {
+                    changeStat(chat, "status");
+                    changeStat(chat, "follower");
+                    changeStat(chat, "startup");
+
+
+                }
+            }
+
+        }
+
+        private void changeStat(PersonChat ch, string _type)
+        {
+            List<StatisticItem> mlist = info[_type];
+            int increment = ch._goodTalk == true ? 1 : 0;
+            string mess = "";
+            if (_type == "status")
+            {
+                mess = ch.Person.Relation;
+            }
+            if (_type == "follower")
+            {
+                mess = ch.Person.followers.ToString();
+            }
+            if (_type == "startup")
+            {
+                mess = ch.startUpFraze;
+            }
+            else
+            {
+                return;
+            }
+            StatisticItem st = mlist.FirstOrDefault(o => o.m == mess);
+            if (st == null)
+            {
+                StatisticItem st_new = new StatisticItem();
+                st_new.m = mess;
+                st_new.current = increment;
+                st_new.all = 1;
+                st_new.percent = increment * 100 / 1;
+                info[_type].Add(st_new);
+            }
+            else
+            {
+                st.current = st.current + increment;
+                st.all = st.all + 1;
+                st.percent = st.current * 100 / st.all;
+            }
+
+        }
+
         private void load(string name)
         {
             List<string> mlist = FileParser.LoadStatData(name);
@@ -50,6 +108,7 @@ namespace KamikyForms.Core
         //записываем данные
         public void Write()
         {
+            change();
             if (cw.debug)
             {
                 return;
