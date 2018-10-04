@@ -130,6 +130,7 @@ namespace VkNet.Examples.ForChat
             File.AppendAllText(path, "\r\n" + message1 + "\\"+ message2);
         }
 
+
         public static List<String> getAdvise(string filename)
         {
             List<String> advices = new List<string>();
@@ -310,6 +311,16 @@ namespace VkNet.Examples.ForChat
             }
             fs.Close();
             return mlist;
+        }
+
+        public static void saveStat(string name, string data)
+        {
+            string path = Directory.GetCurrentDirectory();
+            int index = path.IndexOf("Kami");
+            string root_path = path.Substring(0, index);
+            root_path = root_path + "Stat\\" + name + ".txt";
+            File.WriteAllText(root_path, String.Join(" ", data));
+
         }
     }
 }

@@ -25,7 +25,7 @@ namespace KamikyForms.Core
             load("status");
             load("follower");
             load("startup");
-
+            //Write();
         }
 
         public void change()
@@ -39,8 +39,6 @@ namespace KamikyForms.Core
                     changeStat(chat, "status");
                     changeStat(chat, "follower");
                     changeStat(chat, "startup");
-
-
                 }
             }
 
@@ -108,10 +106,24 @@ namespace KamikyForms.Core
         //записываем данные
         public void Write()
         {
-            change();
             if (cw.debug)
             {
                 return;
+            }
+            change();
+            foreach (KeyValuePair<string, List<StatisticItem>> kvp in info)
+            {
+                string key = kvp.Key;
+                List<StatisticItem> value = kvp.Value;
+                value = value.OrderByDescending(o => o.percent).ToList();
+                string data = "";
+                foreach (StatisticItem st in value)
+                {
+                    string per = st.percent.ToString("##.00");
+                    string s = st.m + "@" + st.current + "@" + st.all + "@" + per;
+                    data = data + s + "\n";
+                }
+                FileParser.saveStat(key, data);
             }
 
 
