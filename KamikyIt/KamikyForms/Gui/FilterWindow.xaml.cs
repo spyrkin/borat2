@@ -400,6 +400,10 @@ namespace KamikyForms.Gui
 
         private void onApply(object sender, RoutedEventArgs e)
         {
+            foreach (PersonModel pc in choosenpersons)
+            {
+                pc.AgeStr = minage.Text + "-" + maxage.Text;
+            }
             DialogResult = true;
         }
     }

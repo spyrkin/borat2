@@ -5,7 +5,8 @@ namespace ApiWrapper.Core
 {
 	public class PersonModel
 	{
-		internal PersonModel(User user)
+
+	    internal PersonModel(User user)
 		{
 			this.id = user.Id;
 
@@ -83,8 +84,36 @@ namespace ApiWrapper.Core
 	        }
 	    }
 
+	    public string followerStr
+	    {
+	        get
+	        {
+	            if (followers < 50)
+	            {
+	                return "0-50";
+	            }
+	            if (followers >= 50 && followers< 100)
+	            {
+	                return "50-100";
+	            }
+	            if (followers >= 100 && followers < 150)
+	            {
+	                return "100-150";
+	            }
+	            if (followers >= 150 && followers < 200)
+	            {
+	                return "150-200";
+	            }
+                return ">200";
+	        }
+	    }
+
+	    public string AgeStr;
+
+
+
         //используется на форме выбора телочки для сайта
-	    public string RelationColor
+        public string RelationColor
 	    {
 	        get
 	        {

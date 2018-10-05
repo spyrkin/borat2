@@ -25,6 +25,8 @@ namespace KamikyForms.Core
             load("status");
             load("follower");
             load("startup");
+            load("age");
+
             //Write();
         }
 
@@ -39,6 +41,8 @@ namespace KamikyForms.Core
                     changeStat(chat, "status");
                     changeStat(chat, "follower");
                     changeStat(chat, "startup");
+                    changeStat(chat, "age");
+
                 }
             }
 
@@ -55,11 +59,15 @@ namespace KamikyForms.Core
             }
             if (_type == "follower")
             {
-                mess = ch.Person.followers.ToString();
+                mess = ch.Person.followerStr;
             }
             if (_type == "startup")
             {
                 mess = ch.startUpFraze;
+            }
+            if (_type == "age")
+            {
+                mess = ch.Person.AgeStr;
             }
             else
             {
