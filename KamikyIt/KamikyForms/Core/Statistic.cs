@@ -69,10 +69,6 @@ namespace KamikyForms.Core
             {
                 mess = ch.Person.AgeStr;
             }
-            else
-            {
-                return;
-            }
             StatisticItem st = mlist.FirstOrDefault(o => o.m == mess);
             if (st == null)
             {
