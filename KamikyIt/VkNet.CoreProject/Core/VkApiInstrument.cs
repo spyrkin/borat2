@@ -27,18 +27,29 @@ namespace VkNet.Examples.Core
 		{
 			api = new VkNet.VkApi();
 
-			api.Authorize(new ApiAuthParams
-			{
-				ApplicationId = 6394527,
-				Login = e.Key,
-				Password = e.Value,
-				Settings = Settings.All,
-				TwoFactorAuthorization = () =>
-				{
-					Console.WriteLine("Enter Code:");
-					return Console.ReadLine();
-				}
-			});
+
+            //6884639
+            var apiparam = new ApiAuthParams
+		    {
+		        ApplicationId = 6394527,
+		        Login = e.Key,
+		        Password = e.Value,
+		        Settings = Settings.All,
+		        TwoFactorAuthorization = () =>
+		        {
+		            Console.WriteLine("Enter Code:");
+		            return Console.ReadLine();
+		        }
+		    };
+
+		    try
+		    {
+		        api.Authorize(apiparam);
+		    }
+            catch(System.Exception ex)
+		    {
+		        
+		    }
 		}
 
 		private static VkApi api;
