@@ -12,6 +12,7 @@ using ApiWrapper.Core;
 using Chat.Core;
 using MahApps.Metro.Controls;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Documents;
 using KamikyForms.Bot;
 using KamikyForms.Core;
@@ -643,22 +644,80 @@ namespace Chat.Gui
         private void sendAllMessages(object sender, RoutedEventArgs e)
         {
 
-            List<PersonChat> resevers = new List<PersonChat>();
-            foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
-            {
-                PersonChat pc = kvp.Value;
-                if (pc.selected && !pc.banned)
-                {
-                    resevers.Add(pc);
-                }
-            }
-            if (resevers.Count == 0)
+
+            //открыть всем в VK
+            //List<PersonChat> resevers = new List<PersonChat>();
+            //foreach (KeyValuePair<string, PersonChat> kvp in personWindows)
+            //{
+            //    PersonChat pc = kvp.Value;
+            //    if (!pc.banned)
+            //    {
+            //        resevers.Add(pc);
+            //    }
+            //}
+            //if (resevers.Count == 0)
+            //{
+            //    return;
+            //}\
+
+            if (stage != StageEnum.CHOSEN)
             {
                 return;
             }
+
+
+
+            string startMessage = "";
+            OpenPhrase phrase = new OpenPhrase(debug);
+            phrase.ShowDialog();
+            startMessage = phrase.startMessage;
+            Clipboard.SetText(startMessage);
+
+            //SendAll(startMessage, true);
+            playedTime = DateTime.Now;
+            stage = StageEnum.LAUCHED;
+
+            //баним
+            List<String> bans = new List<string>();
+            foreach (PersonModel p in Persons)
+            {
+                string domain = p.Domain;
+                bans.Add(domain);
+            }
+            if (debug == false)
+            {
+                FileParser.setBanList(bans);
+            }
+
+            //открываем vkокна
+            int count = bans.Count;
+            Task.Factory.StartNew(() =>
+            {
+                int i = 0;
+                while (i<count)
+                {
+                    try
+                    {
+                        string domain = bans[i];
+                        string url = "https://vk.com/" + domain;
+                        System.Diagnostics.Process.Start(url);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    Thread.Sleep(2000);
+                    i++;
+                }
+
+            });
+
+
+
+
             //List<PersonChat> resevers = new List<PersonChat> { this };
-            SimpleMessageBox box = new SimpleMessageBox(this, resevers);
-            bool? res = box.ShowDialog();
+            //SimpleMessageBox box = new SimpleMessageBox(this, resevers);
+            //bool? res = box.ShowDialog();
         }
 
         private void cleanSelection(object sender, RoutedEventArgs e)
