@@ -43,19 +43,19 @@ namespace ApiWrapper.Core
 
         public static List<PersonModel> getPersons(SearchFilter filter)
         {
+
             var peoples = api.Users.Search(new UserSearchParams()
             {
+                Sort = (VkNet.Enums.UserSort)filter.profileSort,
+                HasPhoto = filter.HasPhoto,
+                Online = filter.IsOnline,
                 AgeFrom = (ushort)filter.MinAge,
                 AgeTo = (ushort)filter.MaxAge,
                 City = filter.CityId,
                 Country = filter.CountryId,
-                HasPhoto = filter.HasPhoto,
-                Online = filter.IsOnline,
-                Sort = (VkNet.Enums.UserSort)filter.profileSort,
-                Sex = (VkNet.Enums.Sex)filter.Sex,             
-                Offset = (uint?)filter.Offcet,
-                Count = 1000,
-                Fields = ProfileFields.All,
+                Sex = (VkNet.Enums.Sex)filter.Sex,
+                Count = 700,
+                Fields = ProfileFields.All
             });
             List<string> aa = new List<string>();
             foreach (User p in peoples)

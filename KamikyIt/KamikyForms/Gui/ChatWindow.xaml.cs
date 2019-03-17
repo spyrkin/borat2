@@ -276,7 +276,7 @@ namespace Chat.Gui
                     Thread.Sleep(1);
                     Random rand = new Random(unchecked((int)(DateTime.Now.Ticks)));
                     double r = rand.NextDouble();
-                    if (r > 0.5)
+                    if (r > 2)
                     {
                         m = "Привет, $name, скучно на работе сидеть. Давай пообщаемся 😈";
 
