@@ -679,14 +679,16 @@ namespace Chat.Gui
 
             //баним
             List<String> bans = new List<string>();
+            List<String> bansId = new List<string>();
             foreach (PersonModel p in Persons)
             {
                 string domain = p.Domain;
                 bans.Add(domain);
+                bansId.Add(p.id.ToString());
             }
             if (debug == false)
             {
-                FileParser.setBanList(bans);
+                FileParser.setBanList(bansId);
             }
 
             //открываем vkокна

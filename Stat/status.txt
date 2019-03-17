@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-InActiveSearch@0@4@,00
-ItsComplex@0@2@,00
-NotMarried@0@10@,00
-Unknown@0@4@,00
-=======
 InActiveSearch@2@17@11,00
 Unknown@29@461@6,00
 NotMarried@1@29@3,00
 ItsComplex@0@4@,00
 Amorous@0@3@,00
 HasFriend@0@1@,00
->>>>>>> 9a11317e83b5ad98e66dd9424f23e32c29966dfe

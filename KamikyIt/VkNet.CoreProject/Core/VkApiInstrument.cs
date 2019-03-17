@@ -27,7 +27,6 @@ namespace VkNet.Examples.Core
 		{
 			api = new VkNet.VkApi();
 
-<<<<<<< HEAD
 			api.Authorize(new ApiAuthParams
 			{
 				ApplicationId = 6394527,
@@ -40,31 +39,8 @@ namespace VkNet.Examples.Core
 					return Console.ReadLine();
 				}
 			});
-=======
 
-            //6884639
-            var apiparam = new ApiAuthParams
-		    {
-		        ApplicationId = 6394527,
-		        Login = e.Key,
-		        Password = e.Value,
-		        Settings = Settings.All,
-		        TwoFactorAuthorization = () =>
-		        {
-		            Console.WriteLine("Enter Code:");
-		            return Console.ReadLine();
-		        }
-		    };
 
-		    try
-		    {
-		        api.Authorize(apiparam);
-		    }
-            catch(System.Exception ex)
-		    {
-		        
-		    }
->>>>>>> 9a11317e83b5ad98e66dd9424f23e32c29966dfe
 		}
 
 		private static VkApi api;
