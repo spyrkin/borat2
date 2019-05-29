@@ -675,7 +675,7 @@ namespace Chat.Gui
 
             //SendAll(startMessage, true);
             playedTime = DateTime.Now;
-            stage = StageEnum.LAUCHED;
+            //stage = StageEnum.LAUCHED;
 
             //баним
             List<String> bans = new List<string>();
@@ -688,7 +688,7 @@ namespace Chat.Gui
             }
             if (debug == false)
             {
-                FileParser.setBanList(bansId);
+             //   FileParser.setBanList(bansId);
             }
 
             //открываем vkокна
@@ -708,7 +708,10 @@ namespace Chat.Gui
                     {
                         MessageBox.Show(ex.Message);
                     }
-                    Thread.Sleep(2000);
+                    int stable = 10 * 1000;
+                    Random rnd = new Random();
+                    int dice = rnd.Next(1, 1500);
+                    Thread.Sleep(stable + dice);
                     i++;
                 }
 
