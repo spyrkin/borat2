@@ -7,6 +7,9 @@
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:iconPacks1="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:Chat.Gui"
+    xmlns:local2="clr-namespace:KamikyForms.Gui"
+
+    
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="1365"
@@ -61,9 +64,9 @@
             <local:PersonChat x:Name="person19" Visibility="Hidden" />
             <local:PersonChat x:Name="person20" Visibility="Hidden" />
 
-
-
+            <local2:SmartBot2Window Width="1084" Height="711"></local2:SmartBot2Window>
         </Canvas>
+        
         <Canvas
             x:Name="gridCanvas"
             Width="270"

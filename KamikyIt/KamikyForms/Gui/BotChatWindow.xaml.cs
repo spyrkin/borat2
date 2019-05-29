@@ -24,13 +24,13 @@ namespace KamikyForms.Gui
         public Bot.SmartBot sm;
         public Core.Theme theme;
         public string name;
-        public SmartBotWindow win;
+        public SmartBot2Window win;
         public BotChatWindow()
         {
             InitializeComponent();
         }
 
-        public void wireData(SmartBotWindow win, Bot.SmartBot sm, string name)
+        public void wireData(SmartBot2Window win, Bot.SmartBot sm, string name)
         {
             this.sm = sm;
             this.name = name;

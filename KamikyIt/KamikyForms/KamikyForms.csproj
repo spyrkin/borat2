@@ -114,8 +114,8 @@
     <Compile Include="Gui\SimpleMessageBox.xaml.cs">
       <DependentUpon>SimpleMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Gui\SmartBotWindow.xaml.cs">
-      <DependentUpon>SmartBotWindow.xaml</DependentUpon>
+    <Compile Include="Gui\SmartBot2Window.xaml.cs">
+      <DependentUpon>SmartBot2Window.xaml</DependentUpon>
     </Compile>
     <Compile Include="IntervalControl.xaml.cs">
       <DependentUpon>IntervalControl.xaml</DependentUpon>
@@ -172,7 +172,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Gui\SmartBotWindow.xaml">
+    <Page Include="Gui\SmartBot2Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

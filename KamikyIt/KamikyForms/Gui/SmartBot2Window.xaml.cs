@@ -11,36 +11,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Chat.Gui;
 using KamikyForms.Bot;
-using MahApps.Metro.Controls;
-using Theme = KamikyForms.Core.Theme;
 
 namespace KamikyForms.Gui
 {
     /// <summary>
-    /// Логика взаимодействия для SmartBotWindow.xaml
+    /// Логика взаимодействия для SmartBot2Window.xaml
     /// </summary>
-    public partial class SmartBotWindow : Canvas
+    public partial class SmartBot2Window : Canvas
     {
-        public Chat.Gui.PersonChat personChat;
         public SmartBot sm;
         public List<BotChatWindow> chats = new List<BotChatWindow>();
-        public Core.Theme currentTheme;
-        public int currentI;
 
-        public SmartBotWindow(Chat.Gui.PersonChat personChat)
+        public SmartBot2Window()
         {
-            this.personChat = personChat;
-            sm = personChat.sm;
             InitializeComponent();
-            if (personChat.Person == null)
-            {
-                return;
-            }
-            //сообщения
+            sm = new SmartBot(null);
+            loaded();
+        }
 
-
+        public void loaded()
+        {
             bc1.wireData(this, sm, "общее");
             bc2.wireData(this, sm, "путешествия");
             bc3.wireData(this, sm, "детство");
@@ -57,37 +48,8 @@ namespace KamikyForms.Gui
             chats.Add(bc6);
             chats.Add(bc7);
             chats.Add(bc8);
-
-
-
-
+        
         }
-
-
-        //отправка сообщений через бота
-        private void onSubmit(object sender, RoutedEventArgs e)
-        {
-            string msg = textblock.Text;
-
-        }
-
-        #region события гриды чата персоны
-        private void dataGridView1_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void dataGridView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-
-        private void Datagrid_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void lvi_MouseEnter(object sender, MouseEventArgs e)
-        {
-        }
-        #endregion
 
         private void openTooltip(object sender, ToolTipEventArgs e)
         {
@@ -105,12 +67,18 @@ namespace KamikyForms.Gui
             }
         }
 
-        public void setMessage(string message, int i,  Core.Theme theme)
+        public void setMessage(string message, int i, Core.Theme theme)
         {
             //textblock.Text = message;
             //pNumber.Text = i.ToString();
             //currentI = i;
             //currentTheme = theme;
+
+        }
+
+        private void onSubmit(object sender, RoutedEventArgs e)
+        {
+            
 
         }
     }
