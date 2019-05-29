@@ -11,16 +11,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="1365"
     Height="750"
+    Closing="onClosingEvent"
     Icon="/Resources/vk_logo.png"
     Left="0"
+    Loaded="Chat_Loaded"
     PreviewKeyDown="nPreviewKeyDown"
     PreviewKeyUp="mainForm_PreviewKeyUp"
-    Loaded="Chat_Loaded"
     ResizeMode="NoResize"
     Top="0"
     WindowStartupLocation="CenterScreen"
     WindowTitleBrush="#4c75a3"
-    Closing="onClosingEvent"
     mc:Ignorable="d">
 
     <mah:MetroWindow.Resources>
@@ -39,83 +39,27 @@
     </mah:MetroWindow.Resources>
     <Grid HorizontalAlignment="Left">
         <Canvas x:Name="mainCanvas" Background="#FFE8E8E8">
-            <local:PersonChat x:Name="person1" />
-            <local:PersonChat x:Name="person2" />
-            <local:PersonChat x:Name="person3" />
-            <local:PersonChat x:Name="person4" />
-            <local:PersonChat x:Name="person5" />
-            <local:PersonChat x:Name="person6" />
-            <local:PersonChat x:Name="person7" />
-            <local:PersonChat x:Name="person8" />
-            <local:PersonChat x:Name="person9" />
-            <local:PersonChat x:Name="person10" />
-            <local:PersonChat x:Name="person11" />
-            <local:PersonChat x:Name="person12" />
-            <local:PersonChat x:Name="person13" />
-            <local:PersonChat x:Name="person14" />
+            <local:PersonChat x:Name="person1" Visibility="Hidden" />
+            <local:PersonChat x:Name="person2" Visibility="Hidden" />
+            <local:PersonChat x:Name="person3" Visibility="Hidden" />
+            <local:PersonChat x:Name="person4" Visibility="Hidden" />
+            <local:PersonChat x:Name="person5" Visibility="Hidden" />
+            <local:PersonChat x:Name="person6" Visibility="Hidden" />
+            <local:PersonChat x:Name="person7" Visibility="Hidden" />
+            <local:PersonChat x:Name="person8" Visibility="Hidden" />
+            <local:PersonChat x:Name="person9" Visibility="Hidden" />
+            <local:PersonChat x:Name="person10" Visibility="Hidden" />
+            <local:PersonChat x:Name="person11" Visibility="Hidden" />
+            <local:PersonChat x:Name="person12" Visibility="Hidden" />
+            <local:PersonChat x:Name="person13" Visibility="Hidden" />
+            <local:PersonChat x:Name="person14" Visibility="Hidden" />
 
-            <local:PersonChat x:Name="person15" />
-            <local:PersonChat x:Name="person16" />
-            <local:PersonChat x:Name="person17" />
-            <local:PersonChat x:Name="person18" />
-            <local:PersonChat x:Name="person19" />
-            <local:PersonChat x:Name="person20" />
-            <ListView
-                x:Name="console"
-                Canvas.Top="10000"
-                Width="138"
-                Height="280"
-                Margin="5,5,0,0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Top"
-                FontSize="12">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListViewItem}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding FlagSaved}" Value="true">
-                                <Setter Property="Foreground" Value="Black" />
-                                <Setter Property="Background" Value="LightGray" />
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding FlagUpdate}" Value="true">
-                                <Setter Property="Foreground" Value="Black" />
-                                <Setter Property="Background" Value="Gray" />
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding isError}" Value="true">
-                                <Setter Property="Foreground" Value="Red" />
-                                <Setter Property="Background" Value="White" />
-                            </DataTrigger>
-
-                            <DataTrigger Binding="{Binding isBallParse}" Value="true">
-                                <Setter Property="Foreground" Value="DarkGreen" />
-                                <Setter Property="Background" Value="White" />
-                            </DataTrigger>
-
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Foreground" Value="White" />
-                                <Setter Property="Background" Value="Blue" />
-                            </Trigger>
-                        </Style.Triggers>
-
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn
-                            Width="40"
-                            DisplayMemberBinding="{Binding TimeString}"
-                            Header="TIME" />
-                        <GridViewColumn
-                            Width="400"
-                            DisplayMemberBinding="{Binding message}"
-                            Header="MESSAGE" />
-
-
-                    </GridView>
-                </ListView.View>
-
-            </ListView>
+            <local:PersonChat x:Name="person15" Visibility="Hidden" />
+            <local:PersonChat x:Name="person16" Visibility="Hidden" />
+            <local:PersonChat x:Name="person17" Visibility="Hidden" />
+            <local:PersonChat x:Name="person18" Visibility="Hidden" />
+            <local:PersonChat x:Name="person19" Visibility="Hidden" />
+            <local:PersonChat x:Name="person20" Visibility="Hidden" />
 
 
 
@@ -153,7 +97,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Background="White"
-                Click="onPlay"
+                Click="sendAllMessages"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                 ToolTip="Начать диалог">
                 <iconPacks1:PackIconModern
@@ -188,22 +132,23 @@
                 FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
                 FontSize="30"
                 FontWeight="Bold"
-                ToolTipOpening="tolTimerOpening"
-                Foreground="Black">
+                Foreground="Black"
+                ToolTipOpening="tolTimerOpening">
                 <Label.ToolTip>
-                    <Label x:Name="tolTimer"                FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
-                                           FontSize="30"></Label>
+                    <Label
+                        x:Name="tolTimer"
+                        FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
+                        FontSize="30" />
                 </Label.ToolTip>
             </Label>
             <ListView
                 x:Name="rTaskList"
-                Canvas.Top="50"
+                Canvas.Top="55"
                 Width="260"
-                Height="500"
-                Margin="5,5,0,0"
+                Height="656"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
-                FontSize="12">
+                FontSize="12" Canvas.Left="5">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
@@ -278,7 +223,8 @@
                 Background="White"
                 Click="onUpdateAll"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Обновить все">
+                ToolTip="Обновить все"
+                Visibility="Hidden">
                 <iconPacks1:PackIconModern
                     x:Name="iconKindUpdateAll"
                     Width="28"
@@ -299,12 +245,13 @@
                 Background="White"
                 Click="getNextChatToAnswer"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Перейти к следующему чату">
+                ToolTip="Перейти к следующему чату"
+                Visibility="Hidden">
                 <iconPacks1:PackIconModern
                     x:Name="PageAnswered"
                     Width="28"
                     Height="28"
-                    Kind="Page0"/>
+                    Kind="Page0" />
 
             </Button>
 
@@ -320,11 +267,12 @@
                 Background="White"
                 Click="sendAllMessages"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Написать всем выделенным">
+                ToolTip="Написать всем выделенным"
+                Visibility="Hidden">
                 <iconPacks1:PackIconModern
                     Width="28"
                     Height="28"
-                    Kind="PageMultiple"/>
+                    Kind="PageMultiple" />
 
             </Button>
 
@@ -340,11 +288,12 @@
                 Background="White"
                 Click="cleanSelection"
                 Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
-                ToolTip="Очистить все выделенные">
+                ToolTip="Очистить все выделенные"
+                Visibility="Hidden">
                 <iconPacks1:PackIconModern
                     Width="28"
                     Height="28"
-                    Kind="Clean"/>
+                    Kind="Clean" />
 
             </Button>
         </Canvas>

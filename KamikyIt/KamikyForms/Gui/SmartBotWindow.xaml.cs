@@ -21,7 +21,7 @@ namespace KamikyForms.Gui
     /// <summary>
     /// Логика взаимодействия для SmartBotWindow.xaml
     /// </summary>
-    public partial class SmartBotWindow : MetroWindow
+    public partial class SmartBotWindow : Canvas
     {
         public Chat.Gui.PersonChat personChat;
         public SmartBot sm;
@@ -39,9 +39,6 @@ namespace KamikyForms.Gui
                 return;
             }
             //сообщения
-            pName.Content = personChat.Person.name;
-            datagrid.ItemsSource = personChat.chatMessages;
-            datagrid.Items.Refresh();
 
 
             bc1.wireData(this, sm, "общее");
@@ -71,29 +68,7 @@ namespace KamikyForms.Gui
         private void onSubmit(object sender, RoutedEventArgs e)
         {
             string msg = textblock.Text;
-            if (String.IsNullOrEmpty(msg))
-            {
-                Close();
-                return;
-            }
-            string pText = pNumber.Text;
-            if (!String.IsNullOrEmpty(pText))
-            {
-                int k = 0;
-                foreach (Theme.ThemeItem ti in currentTheme.messages)
-                {
-                    if (k == currentI)
-                    {
-                        ti.isExpired = true;
-                        break;
-                    }
-                    k++;
-                }
-                currentTheme.expired.Add(currentI);
-                personChat.sm.currentTheme = currentTheme;
-            }
-            personChat.writeMyMessage(msg);
-            Close();
+
         }
 
         #region события гриды чата персоны
@@ -132,10 +107,10 @@ namespace KamikyForms.Gui
 
         public void setMessage(string message, int i,  Core.Theme theme)
         {
-            textblock.Text = message;
-            pNumber.Text = i.ToString();
-            currentI = i;
-            currentTheme = theme;
+            //textblock.Text = message;
+            //pNumber.Text = i.ToString();
+            //currentI = i;
+            //currentTheme = theme;
 
         }
     }

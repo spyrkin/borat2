@@ -218,9 +218,9 @@ namespace Chat.Gui
                 }
                 pc.wire(this);
             }
-            Canvas.SetLeft(console, xSumm + hh);
-            Canvas.SetTop(console, ySumm);
-            console.Width = hh - 5;
+            //Canvas.SetLeft(console, xSumm + hh);
+            //Canvas.SetTop(console, ySumm);
+            //console.Width = hh - 5;
         }
 
 
@@ -248,12 +248,12 @@ namespace Chat.Gui
             consoleMsg.Add(message);
             Render.DoAction(() =>
             {
-                console.ItemsSource = consoleMsg;
-                console.Items.Refresh();
-                if (consoleMsg.Count > 0)
-                {
-                    console.ScrollIntoView(consoleMsg.Last());
-                }
+                //console.ItemsSource = consoleMsg;
+                //console.Items.Refresh();
+                //if (consoleMsg.Count > 0)
+                //{
+                //    console.ScrollIntoView(consoleMsg.Last());
+                //}
             });
             
         }
@@ -409,7 +409,7 @@ namespace Chat.Gui
         {
 
             CurrentUser = ChatCoreHelper.GetCurrentUserInfo();
-            console.ItemsSource = consoleMsg;
+            //console.ItemsSource = consoleMsg;
             resizeItems();
             timerSync = new DispatcherTimer();
             timerSync.Interval = System.TimeSpan.FromMilliseconds(1000);
@@ -432,8 +432,6 @@ namespace Chat.Gui
             {
                 return;
             }
-
-
 
             string startMessage = "";
             OpenPhrase phrase = new OpenPhrase(debug);
@@ -462,10 +460,8 @@ namespace Chat.Gui
             if (res == true && form.choosenpersons.Count > 0)
             {
                 Persons = form.choosenpersons;
-                FillPersons();
+                //FillPersons();
                 stage = StageEnum.CHOSEN;
-
-
             }
         }
 

@@ -672,8 +672,8 @@ namespace Chat.Gui
                 bclose.Content = "";
                 return;
             }
-            SmartBotWindow win = new SmartBotWindow(this);
-            win.ShowDialog();
+            //SmartBotWindow win = new SmartBotWindow(this);
+            //win.ShowDialog();
             //ChatMessage lastMessage = chatMessages.Last();
             //if (lastMessage.isBot == true)
             //{

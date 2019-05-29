@@ -1,35 +1,19 @@
-﻿<mah:MetroWindow x:Class="KamikyForms.Gui.SmartBotWindow"
+﻿<Canvas x:Class="KamikyForms.Gui.SmartBotWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KamikyForms.Gui"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        Width="1365"
+        Width="1165"
         Height="750"
-        Icon="/Resources/vk_logo.png"
         Left="0"
-        ResizeMode="NoResize"
         Top="0"
-        Title="Smart BOT"
-        WindowStartupLocation="CenterScreen"
-        WindowTitleBrush="#4c75a3"
+        Background="White"
+
         mc:Ignorable="d">
 
-    <mah:MetroWindow.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <!--  MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive!  -->
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <!--  Accent and AppTheme setting  -->
 
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </mah:MetroWindow.Resources>
     <Canvas>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
@@ -48,26 +32,14 @@
             </StackPanel>
         </StackPanel>
 
-        <TextBox
-            Canvas.Left="0"
-            Canvas.Top="620"
-            x:Name="pNumber"
-            Height="91"
-            Width="90"
-            FontWeight="Bold"
-            FontSize="60"
-            Text =""
-            Background="LightYellow"
-            HorizontalScrollBarVisibility="Disabled"
-            TextWrapping="Wrap"
-            VerticalScrollBarVisibility="Auto" />
+
 
         <TextBox
-            Canvas.Left=" 95"
+            Canvas.Left="10"
             Canvas.Top="620"
             x:Name="textblock"
             Height="95"
-            Width="1020"
+            Width="831"
             Background="AliceBlue"
             HorizontalScrollBarVisibility="Disabled"
             TextWrapping="Wrap"
@@ -78,93 +50,8 @@
             HorizontalAlignment="Center"
             Background="White"
             Click="onSubmit"
-            Content="Submit" Canvas.Left="1120" Canvas.Top="620" />
-        <Label
-            x:Name="pName"
-            Content="Лена"
-            Canvas.Left="1125"
-            Canvas.Top="10"
-            FontFamily="pack://application:,,,/Resources/#Reforma Grotesk Demi"
-            FontSize="30"
-            FontWeight="Bold"
-            Foreground="Black" />
-        <ListView
-            x:Name="datagrid"
-            Canvas.Top="63"
-            Width="224"
-            Height="552"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            Background="White"
-            FontSize="12"
-            PreviewMouseLeftButtonDown="dataGridView1_PreviewMouseLeftButtonDown"
-            SelectionChanged="dataGridView1_SelectionChanged"
-            MouseDoubleClick="Datagrid_OnMouseDoubleClick" Canvas.Left="1125">
-            <ListView.ItemContainerStyle>
+            Content="Submit" Canvas.Left="891" Canvas.Top="620" />
 
-                <Style TargetType="{x:Type ListViewItem}">
-                    <EventSetter Event="MouseEnter" Handler="lvi_MouseEnter" />
 
-                    <Style.Triggers>
-
-                        <DataTrigger Binding="{Binding isVirtual}" Value="true">
-                            <Setter Property="Opacity" Value="0.55" />
-                        </DataTrigger>
-
-                        <DataTrigger Binding="{Binding isVirtual}" Value="false">
-                            <Setter Property="Opacity" Value="1" />
-                        </DataTrigger>
-
-                        <DataTrigger Binding="{Binding isBot}" Value="true">
-                            <Setter Property="Background" Value="White" />
-                        </DataTrigger>
-
-                        <DataTrigger Binding="{Binding isBot}" Value="false">
-                            <Setter Property="Background" Value="#edf0f5" />
-                        </DataTrigger>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="Black" />
-                            <Setter Property="Background" Value="DarkGray" />
-                        </Trigger>
-
-                    </Style.Triggers>
-
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-                <GridView>
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                            <Setter Property="Background" Value="DarkGray" />
-                            <Setter Property="Height" Value="0" />
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label
-                                            Margin="-10,0,0,0"
-                                            Content="{Binding personName}"
-                                            FontWeight="Bold"
-                                            Foreground="#42648b" />
-                                        <Label
-                                            
-                                            Margin="-5,3,0,0"
-                                            Content="{Binding timeToString}"
-                                            FontSize="9"
-                                            Foreground="#aeb2cc" />
-                                    </StackPanel>
-                                    <Label ToolTip="11" ToolTipOpening="openTooltip" Margin="-10,-10,0,0" Content="{Binding message}" />
-                                </StackPanel>
-
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                </GridView>
-            </ListView.View>
-        </ListView>
     </Canvas>
-</mah:MetroWindow>
+</Canvas>
