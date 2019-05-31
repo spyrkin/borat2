@@ -684,7 +684,7 @@ namespace Chat.Gui
             }
             if (debug == false)
             {
-             //   FileParser.setBanList(bansId);
+                FileParser.setBanList(bansId);
             }
 
             //открываем vkокна

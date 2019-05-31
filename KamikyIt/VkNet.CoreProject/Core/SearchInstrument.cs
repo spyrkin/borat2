@@ -95,13 +95,17 @@ namespace ApiWrapper.Core
             //доп опции
             List<User> normGirls = canWrites.Where(o => isNormalGirl(o, filter)).ToList();
 
-            //foreach (User u in normGirls)
-            //{
-            //    if (u.Counters != null)
-            //    {
-                    
-            //    }
-            //}
+            foreach (User u in normGirls)
+            {
+
+                //get friends!!!
+                //var users = api.Friends.Get(new VkNet.Model.RequestParams.FriendsGetParams
+                //{
+                //    UserId = 1,
+                //    Count = 10,
+                //    Fields = ProfileFields.All,
+                //});
+            }
 
             List <PersonModel> persons = normGirls.Select(x => new PersonModel(x)).ToList();
             persons = persons.OrderBy(o => o.statusCode).ThenBy(o=>Math.Abs(250 - o.followers)).ToList();
