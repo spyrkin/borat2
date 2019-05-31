@@ -14,11 +14,16 @@ using MahApps.Metro.Controls;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using KamikyForms.Bot;
 using KamikyForms.Core;
 using KamikyForms.Gui;
+using KamikyForms.Simulator;
 using MahApps.Metro.IconPacks;
 using VkNet.Examples.ForChat;
+using Clipboard = System.Windows.Forms.Clipboard;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Chat.Gui
 {
@@ -423,6 +428,8 @@ namespace Chat.Gui
             bot.wire(this);
             stage = StageEnum.LOADED;
             addConsoleMsg("Loaded");
+
+            writeMessage("ntc", 0);
         }
 
         private void onPlay(object sender, RoutedEventArgs e)
@@ -742,6 +749,60 @@ namespace Chat.Gui
             TimeSpan ts = time - StartUpTime;
             string s = new DateTime(ts.Ticks).ToString("HH:mm:ss");
             tolTimer.Content = s;
+        }
+
+
+        public void prepareBrouser()
+        {
+
+            for (int i = 0; i < 20; i++)
+            {
+                Thread.Sleep(200);
+                SendKeys.SendWait("^+{W}");
+            }
+        }
+
+        public void writeMessage(string mess, int member)
+        {
+            Clipboard.Clear();
+            Clipboard.SetText(mess);
+
+            //ждем немножно
+            Thread.Sleep(getRandom(1000, 1500));
+            if (member != 0) //переключаемся
+            {
+                SendKeys.SendWait("^+{TAB}");
+            }
+            //двигаемся на кнопку
+            Thread.Sleep(getRandom(100, 200));
+
+            System.Windows.Point point1 = new System.Windows.Point(720 + 20 - getRandom(0, 40), 420 + 5 - getRandom(0, 10));   //+-20  , +-10 
+            MouseSimulator.LinearSmoothMove(point1, new TimeSpan(0, 0, 0, 0, getRandom(400, 500)));
+
+            Thread.Sleep(getRandom(10, 50));
+
+            MouseSimulator.ClickLeftMouseButton();
+
+            Thread.Sleep(getRandom(800, 1200));
+
+            System.Windows.Point point3 = new System.Windows.Point(750 + 20 - getRandom(0, 40), 450 + 5 - getRandom(0, 10));   //+-20  , +-10 
+            MouseSimulator.LinearSmoothMove(point3, new TimeSpan(0, 0, 0, 0, getRandom(100, 200)));
+
+            Thread.Sleep(getRandom(100, 200));
+
+            SendKeys.SendWait("^+{V}");
+            Thread.Sleep(getRandom(200, 300));
+            System.Windows.Point point2 = new System.Windows.Point(1120 + 20 - getRandom(0, 40), 580 + 10 - getRandom(0, 20));   //+-20  , +-10 
+
+            MouseSimulator.LinearSmoothMove(point2, new TimeSpan(0, 0, 0, 0, getRandom(400, 500)));
+            Thread.Sleep(getRandom(200, 300));
+            MouseSimulator.ClickLeftMouseButton();
+        }
+
+        public int getRandom(int min, int max)
+        {
+            Random rand = new Random();
+            return rand.Next(min, max);
         }
     }
 }
