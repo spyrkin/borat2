@@ -428,8 +428,11 @@ namespace Chat.Gui
             bot.wire(this);
             stage = StageEnum.LOADED;
             addConsoleMsg("Loaded");
-
-            writeMessage("ntc", 0);
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    Thread.Sleep(1000);
+            //    Console.WriteLine(i);
+            //}
         }
 
         private void onPlay(object sender, RoutedEventArgs e)
@@ -696,6 +699,11 @@ namespace Chat.Gui
 
             //открываем vkокна
             int count = bans.Count;
+            System.Diagnostics.Process.Start("http://google.com");
+            Thread.Sleep(2000);
+            prepareBrouser();
+
+
             Task.Factory.StartNew(() =>
             {
                 int i = 0;
@@ -718,14 +726,18 @@ namespace Chat.Gui
                     i++;
                 }
 
+                foreach (PersonModel p in Persons)
+                {
+                    if (p == null)
+                    {
+                        continue;
+                    }
+                    int j = Persons.IndexOf(p);
+                    writeMessage(startMessage, j);
+                }
+
             });
 
-
-
-
-            //List<PersonChat> resevers = new List<PersonChat> { this };
-            //SimpleMessageBox box = new SimpleMessageBox(this, resevers);
-            //bool? res = box.ShowDialog();
         }
 
         private void cleanSelection(object sender, RoutedEventArgs e)
