@@ -725,6 +725,8 @@ namespace Chat.Gui
                     Thread.Sleep(stable + dice);
                     i++;
                 }
+                //спим минутку перед написанием;
+                Thread.Sleep(60*1000);
 
                 foreach (PersonModel p in Persons)
                 {
