@@ -43,7 +43,6 @@ namespace ApiWrapper.Core
 
         public static List<PersonModel> getPersons(SearchFilter filter)
         {
-
             var peoples = api.Users.Search(new UserSearchParams()
             {
                 Sort = (VkNet.Enums.UserSort)filter.profileSort,

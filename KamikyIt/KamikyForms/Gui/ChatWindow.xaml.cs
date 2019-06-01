@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,6 +24,7 @@ using KamikyForms.Gui;
 using KamikyForms.Simulator;
 using MahApps.Metro.IconPacks;
 using VkNet.Examples.ForChat;
+using Brushes = System.Windows.Media.Brushes;
 using Clipboard = System.Windows.Forms.Clipboard;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using MessageBox = System.Windows.MessageBox;
@@ -433,6 +437,8 @@ namespace Chat.Gui
             //    Thread.Sleep(1000);
             //    Console.WriteLine(i);
             //}
+
+            writeMessage("sdfsdf", 0);
         }
 
         private void onPlay(object sender, RoutedEventArgs e)
@@ -704,8 +710,7 @@ namespace Chat.Gui
             prepareBrouser();
 
 
-            Task.Factory.StartNew(() =>
-            {
+
                 int i = 0;
                 while (i<count)
                 {
@@ -738,7 +743,7 @@ namespace Chat.Gui
                     writeMessage(startMessage, j);
                 }
 
-            });
+
 
         }
 
@@ -790,7 +795,12 @@ namespace Chat.Gui
             //двигаемся на кнопку
             Thread.Sleep(getRandom(100, 200));
 
-            System.Windows.Point point1 = new System.Windows.Point(720 + 20 - getRandom(0, 40), 420 + 5 - getRandom(0, 10));   //+-20  , +-10 
+            WebClient client = new WebClient();
+            Stream stream = client.OpenRead("https://pp.userapi.com/c848520/v848520997/775b0/r8uCR8Mi8ec.jpg?ava=1");
+            Bitmap bitmap;
+            bitmap = new Bitmap(stream);
+            int height = 420 + bitmap.Height - 243;
+            System.Windows.Point point1 = new System.Windows.Point(720 + 20 - getRandom(0, 40), height + 5 - getRandom(0, 10));   //+-20  , +-10 
             MouseSimulator.LinearSmoothMove(point1, new TimeSpan(0, 0, 0, 0, getRandom(400, 500)));
 
             Thread.Sleep(getRandom(10, 50));
