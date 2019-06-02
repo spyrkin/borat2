@@ -40,7 +40,7 @@ namespace ApiWrapper.Core
 
 		public Uri photoUrl200 { get; set; }
 
-		public Uri photoUrl400 { get; set; }
+        public Uri photoUrl400 { get; set; }
 
         public string Status { get; set; }
         public string interests { get; set; }

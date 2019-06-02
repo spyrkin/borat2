@@ -432,13 +432,24 @@ namespace Chat.Gui
             bot.wire(this);
             stage = StageEnum.LOADED;
             addConsoleMsg("Loaded");
+            List<int> ss = new List<int>() {0, 1, 2, 3, 4, 5, 6, 7, 8};
+            for (int k = ss.Count - 1; k >= 0; k--)
+            {
+                //var p = Persons[i];
+                //if (p == null)
+                //{
+                //    continue;
+                //}
+                int j = ss.IndexOf(k);
+                Console.WriteLine(k  + "  " + j + "    " +(ss.Count - 1) );
+            }
             //for (int i = 0; i < 100; i++)
             //{
             //    Thread.Sleep(1000);
             //    Console.WriteLine(i);
             //}
 
-            writeMessage("sdfsdf", 0);
+            // writeMessage("sdfsdf", 0, null);
         }
 
         private void onPlay(object sender, RoutedEventArgs e)
@@ -733,15 +744,26 @@ namespace Chat.Gui
                 //спим минутку перед написанием;
                 Thread.Sleep(60*1000);
 
-                foreach (PersonModel p in Persons)
+
+            for (int k = Persons.Count - 1; k >= 0; k--)
+            {
+                var p = Persons[i];
+                if (p == null)
                 {
-                    if (p == null)
-                    {
-                        continue;
-                    }
-                    int j = Persons.IndexOf(p);
-                    writeMessage(startMessage, j);
+                    continue;
                 }
+                int j = Persons.IndexOf(p);
+                writeMessage(startMessage, j, p);
+            }
+            //foreach (PersonModel p in Persons)
+            //{
+            //    if (p == null)
+            //    {
+            //        continue;
+            //    }
+            //    int j = Persons.IndexOf(p);
+            //    writeMessage(startMessage, j, p);
+            //}
 
 
 
@@ -781,14 +803,14 @@ namespace Chat.Gui
             }
         }
 
-        public void writeMessage(string mess, int member)
+        public void writeMessage(string mess, int member, PersonModel p)
         {
             Clipboard.Clear();
             Clipboard.SetText(mess);
 
             //ждем немножно
             Thread.Sleep(getRandom(1000, 1500));
-            if (member != 0) //переключаемся
+            if (member != Persons.Count - 1) //переключаемся
             {
                 SendKeys.SendWait("^+{TAB}");
             }
@@ -796,7 +818,7 @@ namespace Chat.Gui
             Thread.Sleep(getRandom(100, 200));
 
             WebClient client = new WebClient();
-            Stream stream = client.OpenRead("https://pp.userapi.com/c848520/v848520997/775b0/r8uCR8Mi8ec.jpg?ava=1");
+            Stream stream = client.OpenRead(p.photoUrl200.OriginalString);
             Bitmap bitmap;
             bitmap = new Bitmap(stream);
             int height = 420 + bitmap.Height - 243;
@@ -813,7 +835,7 @@ namespace Chat.Gui
             MouseSimulator.LinearSmoothMove(point3, new TimeSpan(0, 0, 0, 0, getRandom(100, 200)));
 
             Thread.Sleep(getRandom(100, 200));
-
+            Console.WriteLine(mess);
             SendKeys.SendWait("^+{V}");
             Thread.Sleep(getRandom(200, 300));
             System.Windows.Point point2 = new System.Windows.Point(1120 + 20 - getRandom(0, 40), 580 + 10 - getRandom(0, 20));   //+-20  , +-10 
