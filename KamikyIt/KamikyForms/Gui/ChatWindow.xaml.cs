@@ -747,7 +747,7 @@ namespace Chat.Gui
 
             for (int k = Persons.Count - 1; k >= 0; k--)
             {
-                var p = Persons[i];
+                var p = Persons[k];
                 if (p == null)
                 {
                     continue;
@@ -805,8 +805,11 @@ namespace Chat.Gui
 
         public void writeMessage(string mess, int member, PersonModel p)
         {
+            String mess2 = mess;
+            mess2 = mess2.Replace("$name", p.name);
+            mess2 = mess2.Replace("$fullname", p.name);
             Clipboard.Clear();
-            Clipboard.SetText(mess);
+            Clipboard.SetText(mess2);
 
             //ждем немножно
             Thread.Sleep(getRandom(1000, 1500));
