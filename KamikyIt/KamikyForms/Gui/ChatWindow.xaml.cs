@@ -834,10 +834,13 @@ namespace Chat.Gui
 
             Thread.Sleep(getRandom(800, 1200));
 
-            System.Windows.Point point3 = new System.Windows.Point(750 + 20 - getRandom(0, 40), 450 + 5 - getRandom(0, 10));   //+-20  , +-10 
+            System.Windows.Point point3 = new System.Windows.Point(770 + 20 - getRandom(0, 40), 470 + 5 - getRandom(0, 10));   //+-20  , +-10 
             MouseSimulator.LinearSmoothMove(point3, new TimeSpan(0, 0, 0, 0, getRandom(100, 200)));
 
             Thread.Sleep(getRandom(100, 200));
+            MouseSimulator.ClickLeftMouseButton();
+            Thread.Sleep(getRandom(100, 200));
+
             Console.WriteLine(mess);
             SendKeys.SendWait("^+{V}");
             Thread.Sleep(getRandom(200, 300));
