@@ -26,19 +26,20 @@ namespace VkNet.Examples.Core
 		private static void SetVkApiInstrumentProfile(object sender, KeyValuePair<string, string> e)
 		{
 			api = new VkNet.VkApi();
-
-			api.Authorize(new ApiAuthParams
+            //6884639
+            api.Authorize(new ApiAuthParams
 			{
+                
 				ApplicationId = 6394527,
 				Login = e.Key,
 				Password = e.Value,
-				//Settings = Settings.All,
-				TwoFactorAuthorization = () =>
-				{
-					Console.WriteLine("Enter Code:");
-					return Console.ReadLine();
-				}
-			});
+                //Settings = Settings.All,
+                TwoFactorAuthorization = () =>
+                {
+                    Console.WriteLine("Enter Code:");
+                    return Console.ReadLine();
+                }
+            });
 
 
 		}

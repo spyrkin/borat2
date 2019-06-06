@@ -795,6 +795,9 @@ namespace Chat.Gui
 
         public void prepareBrouser()
         {
+            Thread.Sleep(200);
+
+            SendKeys.SendWait("^+{0}");
 
             for (int i = 0; i < 20; i++)
             {
