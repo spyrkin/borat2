@@ -29,11 +29,11 @@ namespace VkNet.Examples.Core
             //6884639
             api.Authorize(new ApiAuthParams
 			{
-                
-				ApplicationId = 6394527,
-				Login = e.Key,
-				Password = e.Value,
-               // Settings = Settings.All,
+
+                ApplicationId = 6884639,
+                Login = "spyrkin@gmail.com",
+                Password = "crescent919",
+                // Settings = Settings.Friends,
                 TwoFactorAuthorization = () =>
                 {
                     Console.WriteLine("Enter Code:");
