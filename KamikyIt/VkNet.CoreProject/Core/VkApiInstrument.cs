@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ApiWrapper.Core;
 using VkNet.Enums.Filters;
 using VkNet.Examples.ForChat;
+using VkNet.Model;
 
 namespace VkNet.Examples.Core
 {
