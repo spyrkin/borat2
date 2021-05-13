@@ -21,7 +21,7 @@ namespace VkNet.Examples.ForChat
                 Hero h = new Hero();
                 h.id = 1;
                 h.login = "spyrkin@gmail.com";
-                h.pass = "crescent912";
+                h.pass = "crescent919";
                 h.log_name = "banlist1.txt";
                 instance = h;
                 return h;

@@ -33,7 +33,7 @@ namespace VkNet.Examples.Core
 				ApplicationId = 6394527,
 				Login = e.Key,
 				Password = e.Value,
-                //Settings = Settings.All,
+               // Settings = Settings.All,
                 TwoFactorAuthorization = () =>
                 {
                     Console.WriteLine("Enter Code:");

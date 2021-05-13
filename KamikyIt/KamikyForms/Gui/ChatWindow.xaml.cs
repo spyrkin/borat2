@@ -745,16 +745,16 @@ namespace Chat.Gui
                 Thread.Sleep(60*1000);
 
 
-            for (int k = Persons.Count - 1; k >= 0; k--)
-            {
-                var p = Persons[k];
-                if (p == null)
-                {
-                    continue;
-                }
-                int j = Persons.IndexOf(p);
-                writeMessage(startMessage, j, p);
-            }
+            //for (int k = Persons.Count - 1; k >= 0; k--)
+            //{
+            //    var p = Persons[k];
+            //    if (p == null)
+            //    {
+            //        continue;
+            //    }
+            //    int j = Persons.IndexOf(p);
+            //    writeMessage(startMessage, j, p);
+            //}
             //foreach (PersonModel p in Persons)
             //{
             //    if (p == null)
@@ -809,8 +809,9 @@ namespace Chat.Gui
         public void writeMessage(string mess, int member, PersonModel p)
         {
             String mess2 = mess;
-            mess2 = mess2.Replace("$name", p.name);
-            mess2 = mess2.Replace("$fullname", p.name);
+            string[] words = p.name.Split(new string[] { " " }, StringSplitOptions.None);
+            string name = words[0];
+            mess2 = mess2.Replace("$name", name);
             Clipboard.Clear();
             Clipboard.SetText(mess2);
 
@@ -841,11 +842,11 @@ namespace Chat.Gui
             MouseSimulator.LinearSmoothMove(point3, new TimeSpan(0, 0, 0, 0, getRandom(100, 200)));
 
             Thread.Sleep(getRandom(100, 200));
-            MouseSimulator.ClickLeftMouseButton();
-            Thread.Sleep(getRandom(100, 200));
+            //MouseSimulator.ClickLeftMouseButton();
+            //Thread.Sleep(getRandom(100, 200));
 
-            Console.WriteLine(mess);
-            SendKeys.SendWait("^+{V}");
+            //Console.WriteLine(mess);
+            //SendKeys.SendWait("^+{V}");
             Thread.Sleep(getRandom(200, 300));
             System.Windows.Point point2 = new System.Windows.Point(1120 + 20 - getRandom(0, 40), 580 + 10 - getRandom(0, 20));   //+-20  , +-10 
 
