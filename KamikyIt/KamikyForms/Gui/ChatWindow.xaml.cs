@@ -60,6 +60,7 @@ namespace Chat.Gui
             this.debug = debug;
             this.hero = hero;
             InitializeComponent();
+            Title = ChatCoreHelper.api.VkApiVersion.Version;
             stage = StageEnum.INIT;
             StartUpTime = DateTime.Now;
             stat = new Statistic(this);
