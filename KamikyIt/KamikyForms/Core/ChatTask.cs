@@ -14,6 +14,9 @@ namespace Chat.Core
         public TaskEnum type;
         public string message { get; set; }
         public long vkId;
+
+
+
         public string personChatId { get; set; }
         public string personName { get; set; }
         public DateTime timeExpared;
